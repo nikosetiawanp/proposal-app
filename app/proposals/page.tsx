@@ -1,38 +1,74 @@
+"use client";
+
 import clsx from "clsx";
 import Layout from "../layout";
+import { SetStateAction, useState } from "react";
+
+const PAPER_PRESETS = {
+  letter: { width: 612, height: 792 },
+  a4: { width: 595, height: 842 },
+};
 
 export default function Page() {
+  const [scale, setScale] = useState(90);
+  const [paper, setPaper] = useState("letter");
+
   return (
     <Layout>
       <main className="flex h-screen w-screen items-center justify-center bg-zinc-200 p-6">
-        <Paper>
-          <CoverPage />
-        </Paper>
+        {/* Paper */}
+        <div
+          style={{
+            transform: `scale(${scale / 100})`,
+            width: `${PAPER_PRESETS[paper].width}px`,
+            height: `${PAPER_PRESETS[paper].height}px`,
+          }}
+          className={clsx(
+            "flex h-full flex-col rounded-sm bg-white p-8 shadow-xl",
+            "h-[792px] w-[612px]",
+          )}
+        >
+          <Cover />
+        </div>
+        <ScaleControl scale={scale} setScale={setScale} />
       </main>
     </Layout>
   );
 }
 
-function Paper({ children }: { children: React.ReactNode }) {
+function ScaleControl({
+  scale,
+  setScale,
+}: {
+  scale: number;
+  setScale: React.Dispatch<React.SetStateAction<number>>;
+}) {
   return (
-    <div
-      className={clsx(
-        "flex h-full flex-col rounded-sm bg-white p-8",
-        "h-[792px] w-[612px]",
-      )}
-    >
-      {children}
+    <div className="z-50 flex items-center gap-4 rounded-xl border border-zinc-300 bg-white p-2 shadow-xl">
+      <button
+        className="w-fit rounded-xl p-2 text-zinc-900"
+        onClick={() => setScale(scale - 10)}
+      >
+        -
+      </button>
+      <span className="font-bold text-zinc-900">{scale}%</span>
+      <button
+        className="w-fit rounded-xl p-2 text-zinc-900"
+        onClick={() => setScale(scale + 10)}
+      >
+        +
+      </button>
     </div>
   );
 }
 
-function CoverPage() {
+function Cover() {
   return (
     <div className={clsx("flex h-full flex-col justify-between")}>
       <EditableText
         id="name"
         label="Your name"
-        placeholder=""
+        placeholder="Your name"
         defaultValue=""
         className="text-[24px] font-bold text-zinc-900"
       />
@@ -45,8 +81,7 @@ function CoverPage() {
         <EditableText
           id="project-title"
           label="Project title"
-          placeholder="Click to enter project title"
-          defaultValue="Project Title"
+          placeholder="Project title"
           className="text-[32px] font-bold text-zinc-900"
         />
       </div>
@@ -58,8 +93,8 @@ function CoverPage() {
           <EditableText
             id="client-name"
             label="Client name"
-            placeholder="Click to enter Client Name"
-            defaultValue="Client Name"
+            placeholder="Client Name"
+            defaultValue=""
             className="text-[20px] text-zinc-900"
           />
         </div>
@@ -78,7 +113,7 @@ function EditableText({
   id: string;
   label: string;
   placeholder: string;
-  defaultValue: string;
+  defaultValue?: string;
   className?: string;
 }) {
   return (
@@ -94,7 +129,7 @@ function EditableText({
           "transition-all",
           className ? className : "text-[16px] text-zinc-900",
         )}
-        placeholder="Project Title"
+        placeholder={placeholder}
         defaultValue={defaultValue}
       />
       <label
