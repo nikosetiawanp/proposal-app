@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { GripVertical, Trash } from "lucide-react";
 import EditableText from "../editableText";
+import { DragAndDrop } from "../DragAndDrop";
 
 export default function Timeline() {
   return (
@@ -13,6 +14,7 @@ export default function Timeline() {
       {/* Content */}
       <div className="flex h-full flex-col">
         {/* Center */}
+
         <h2 className="mb-8 px-9 text-[48px] font-bold text-zinc-900">
           Estimated Timeline
         </h2>
@@ -20,15 +22,19 @@ export default function Timeline() {
         {/* Table */}
         <div className="flex w-full flex-col">
           {/* Table Header */}
-          <div className="flex px-9">
-            <span className="ml-2 flex-[4] font-bold text-zinc-900">
+          <div className="flex px-9 py-2">
+            <span className="ml-1 flex-[4] font-bold text-zinc-900">
               Service
             </span>
-            <span className="ml-4 flex-[2] font-bold text-zinc-900">
+            <span className="ml-6 flex-[2] font-bold text-zinc-900">
               Budget
             </span>
           </div>
+          <div className="px-10">
+            <Divider />
+          </div>
 
+          {/* Row */}
           <Block>
             <div className="flex-[2]">
               <EditableText
@@ -53,8 +59,21 @@ export default function Timeline() {
           <div className="px-10">
             <Divider />
           </div>
+          {/* End of Row */}
+
+          {/* Table Footer */}
+          <div className="flex px-10 py-2">
+            <div className="flex-[2]">
+              <span className="font-bold text-zinc-900">Total</span>
+            </div>
+            <div className="ml-7 flex-[1]">
+              <span className="font-bold text-zinc-900">$7,700</span>
+            </div>
+          </div>
         </div>
       </div>
+
+      <DragAndDrop />
 
       {/* Footer */}
       <div className="flex justify-between px-9 py-6">
@@ -77,7 +96,7 @@ function Block({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={clsx(
-        "group flex items-center gap-0.5 rounded-lg p-1",
+        "group flex items-center rounded-lg p-1",
         "hover:bg-zinc-100",
       )}
     >
@@ -96,10 +115,10 @@ function Block({ children }: { children: React.ReactNode }) {
       <button
         className={clsx(
           "rounded-md p-1 opacity-0",
-          "group-hover:opacity-100 hover:cursor-pointer hover:bg-zinc-100",
+          "group-hover:opacity-100 hover:cursor-pointer hover:bg-zinc-200",
         )}
       >
-        <Trash className="w-5 text-zinc-300" />
+        <Trash className={clsx("w-5 text-zinc-300", "hover:text-red-400")} />
       </button>
     </div>
   );

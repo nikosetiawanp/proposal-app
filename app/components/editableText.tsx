@@ -29,7 +29,7 @@ export default function EditableText({
         placeholder={placeholder}
         defaultValue={defaultValue}
       />
-      <label
+      {/* <label
         htmlFor={id}
         className={clsx(
           "absolute -top-6 left-0 w-fit rounded-sm bg-indigo-500 px-2 py-1 text-[12px] font-bold text-nowrap",
@@ -39,7 +39,7 @@ export default function EditableText({
         )}
       >
         {label}
-      </label>
+      </label> */}
     </div>
   );
 }

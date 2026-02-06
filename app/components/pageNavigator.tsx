@@ -17,6 +17,9 @@ export default function PageNavigator() {
   const currentPageName = proposalPages.find(
     (page) => page.slug === currentPage,
   )?.name;
+  const CurrentPageIcon = proposalPages.find(
+    (page) => page.slug === currentPage,
+  )?.icon;
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -36,12 +39,20 @@ export default function PageNavigator() {
           "hover:cursor-pointer hover:bg-zinc-100",
         )}
       >
-        <Layers className="w-5" />
+        {/* <Layers className="w-5" /> */}
+        {CurrentPageIcon ? <CurrentPageIcon /> : null}
+
         <span>{currentPageName}</span>
         <ChevronDown className="w-5 group-data-[state=open]:rotate-180" />
       </Collapsible.Trigger>
-      <Collapsible.Content className="rounded-2xl border border-zinc-300 bg-zinc-100 shadow-xl">
-        <div className="flex flex-col px-4 py-4">
+      <Collapsible.Content className="overflow-hidden rounded-2xl border border-zinc-300 bg-zinc-100 shadow-xl">
+        {/* Pages */}
+        <div className="border-b border-zinc-200 bg-white p-4">
+          <span className="text-[24px] font-bold text-zinc-900">Pages</span>
+        </div>
+
+        {/* Pages List */}
+        <div className="flex flex-col p-4">
           <span className="text-[14px] font-bold text-zinc-500">Active</span>
           {Array.from(proposalPages).map((page, index) => {
             const active = currentPage === page.slug;
