@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { GripVertical, Trash } from "lucide-react";
 import EditableText from "../editableText";
 import { DragAndDrop } from "../DragAndDrop";
+import Sortable from "../Sortable";
 
 export default function Timeline() {
   return (
@@ -73,7 +74,8 @@ export default function Timeline() {
         </div>
       </div>
 
-      <DragAndDrop />
+      {/* <DragAndDrop /> */}
+      <Sortable />
 
       {/* Footer */}
       <div className="flex justify-between px-9 py-6">
