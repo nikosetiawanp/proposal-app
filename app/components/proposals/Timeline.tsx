@@ -56,7 +56,7 @@ export default function Timeline() {
                         />
                       </div>
 
-                      <div className="-ml-12 flex-[1]">
+                      <div className="-ml-13 flex-[1]">
                         <EditableText
                           id="service"
                           label="Service"

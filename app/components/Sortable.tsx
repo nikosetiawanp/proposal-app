@@ -88,7 +88,7 @@ function SortableItem({
       style={style}
       className={clsx(
         "group flex items-center rounded-lg p-1",
-        "hover:bg-indigo-500/10",
+        "hover:bg-indigo-500/5",
       )}
     >
       {/* Handle */}
