@@ -20,8 +20,15 @@ import { GripVertical } from "lucide-react";
 import { SetStateAction, useState } from "react";
 import { CSS } from "@dnd-kit/utilities";
 
-export default function Sortable() {
-  const [items, setItems] = useState([1, 2, 3]);
+function SortableContainer({
+  items,
+  setItems,
+  children,
+}: {
+  items: any[];
+  setItems: React.Dispatch<SetStateAction<any[]>>;
+  children: React.ReactNode;
+}) {
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -29,13 +36,7 @@ export default function Sortable() {
     }),
   );
 
-  function handleDragStart(event: any) {
-    setActiveId(event.active.id);
-  }
-
-  // function handleDragEnd() {
-  //   setActiveId(null);
-  // }
+  function handleDragStart(event: any) {}
 
   function handleDragEnd(event: any) {
     const { active, over } = event;
@@ -48,38 +49,30 @@ export default function Sortable() {
         return arrayMove(items, oldIndex, newIndex);
       });
     }
-    setActiveId(null);
   }
 
-  const [activeId, setActiveId] = useState<number | null>(null);
-
   return (
-    <div className="bg-green-100 px-9 py-6">
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-        modifiers={[restrictToVerticalAxis]}
-      >
-        <SortableContext items={items} strategy={verticalListSortingStrategy}>
-          <div className="flex flex-col gap-1">
-            {items.map((id) => (
-              <SortableItem key={id} id={id} />
-            ))}
-          </div>
-        </SortableContext>
-
-        {/* Drag Overlay*/}
-        {/* <DragOverlay adjustScale={false}>
-          {activeId ? <SortableItem id={activeId} /> : null}
-        </DragOverlay> */}
-      </DndContext>
-    </div>
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+      modifiers={[restrictToVerticalAxis]}
+    >
+      <SortableContext items={items} strategy={verticalListSortingStrategy}>
+        {children}
+      </SortableContext>
+    </DndContext>
   );
 }
 
-function SortableItem({ id }: { id: number }) {
+function SortableItem({
+  id,
+  children,
+}: {
+  id: number;
+  children: React.ReactNode;
+}) {
   const { attributes, listeners, setNodeRef, transform, transition, isOver } =
     useSortable({ id: id });
 
@@ -94,14 +87,23 @@ function SortableItem({ id }: { id: number }) {
       {...attributes}
       style={style}
       className={clsx(
-        "flex gap-2 rounded-lg border border-red-500 bg-red-100 p-2 text-red-500",
+        "group flex items-center rounded-lg p-1",
+        "hover:bg-indigo-500/10",
       )}
     >
       {/* Handle */}
-      <div className="hover:cursor-pointer" {...listeners}>
-        <GripVertical className="w-5" />
+      <div
+        {...listeners}
+        className={clsx(
+          "p-1 text-indigo-300 opacity-0 transition-colors",
+          "group-hover:opacity-100 hover:cursor-pointer hover:text-indigo-500",
+        )}
+      >
+        <GripVertical />
       </div>
-      <span>Sortable Item {id}</span>
+      {children}
     </div>
   );
 }
+
+export { SortableContainer, SortableItem };

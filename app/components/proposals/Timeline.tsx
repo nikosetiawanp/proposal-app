@@ -2,9 +2,12 @@ import clsx from "clsx";
 import { GripVertical, Trash } from "lucide-react";
 import EditableText from "../editableText";
 import { DragAndDrop } from "../DragAndDrop";
-import Sortable from "../Sortable";
+import { SortableContainer, SortableItem } from "../Sortable";
+import React, { useState } from "react";
 
 export default function Timeline() {
+  const [serviceItems, setServiceItems] = useState([1, 2, 3]);
+
   return (
     <div className={clsx("flex h-full flex-col justify-between")}>
       {/* Header */}
@@ -35,31 +38,43 @@ export default function Timeline() {
             <Divider />
           </div>
 
-          {/* Row */}
-          <Block>
-            <div className="flex-[2]">
-              <EditableText
-                id="service"
-                label="Service"
-                placeholder="Service"
-                className="text-[14px] text-zinc-900"
-                defaultValue="Discovery & Planning"
-              />
-            </div>
+          {/* Items */}
+          <SortableContainer items={serviceItems} setItems={setServiceItems}>
+            <div className="flex flex-col">
+              {serviceItems.map((item) => {
+                return (
+                  // Row
+                  <SortableItem key={item} id={item}>
+                    <div className="flex w-full">
+                      <div className="flex-[2]">
+                        <EditableText
+                          id="service"
+                          label="Service"
+                          placeholder="Service"
+                          className="text-[14px] text-zinc-900"
+                          defaultValue={"Item " + item}
+                        />
+                      </div>
 
-            <div className="flex-[1]">
-              <EditableText
-                id="service"
-                label="Service"
-                placeholder="Service"
-                className="text-[14px] text-zinc-900"
-                defaultValue="$300"
-              />
+                      <div className="-ml-12 flex-[1]">
+                        <EditableText
+                          id="service"
+                          label="Service"
+                          placeholder="Service"
+                          className="text-[14px] text-zinc-900"
+                          defaultValue="$300"
+                        />
+                      </div>
+                    </div>
+                    {/* <div className="px-10">
+                      <Divider />
+                    </div> */}
+                  </SortableItem>
+                );
+              })}
             </div>
-          </Block>
-          <div className="px-10">
-            <Divider />
-          </div>
+          </SortableContainer>
+
           {/* End of Row */}
 
           {/* Table Footer */}
@@ -73,9 +88,6 @@ export default function Timeline() {
           </div>
         </div>
       </div>
-
-      {/* <DragAndDrop /> */}
-      <Sortable />
 
       {/* Footer */}
       <div className="flex justify-between px-9 py-6">
