@@ -1,0 +1,23 @@
+{
+  "proposal": {
+    "briefAndObjectives": {
+      "list": {
+        "name": "List",
+        "component": "/components/layouts/proposal/List.tsx",
+        "thumbnail": "/assets/layouts/list.svg"
+      },
+      "ordered": {
+        "name": "Ordered",
+        "component": "/components/layouts/proposal/Ordered.tsx",
+        "thumbnail": "/assets/layouts/ordered.svg"
+      },
+      "cardSimple": {
+        "name": "Card Simple",
+        "component": "/components/layouts/proposal/CardSimple.tsx",
+        "thumbnail": "/assets/layouts/card_simple.svg"
+      }
+    },
+    "tableOfContents": {}
+  },
+  "invoice": {}
+}

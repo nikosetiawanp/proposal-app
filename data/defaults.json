@@ -1,0 +1,21 @@
+{
+  "proposal": {
+    "theme": {
+      "headingFont": "Inter",
+      "bodyFont": "Roboto",
+      "accentColor": "#2563eb"
+    },
+    "pages": {
+      "tableOfContents": {
+        "active": false,
+        "optional": true,
+        "layout": "ordered"
+      },
+      "briefAndObjectives": {
+        "active": false,
+        "optional": true,
+        "layout": "list"
+      }
+    }
+  }
+}

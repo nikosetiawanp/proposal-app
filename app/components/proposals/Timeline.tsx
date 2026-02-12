@@ -44,32 +44,34 @@ export default function Timeline() {
               {serviceItems.map((item) => {
                 return (
                   // Row
-                  <SortableItem key={item} id={item}>
-                    <div className="flex w-full">
-                      <div className="flex-[2]">
-                        <EditableText
-                          id="service"
-                          label="Service"
-                          placeholder="Service"
-                          className="text-[14px] text-zinc-900"
-                          defaultValue={"Item " + item}
-                        />
-                      </div>
+                  <React.Fragment key={item}>
+                    <SortableItem key={item} id={item}>
+                      <div className="flex w-full">
+                        <div className="flex-[2]">
+                          <EditableText
+                            id="service"
+                            label="Service"
+                            placeholder="Service"
+                            className="text-[14px] text-zinc-900"
+                            defaultValue={"Item " + item}
+                          />
+                        </div>
 
-                      <div className="-ml-13 flex-[1]">
-                        <EditableText
-                          id="service"
-                          label="Service"
-                          placeholder="Service"
-                          className="text-[14px] text-zinc-900"
-                          defaultValue="$300"
-                        />
+                        <div className="-ml-13 flex-[1]">
+                          <EditableText
+                            id="service"
+                            label="Service"
+                            placeholder="Service"
+                            className="text-[14px] text-zinc-900"
+                            defaultValue={"$" + item + "00"}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    {/* <div className="px-10">
+                    </SortableItem>
+                    <div className="px-10">
                       <Divider />
-                    </div> */}
-                  </SortableItem>
+                    </div>
+                  </React.Fragment>
                 );
               })}
             </div>
