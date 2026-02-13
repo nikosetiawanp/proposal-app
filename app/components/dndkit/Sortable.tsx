@@ -97,8 +97,9 @@ function SortableItem({
       style={{ ...style, width: "100%" }}
       className={clsx(
         "h-fit w-full",
-        "group flex items-center rounded-lg p-1",
-        "hover:z-50 hover:bg-indigo-50",
+        "group flex items-start rounded-lg p-1",
+        "hover:bg-indigo-50",
+        isDragging && "z-50 bg-white shadow-lg",
       )}
     >
       {/* Handle */}
@@ -115,7 +116,8 @@ function SortableItem({
       <button
         className={clsx(
           "p-1 text-zinc-300 opacity-0",
-          "rounded-lg group-hover:opacity-100 hover:cursor-pointer hover:bg-indigo-100 hover:text-red-400",
+          !isDragging &&
+            "rounded-lg group-hover:opacity-100 hover:cursor-pointer hover:bg-indigo-100 hover:text-red-400",
         )}
       >
         <Trash className="w-5" />

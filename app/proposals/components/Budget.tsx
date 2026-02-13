@@ -8,6 +8,8 @@ import {
 import React, { useState } from "react";
 import Divider from "@/app/components/Divider";
 import SectionTitle from "./SectionTitle";
+import ProposalFooter from "./ProposalFooter";
+import ProposalHeader from "./ProposalHeader";
 
 export default function Budget() {
   const [serviceItems, setServiceItems] = useState([1, 2, 3]);
@@ -15,9 +17,7 @@ export default function Budget() {
   return (
     <div className={clsx("flex h-full flex-col justify-between")}>
       {/* Header */}
-      <div className="flex justify-between px-9 py-4">
-        <span className="text-zinc-900">Your Name</span>
-      </div>
+      <ProposalHeader />
 
       {/* Content */}
       <div className="flex h-full flex-col">
@@ -94,10 +94,7 @@ export default function Budget() {
       </div>
 
       {/* Footer */}
-      <div className="flex justify-between px-9 py-6">
-        <span className="text-zinc-900">Project Name</span>
-        <span className="text-zinc-900">1</span>
-      </div>
+      <ProposalFooter />
     </div>
   );
 }

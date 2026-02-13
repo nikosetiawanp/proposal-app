@@ -8,8 +8,8 @@ export default function Cover() {
       <div className="px-9 py-6">
         <EditableText
           id="name"
-          label="Your name"
-          placeholder="Your name"
+          label="Proposer's Name"
+          placeholder="Proposer's Name"
           defaultValue=""
           className="text-[24px] font-bold text-zinc-900"
         />
@@ -26,6 +26,7 @@ export default function Cover() {
           label="Project title"
           placeholder="Project title"
           className="text-[32px] font-bold text-zinc-900"
+          defaultValue={"Project Title"}
         />
       </div>
 
@@ -36,9 +37,9 @@ export default function Cover() {
           <span className="ml-1 text-[20px] text-zinc-900">Prepared for</span>
           <EditableText
             id="client-name"
-            label="Client name"
-            placeholder="Client Name"
-            defaultValue=""
+            label="Client's name"
+            placeholder="Client's Name"
+            defaultValue="Client's Name"
             className="text-[20px] text-zinc-900"
           />
         </div>

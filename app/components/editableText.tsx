@@ -16,7 +16,7 @@ export default function EditableText({
   as?: "input" | "textarea";
 }) {
   const inputStyle = clsx(
-    "peer field-sizing-content w-fit rounded-sm border-2 border-white/0 px-0",
+    "peer field-sizing-content w-fit rounded-sm border-2 border-white/0",
     "focus:border-indigo-500 focus:bg-indigo-500/10 focus:text-indigo-500 focus:outline-0",
     "hover:cursor- hover:border-indigo-500/70",
     "selection:bg-indigo-500/50 selection:text-white",

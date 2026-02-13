@@ -7,15 +7,15 @@ import {
 } from "@/app/components/dndkit/Sortable";
 import { SetStateAction, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import ProposalHeader from "./ProposalHeader";
+import ProposalFooter from "./ProposalFooter";
 
 export default function BriefAndObjectives() {
   const [objectives, setObjectives] = useState([1, 2, 3, 4, 5]);
   return (
     <div className={clsx("flex h-full flex-col justify-between")}>
       {/* Header */}
-      <div className="flex justify-between px-9 py-4">
-        <span className="text-zinc-900">Your Name</span>
-      </div>
+      <ProposalHeader />
 
       {/* Content */}
       <div className="flex h-full flex-col gap-8">
@@ -32,6 +32,7 @@ export default function BriefAndObjectives() {
           />
         </div>
 
+        {/* Objectives */}
         <div className="flex flex-col gap-2">
           <SectionTitle className="ml-8">Objectives</SectionTitle>
           <SortableContainer items={objectives} setItems={setObjectives}>
@@ -39,12 +40,13 @@ export default function BriefAndObjectives() {
               {objectives.map((objective) => {
                 return (
                   <SortableItem key={objective} id={objective}>
-                    <div className="flex items-center gap-2">
+                    <div className="mt-0.5 flex items-center gap-2">
                       <ArrowRight className="text-zinc-900" />
                       <EditableText
                         id={""}
-                        placeholder={"Write objective here"}
-                        defaultValue={"Objective" + objective}
+                        placeholder={"Click to write objective"}
+                        defaultValue={"Objective " + objective}
+                        as="textarea"
                       />
                     </div>
                   </SortableItem>
@@ -56,10 +58,7 @@ export default function BriefAndObjectives() {
       </div>
 
       {/* Footer */}
-      <div className="flex justify-between px-9 py-6">
-        <span className="text-zinc-900">Project Name</span>
-        <span className="text-zinc-900">1</span>
-      </div>
+      <ProposalFooter />
     </div>
   );
 }
