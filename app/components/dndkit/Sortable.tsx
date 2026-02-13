@@ -18,7 +18,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import clsx from "clsx";
-import { GripVertical } from "lucide-react";
+import { GripVertical, Trash } from "lucide-react";
 import { SetStateAction, useState } from "react";
 import { CSS } from "@dnd-kit/utilities";
 
@@ -59,7 +59,7 @@ function SortableContainer({
       collisionDetection={closestCenter}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
-      modifiers={[restrictToVerticalAxis]}
+      // modifiers={[restrictToVerticalAxis]}
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
         {children}
@@ -75,11 +75,18 @@ function SortableItem({
   id: number;
   children: React.ReactNode;
 }) {
-  const { attributes, listeners, setNodeRef, transform, transition, isOver } =
-    useSortable({ id: id });
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isOver,
+    isDragging,
+  } = useSortable({ id });
 
   const style = {
-    transform: CSS.Transform.toString(transform),
+    transform: CSS.Translate.toString(transform), // use Css.Translate instead of Css.Transform to avoid distortion
     transition,
   };
 
@@ -87,10 +94,11 @@ function SortableItem({
     <div
       ref={setNodeRef}
       {...attributes}
-      style={style}
+      style={{ ...style, width: "100%" }}
       className={clsx(
+        "h-fit w-full",
         "group flex items-center rounded-lg p-1",
-        "hover:bg-indigo-500/5",
+        "hover:z-50 hover:bg-indigo-50",
       )}
     >
       {/* Handle */}
@@ -103,7 +111,15 @@ function SortableItem({
       >
         <GripVertical />
       </div>
-      {children}
+      <div className="w-full">{children}</div>
+      <button
+        className={clsx(
+          "p-1 text-zinc-300 opacity-0",
+          "rounded-lg group-hover:opacity-100 hover:cursor-pointer hover:bg-indigo-100 hover:text-red-400",
+        )}
+      >
+        <Trash className="w-5" />
+      </button>
     </div>
   );
 }

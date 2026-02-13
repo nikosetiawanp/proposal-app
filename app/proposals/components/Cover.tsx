@@ -1,5 +1,5 @@
+import EditableText from "@/app/components/EditableText";
 import clsx from "clsx";
-import EditableText from "../editableText";
 
 export default function Cover() {
   return (
@@ -33,7 +33,7 @@ export default function Cover() {
       <div className="flex items-end justify-between px-9 py-6">
         <span className="text-[20px] text-zinc-900">4 July 2026</span>
         <div className="flex flex-col gap-2">
-          <span className="ml-2 text-[20px] text-zinc-900">Prepared for</span>
+          <span className="ml-1 text-[20px] text-zinc-900">Prepared for</span>
           <EditableText
             id="client-name"
             label="Client name"

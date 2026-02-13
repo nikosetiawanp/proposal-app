@@ -18,7 +18,7 @@ export default function ScaleControl({
   }
 
   return (
-    <div className="absolute top-6 right-6 z-50 flex items-center gap-4 rounded-xl border border-zinc-300 bg-white p-2 shadow-xl">
+    <div className="absolute top-18 right-4 z-50 flex items-center gap-4 rounded-xl border border-zinc-300 bg-white p-2 shadow-xl">
       <button
         className={clsx(
           "w-fit rounded-xl p-2 text-zinc-900",

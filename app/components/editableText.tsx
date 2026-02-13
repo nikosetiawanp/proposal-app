@@ -6,29 +6,46 @@ export default function EditableText({
   placeholder,
   defaultValue,
   className,
+  as,
 }: {
   id: string;
-  label: string;
+  label?: string;
   placeholder: string;
-  defaultValue?: string;
+  defaultValue: string;
   className?: string;
+  as?: "input" | "textarea";
 }) {
+  const inputStyle = clsx(
+    "peer field-sizing-content w-fit rounded-sm border-2 border-white/0 px-0",
+    "focus:border-indigo-500 focus:bg-indigo-500/10 focus:text-indigo-500 focus:outline-0",
+    "hover:cursor- hover:border-indigo-500/70",
+    "selection:bg-indigo-500/50 selection:text-white",
+    "placeholder:text-zinc-400",
+    "transition-all",
+    "text-[16px] text-zinc-900",
+    // "-ml-1",
+    className,
+  );
+
   return (
     <div className="relative flex w-fit flex-col">
-      <input
-        id={id}
-        type="text"
-        className={clsx(
-          "peer field-sizing-content w-fit rounded-sm border-2 border-white/0 px-1",
-          "focus:border-indigo-500 focus:bg-indigo-500/10 focus:text-indigo-500 focus:outline-0",
-          "hover:cursor- hover:border-indigo-500/70",
-          "selection:bg-indigo-500/50 selection:text-white",
-          "transition-all",
-          className ? className : "text-[16px] text-zinc-900",
-        )}
-        placeholder={placeholder}
-        defaultValue={defaultValue}
-      />
+      {as === "textarea" ? (
+        <textarea
+          id={id}
+          className={clsx("resize-none", inputStyle)}
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+        />
+      ) : (
+        <input
+          id={id}
+          type="text"
+          className={clsx(inputStyle)}
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+        />
+      )}
+
       {/* <label
         htmlFor={id}
         className={clsx(

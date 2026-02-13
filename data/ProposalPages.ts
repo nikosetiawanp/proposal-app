@@ -14,25 +14,28 @@ import {
   BookA,
 } from "lucide-react";
 
-import Cover from "../components/proposals/Cover";
-import Timeline from "../components/proposals/Timeline";
+import Cover from "../app/proposals/components/Cover";
+import Timeline from "../app/proposals/components/Timeline";
+import BriefAndObjectives from "../app/proposals/components/BriefAndObjectives";
+import Scope from "@/app/proposals/components/Scope";
+import Budget from "@/app/proposals/components/Budget";
 
-export const proposalPages = [
+export const ProposalPages = [
   { name: "Cover", slug: "cover", icon: BookA, component: Cover },
   {
     name: "Brief and Objectives",
     slug: "brief-and-objectives",
     icon: Target,
-    component: Cover,
+    component: BriefAndObjectives,
   },
-  { name: "Scope", slug: "scope", icon: ListChecks, component: Cover },
+  { name: "Scope", slug: "scope", icon: ListChecks, component: Scope },
   {
     name: "Estimated Timeline",
     slug: "estimated-timeline",
     icon: CalendarClock,
     component: Timeline,
   },
-  { name: "Budget", slug: "budget", icon: DollarSign, component: Cover },
+  { name: "Budget", slug: "budget", icon: DollarSign, component: Budget },
   {
     name: "Table of Contents",
     slug: "table-of-contents",
