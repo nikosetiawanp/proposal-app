@@ -98,15 +98,15 @@ function SortableItem({
       className={clsx(
         "h-fit w-full",
         "group flex items-start rounded-lg p-1",
-        "hover:bg-indigo-50",
-        isDragging && "z-50 bg-white shadow-lg",
+        "hover:bg-indigo-500/10",
+        isDragging && "z-50 shadow-lg backdrop-blur-sm",
       )}
     >
       {/* Handle */}
       <div
         {...listeners}
         className={clsx(
-          "p-1 text-indigo-300 opacity-0 transition-colors",
+          "p-1 text-indigo-500/50 opacity-0 transition-colors",
           "group-hover:opacity-100 hover:cursor-pointer hover:text-indigo-500",
         )}
       >
@@ -117,7 +117,7 @@ function SortableItem({
         className={clsx(
           "p-1 text-zinc-300 opacity-0",
           !isDragging &&
-            "rounded-lg group-hover:opacity-100 hover:cursor-pointer hover:bg-indigo-100 hover:text-red-400",
+            "rounded-lg group-hover:opacity-100 hover:cursor-pointer hover:bg-indigo-500/10 hover:text-red-400",
         )}
       >
         <Trash className="w-5" />

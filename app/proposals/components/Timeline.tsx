@@ -86,7 +86,7 @@ export default function Timeline() {
             <div className="flex-[2]">
               <span className="font-bold text-zinc-900">Total</span>
             </div>
-            <div className="ml-4 flex-[1]">
+            <div className="ml-3 flex-[1]">
               <span className="font-bold text-zinc-900">8 Weeks</span>
             </div>
           </div>
