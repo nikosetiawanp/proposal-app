@@ -44,7 +44,7 @@ export default function Scope() {
                           "Functionality, responsiveness, and overall user experience are reviewed jointly, with issues addressed prior to launch."
                         }
                         as="textarea"
-                        className="ml-8"
+                        className="ml-7"
                       />
                     </div>
                   </SortableItem>

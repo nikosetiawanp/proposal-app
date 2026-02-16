@@ -98,8 +98,8 @@ function SortableItem({
       className={clsx(
         "h-fit w-full",
         "group flex items-start rounded-lg p-1",
-        "hover:bg-indigo-500/10",
-        isDragging && "z-50 shadow-lg backdrop-blur-sm",
+        "hover:bg-white",
+        isDragging && "z-50 bg-white shadow-lg backdrop-blur-sm",
       )}
     >
       {/* Handle */}

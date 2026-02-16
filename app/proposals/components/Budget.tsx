@@ -46,7 +46,7 @@ export default function Budget() {
                   // Row
                   <React.Fragment key={item}>
                     <SortableItem key={item} id={item}>
-                      <div className="flex w-full">
+                      <div className="mt-0.5 flex w-full">
                         {/* Service  */}
                         <div className="flex-[2]">
                           <EditableText
@@ -86,7 +86,7 @@ export default function Budget() {
             <div className="flex-[2]">
               <span className="font-bold text-zinc-900">Total</span>
             </div>
-            <div className="ml-4 flex-[1]">
+            <div className="ml-3 flex-[1]">
               <span className="font-bold text-zinc-900">$7,700</span>
             </div>
           </div>
