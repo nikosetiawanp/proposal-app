@@ -1,3 +1,5 @@
+"use client";
+
 export type PaperSize = {
   width: number | string;
   height: number | string;

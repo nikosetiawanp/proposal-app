@@ -1,7 +1,13 @@
-import EditableText from "@/app/components/EditableText";
+import EditableText from "@/components/EditableText";
+import { useProposalThemeStore } from "@/stores/proposal/useProposalThemeStore";
 import clsx from "clsx";
 
 export default function Cover() {
+  const accentColor = useProposalThemeStore((state: any) => state.accentColor);
+  const setAccentColor = useProposalThemeStore(
+    (state: any) => state.setAccentColor,
+  );
+
   return (
     <div className={clsx("flex h-full flex-col justify-between")}>
       {/* Top */}
@@ -13,11 +19,16 @@ export default function Cover() {
           defaultValue=""
           className="text-[24px] font-bold text-zinc-900"
         />
+        <span style={{ color: accentColor }}>{accentColor}</span>
+        <button onClick={() => setAccentColor("#16a34a")}>Change color</button>
       </div>
 
       {/* Center */}
       <div className="flex flex-col justify-center gap-6 px-9">
-        <span className="text-4xl text-[64px] font-bold text-zinc-900">
+        <span
+          style={{ color: accentColor }}
+          className="text-4xl text-[64px] font-bold text-zinc-900"
+        >
           Web Development Proposal
         </span>
 

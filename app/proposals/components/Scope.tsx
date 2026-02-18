@@ -1,10 +1,9 @@
-import EditableText from "@/app/components/EditableText";
+"use client";
+
+import EditableText from "@/components/EditableText";
 import clsx from "clsx";
 import SectionTitle from "./SectionTitle";
-import {
-  SortableContainer,
-  SortableItem,
-} from "@/app/components/dndkit/Sortable";
+import { SortableContainer, SortableItem } from "@/components/dndkit/Sortable";
 import { SetStateAction, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import ProposalFooter from "./ProposalFooter";

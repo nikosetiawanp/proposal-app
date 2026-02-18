@@ -1,12 +1,14 @@
+"use client";
+
 import clsx from "clsx";
 import { GripVertical, Trash } from "lucide-react";
-import EditableText from "../../components/EditableText";
+import EditableText from "../../../components/EditableText";
 import {
   SortableContainer,
   SortableItem,
-} from "../../components/dndkit/Sortable";
+} from "../../../components/dndkit/Sortable";
 import React, { useState } from "react";
-import Divider from "@/app/components/Divider";
+import Divider from "@/components/Divider";
 import SectionTitle from "./SectionTitle";
 import ProposalFooter from "./ProposalFooter";
 import ProposalHeader from "./ProposalHeader";

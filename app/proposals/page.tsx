@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import Layout from "../layout";
 import { useState } from "react";
-import { PAPER_PRESETS, PaperPreset } from "../lib/paperPresets";
+import { PAPER_PRESETS, PaperPreset } from "../../data/PaperPresets";
 import ScaleControl from "./components/ScaleControl";
 
 import { useSearchParams } from "next/navigation";

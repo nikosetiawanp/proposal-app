@@ -1,4 +1,4 @@
-import EditableText from "@/app/components/EditableText";
+import EditableText from "@/components/EditableText";
 
 export default function ProposalHeader() {
   return (
