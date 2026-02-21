@@ -1,12 +1,13 @@
+import { useProposals } from "@/app/hooks/useProposals";
 import EditableText from "@/components/EditableText";
-import { useProposalThemeStore } from "@/stores/proposal/useProposalThemeStore";
+import { useProposalStore } from "@/stores/proposal/proposalStore";
 import clsx from "clsx";
 
 export default function Cover() {
-  const accentColor = useProposalThemeStore((state: any) => state.accentColor);
-  const setAccentColor = useProposalThemeStore(
-    (state: any) => state.setAccentColor,
-  );
+  const proposal = useProposalStore((state: any) => state.proposal);
+  const setProposal = useProposalStore((state: any) => state.setProposal);
+
+  const { createDefaultProposal } = useProposals();
 
   return (
     <div className={clsx("flex h-full flex-col justify-between")}>
@@ -19,14 +20,28 @@ export default function Cover() {
           defaultValue=""
           className="text-[24px] font-bold text-zinc-900"
         />
-        <span style={{ color: accentColor }}>{accentColor}</span>
-        <button onClick={() => setAccentColor("#16a34a")}>Change color</button>
+        <span style={{ color: proposal.settings.theme.accentColor }}>
+          {proposal.settings.theme.accentColor}
+        </span>
+        <button
+          style={{ backgroundColor: proposal.settings.theme.accentColor }}
+          onClick={() =>
+            setProposal({
+              ...proposal,
+              settings: { theme: { accentColor: "#22d3ee" } },
+            })
+          }
+        >
+          Change color
+        </button>
+
+        <button onClick={createDefaultProposal}>Create Proposal</button>
       </div>
 
       {/* Center */}
       <div className="flex flex-col justify-center gap-6 px-9">
         <span
-          style={{ color: accentColor }}
+          style={{ color: proposal.settings.theme.accentColor }}
           className="text-4xl text-[64px] font-bold text-zinc-900"
         >
           Web Development Proposal

@@ -7,11 +7,11 @@ import { PAPER_PRESETS, PaperPreset } from "../../data/PaperPresets";
 import ScaleControl from "./components/ScaleControl";
 
 import { useSearchParams } from "next/navigation";
-import { ProposalPages } from "../../data/ProposalPages";
 
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import PageNavigator from "./components/PageNavigator";
+import { proposalPages } from "@/data/proposal/proposalPages";
 
 export default function Page() {
   const [scale, setScale] = useState(100);
@@ -20,7 +20,7 @@ export default function Page() {
   const searchParams = useSearchParams();
   const currentPage = searchParams.get("page");
 
-  const CurrentPageComponent = ProposalPages.find(
+  const CurrentPageComponent = proposalPages.find(
     (page) => page.slug === currentPage,
   )?.component;
 

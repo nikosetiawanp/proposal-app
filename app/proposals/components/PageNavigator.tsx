@@ -1,29 +1,28 @@
 "use client";
 
 import clsx from "clsx";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { DropdownMenu } from "radix-ui";
-import { useCallback, useEffect } from "react";
-import { ProposalPages } from "../../../data/ProposalPages";
-import { ChevronDown, Eye, Layers } from "lucide-react";
+import { useEffect } from "react";
+import { ChevronDown, Eye } from "lucide-react";
+import { proposalPages } from "@/data/proposal/proposalPages";
 
 export default function PageNavigator() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
   const currentPage = searchParams.get("page");
-  const currentPageName = ProposalPages.find(
+  const currentPageName = proposalPages.find(
     (page) => page.slug === currentPage,
   )?.name;
-  const CurrentPageIcon = ProposalPages.find(
+  const CurrentPageIcon = proposalPages.find(
     (page) => page.slug === currentPage,
   )?.icon;
 
   useEffect(() => {
     if (!currentPage) {
-      router.push(pathname + "?page=" + ProposalPages[0].slug);
+      router.push(pathname + "?page=" + proposalPages[0].slug);
     }
   }, []);
 
@@ -51,7 +50,7 @@ export default function PageNavigator() {
           {/* Pages List */}
           <div className="flex flex-col p-4">
             <span className="text-[14px] font-bold text-zinc-500">Active</span>
-            {Array.from(ProposalPages).map((page, index) => {
+            {Array.from(proposalPages).map((page, index) => {
               const active = currentPage === page.slug;
               return (
                 <Link
