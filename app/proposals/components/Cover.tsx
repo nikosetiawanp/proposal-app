@@ -1,13 +1,13 @@
-import { useProposals } from "@/app/hooks/useProposals";
+"use client";
+
 import EditableText from "@/components/EditableText";
 import { useProposalStore } from "@/stores/proposal/proposalStore";
+import { Proposal } from "@/types/proposal";
 import clsx from "clsx";
 
 export default function Cover() {
   const proposal = useProposalStore((state: any) => state.proposal);
   const setProposal = useProposalStore((state: any) => state.setProposal);
-
-  const { createDefaultProposal } = useProposals();
 
   return (
     <div className={clsx("flex h-full flex-col justify-between")}>
@@ -25,17 +25,17 @@ export default function Cover() {
         </span>
         <button
           style={{ backgroundColor: proposal.settings.theme.accentColor }}
-          onClick={() =>
+          onClick={() => {
             setProposal({
               ...proposal,
               settings: { theme: { accentColor: "#22d3ee" } },
-            })
-          }
+            });
+          }}
         >
           Change color
         </button>
 
-        <button onClick={createDefaultProposal}>Create Proposal</button>
+        <button>Create Proposal</button>
       </div>
 
       {/* Center */}
@@ -53,6 +53,12 @@ export default function Cover() {
           placeholder="Project title"
           className="text-[32px] font-bold text-zinc-900"
           defaultValue={"Project Title"}
+          onBlur={(e: any) => {
+            setProposal((prev: Proposal) => ({
+              ...prev,
+              title: e.target.value,
+            }));
+          }}
         />
       </div>
 

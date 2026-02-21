@@ -7,6 +7,7 @@ export default function EditableText({
   defaultValue,
   className,
   as,
+  onBlur,
 }: {
   id: string;
   label?: string;
@@ -14,6 +15,7 @@ export default function EditableText({
   defaultValue: string;
   className?: string;
   as?: "input" | "textarea";
+  onBlur?: (e: any) => void;
 }) {
   const inputStyle = clsx(
     "peer field-sizing-content w-fit rounded-sm border-2 border-white/0 outline-none",
@@ -35,6 +37,7 @@ export default function EditableText({
           className={clsx("resize-none", inputStyle)}
           placeholder={placeholder}
           defaultValue={defaultValue}
+          onBlur={onBlur}
         />
       ) : (
         <input
@@ -43,6 +46,7 @@ export default function EditableText({
           className={clsx(inputStyle)}
           placeholder={placeholder}
           defaultValue={defaultValue}
+          onBlur={onBlur}
         />
       )}
 
