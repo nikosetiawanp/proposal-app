@@ -18,33 +18,31 @@ async function getLocalDB() {
 }
 
 // Read
-async function getLocalDBProposal(id: string) {
+async function getLocalDBProposal() {
   const db = await getLocalDB();
+  const proposals = await db.getAll(STORE_NAME);
+  console.log(proposals);
 
-  return await db.get(STORE_NAME, id);
+  return proposals[0];
 }
 
 // Create
 async function createLocalDBProposal(proposal: Proposal) {
   const db = await getLocalDB();
-
   await db.add(STORE_NAME, proposal);
 }
 
 // Update
 async function updateLocalDBProposal(proposal: Proposal) {
-  console.log("Updating local DB Proposal");
   const db = await getLocalDB();
-
   const existing = await db.get(STORE_NAME, proposal.id);
-  const updated = proposal;
 
-  console.log(proposal);
-  if (!existing) return;
+  if (!existing) {
+    await db.add(STORE_NAME, proposal);
+  }
 
   await db.put(STORE_NAME, {
-    ...existing,
-    ...updated,
+    ...proposal,
   });
 }
 

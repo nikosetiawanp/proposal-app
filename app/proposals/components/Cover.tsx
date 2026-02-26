@@ -1,6 +1,8 @@
 "use client";
 
 import EditableText from "@/components/EditableText";
+import { defaultProposal } from "@/data/proposal/defaultProposal";
+import { getLocalDBProposal } from "@/lib/proposalDB";
 import { useProposalStore } from "@/stores/proposal/proposalStore";
 import { Proposal } from "@/types/proposal";
 import clsx from "clsx";
@@ -20,28 +22,57 @@ export default function Cover() {
           defaultValue=""
           className="text-[24px] font-bold text-zinc-900"
         />
-        <span style={{ color: proposal.settings.theme.accentColor }}>
-          {proposal.settings.theme.accentColor}
+        <span style={{ color: proposal?.settings?.theme?.accentColor }}>
+          {proposal?.settings?.theme?.accentColor}
         </span>
         <button
-          style={{ backgroundColor: proposal.settings.theme.accentColor }}
+          className="bg-yellow-500"
           onClick={() => {
             setProposal({
-              ...proposal,
-              settings: { theme: { accentColor: "#22d3ee" } },
+              defaultProposal,
             });
           }}
         >
-          Change color
+          Reset Proposal
+        </button>
+        <button
+          style={{ backgroundColor: "#ef4444" }}
+          onClick={() => {
+            setProposal({
+              ...proposal,
+              settings: {
+                ...proposal?.settings,
+                theme: { accentColor: "#ef4444" },
+              },
+            });
+          }}
+        >
+          Change to red
+        </button>
+        <button
+          style={{ backgroundColor: "#22d3ee" }}
+          onClick={() => {
+            setProposal({
+              ...proposal,
+              settings: {
+                ...proposal?.settings,
+                theme: { accentColor: "#22d3ee" },
+              },
+            });
+          }}
+        >
+          Change to blue
         </button>
 
-        <button>Create Proposal</button>
+        <button className="text-green-500" onClick={() => getLocalDBProposal()}>
+          Get Proposals
+        </button>
       </div>
 
       {/* Center */}
       <div className="flex flex-col justify-center gap-6 px-9">
         <span
-          style={{ color: proposal.settings.theme.accentColor }}
+          style={{ color: proposal?.settings?.theme?.accentColor }}
           className="text-4xl text-[64px] font-bold text-zinc-900"
         >
           Web Development Proposal
@@ -53,12 +84,13 @@ export default function Cover() {
           placeholder="Project title"
           className="text-[32px] font-bold text-zinc-900"
           defaultValue={"Project Title"}
-          onBlur={(e: any) => {
-            setProposal((prev: Proposal) => ({
-              ...prev,
-              title: e.target.value,
-            }));
-          }}
+          onBlur={(e: any) => console.log(e.target.value)}
+          // onBlur={(e: any) => {
+          //   setProposal((prev: Proposal) => ({
+          //     ...prev,
+          //     title: e.target.value,
+          //   }));
+          // }}
         />
       </div>
 

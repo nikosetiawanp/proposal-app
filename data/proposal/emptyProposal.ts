@@ -2,7 +2,7 @@
 
 import { Proposal } from "@/types/proposal";
 
-export const defaultProposal: Proposal = {
+export const emptyProposal: Proposal = {
   id: "",
   userId: "",
   title: "",
@@ -11,14 +11,14 @@ export const defaultProposal: Proposal = {
   proposerName: "",
   clientName: "",
   timeUnit: "week",
-  currency: "USD",
+  currency: "",
   objectives: [],
   services: [],
   settings: {
     theme: {
       headingFont: "Montserrat",
       bodyFont: "Inter",
-      accentColor: "#ef4444",
+      accentColor: "",
     },
     pages: {
       cover: {

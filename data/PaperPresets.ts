@@ -1,11 +1,6 @@
 "use client";
 
-export type PaperSize = {
-  width: number | string;
-  height: number | string;
-};
-
-export type PaperPreset = "letter" | "a4";
+import { PaperPreset, PaperSize } from "@/types/proposal";
 
 export const PAPER_PRESETS: Record<PaperPreset, PaperSize> = {
   letter: { width: 612, height: 792 },

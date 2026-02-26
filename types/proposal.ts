@@ -4,6 +4,13 @@ import { proposalPages } from "@/data/proposal/proposalPages";
 type CurrencyCode = (typeof currencies)[number]["code"];
 type ProposalPageSlug = (typeof proposalPages)[number]["slug"];
 
+export type PaperSize = {
+  width: number | string;
+  height: number | string;
+};
+
+export type PaperPreset = "letter" | "a4";
+
 export interface Proposal {
   id: string;
   userId: string;
@@ -30,5 +37,9 @@ export interface Proposal {
       accentColor: string;
     };
     pages: Record<ProposalPageSlug, { active: boolean; layout: string }>;
+    print: {
+      paperSize: "a4" | "letter";
+      orientation: "portrait" | "landscape";
+    };
   };
 }
