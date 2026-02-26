@@ -12,16 +12,14 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import PageNavigator from "./components/PageNavigator";
 import { proposalPages } from "@/data/proposal/proposalPages";
-import { useProposalStore } from "@/stores/proposal/proposalStore";
+import { proposalStore } from "@/stores/proposal/proposalStore";
 import { PaperPreset } from "@/types/proposal";
 import { getLocalDBProposal } from "@/lib/proposalDB";
+import { useStore } from "zustand";
 
 export default function Page() {
-  const proposal = useProposalStore((state: any) => state.proposal);
-  const setProposal = useProposalStore((state: any) => state.setProposal);
-  const hydrated = useProposalStore((state: any) => state.hydrated);
-
   const [scale, setScale] = useState(100);
+  const hydrated = true;
 
   const searchParams = useSearchParams();
   const currentPage = searchParams.get("page");
@@ -30,9 +28,12 @@ export default function Page() {
     (page) => page.slug === currentPage,
   )?.component;
 
-  useEffect(() => {
-    useProposalStore.getState().hydrate();
-  }, []);
+  const proposal = useStore(proposalStore, (state) => state.proposal);
+  const setProposal = useStore(proposalStore, (state) => state.setProposal);
+
+  // useEffect(() => {
+  //   useProposalStore.getState().hydrate();
+  // }, []);
 
   return (
     <Layout>

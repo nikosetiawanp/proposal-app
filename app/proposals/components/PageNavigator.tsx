@@ -13,12 +13,13 @@ export default function PageNavigator() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const currentPage = searchParams.get("page");
-  const currentPageName = proposalPages.find(
+
+  const currentPageData = proposalPages.find(
     (page) => page.slug === currentPage,
-  )?.name;
-  const CurrentPageIcon = proposalPages.find(
-    (page) => page.slug === currentPage,
-  )?.icon;
+  );
+
+  const currentPageName = currentPageData?.name;
+  const CurrentPageIcon = currentPageData?.icon;
 
   useEffect(() => {
     if (!currentPage) {

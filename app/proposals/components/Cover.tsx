@@ -3,13 +3,14 @@
 import EditableText from "@/components/EditableText";
 import { defaultProposal } from "@/data/proposal/defaultProposal";
 import { getLocalDBProposal } from "@/lib/proposalDB";
-import { useProposalStore } from "@/stores/proposal/proposalStore";
+import { proposalStore } from "@/stores/proposal/proposalStore";
 import { Proposal } from "@/types/proposal";
 import clsx from "clsx";
+import { useStore } from "zustand";
 
 export default function Cover() {
-  const proposal = useProposalStore((state: any) => state.proposal);
-  const setProposal = useProposalStore((state: any) => state.setProposal);
+  const proposal = useStore(proposalStore, (state) => state.proposal);
+  const setProposal = useStore(proposalStore, (state) => state.setProposal);
 
   return (
     <div className={clsx("flex h-full flex-col justify-between")}>
@@ -19,62 +20,20 @@ export default function Cover() {
           id="name"
           label="Proposer's Name"
           placeholder="Proposer's Name"
-          defaultValue=""
+          defaultValue={proposal?.proposerName}
           className="text-[24px] font-bold text-zinc-900"
+          onBlur={(e) => {
+            setProposal({
+              ...proposal,
+              proposerName: e.target.value,
+            });
+          }}
         />
-        <span style={{ color: proposal?.settings?.theme?.accentColor }}>
-          {proposal?.settings?.theme?.accentColor}
-        </span>
-        <button
-          className="bg-yellow-500"
-          onClick={() => {
-            setProposal({
-              defaultProposal,
-            });
-          }}
-        >
-          Reset Proposal
-        </button>
-        <button
-          style={{ backgroundColor: "#ef4444" }}
-          onClick={() => {
-            setProposal({
-              ...proposal,
-              settings: {
-                ...proposal?.settings,
-                theme: { accentColor: "#ef4444" },
-              },
-            });
-          }}
-        >
-          Change to red
-        </button>
-        <button
-          style={{ backgroundColor: "#22d3ee" }}
-          onClick={() => {
-            setProposal({
-              ...proposal,
-              settings: {
-                ...proposal?.settings,
-                theme: { accentColor: "#22d3ee" },
-              },
-            });
-          }}
-        >
-          Change to blue
-        </button>
-
-        <button className="text-green-500" onClick={() => getLocalDBProposal()}>
-          Get Proposals
-        </button>
       </div>
 
       {/* Center */}
       <div className="flex flex-col justify-center gap-6 px-9">
-        <span
-          style={{ color: proposal?.settings?.theme?.accentColor }}
-          className="text-4xl text-[64px] font-bold text-zinc-900"
-        >
+        <span className="text-4xl text-[64px] font-bold text-zinc-900">
           Web Development Proposal
         </span>
 
@@ -83,14 +42,13 @@ export default function Cover() {
           label="Project title"
           placeholder="Project title"
           className="text-[32px] font-bold text-zinc-900"
-          defaultValue={"Project Title"}
-          onBlur={(e: any) => console.log(e.target.value)}
-          // onBlur={(e: any) => {
-          //   setProposal((prev: Proposal) => ({
-          //     ...prev,
-          //     title: e.target.value,
-          //   }));
-          // }}
+          defaultValue={proposal?.title}
+          onBlur={(e) => {
+            setProposal({
+              ...proposal,
+              title: e.target.value,
+            });
+          }}
         />
       </div>
 
@@ -103,8 +61,14 @@ export default function Cover() {
             id="client-name"
             label="Client's name"
             placeholder="Client's Name"
-            defaultValue="Client's Name"
             className="text-[20px] text-zinc-900"
+            defaultValue={proposal?.clientName}
+            onBlur={(e) => {
+              setProposal({
+                ...proposal,
+                clientName: e.target.value,
+              });
+            }}
           />
         </div>
       </div>

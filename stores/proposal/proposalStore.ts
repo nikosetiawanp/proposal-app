@@ -1,29 +1,39 @@
 "use client";
 
-import { defaultProposal } from "@/data/proposal/defaultProposal";
 import { emptyProposal } from "@/data/proposal/emptyProposal";
-import { getLocalDBProposal, updateLocalDBProposal } from "@/lib/proposalDB";
 import { Proposal } from "@/types/proposal";
-import { create } from "zustand";
+import { createStore } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-// Proposal global state
-export const useProposalStore = create<{
-  proposal: Proposal;
-  hydrated: boolean;
-  setProposal: (proposal: Proposal) => void;
-  hydrate: () => Promise<void>;
-}>((set) => ({
-  proposal: emptyProposal,
-  hydrated: false,
-  setProposal: (proposal) => {
-    set({ proposal });
-    updateLocalDBProposal(proposal);
-  },
-  hydrate: async () => {
-    const localDBProposal = await getLocalDBProposal();
-    if (!localDBProposal) {
-      set({ proposal: { ...defaultProposal } });
-    }
-    set({ proposal: { ...emptyProposal, ...localDBProposal }, hydrated: true });
-  },
-}));
+type ProposalStoreState = { proposal: Proposal };
+type ProposalStoreActions = {
+  setProposal: (proposal: ProposalStoreState["proposal"]) => void;
+};
+
+export const proposalStore = createStore<
+  ProposalStoreState & ProposalStoreActions
+>()(
+  persist(
+    (set) => ({
+      proposal: { ...emptyProposal },
+      setProposal: (proposal: Proposal) => set({ proposal }),
+    }),
+    {
+      name: "proposal-storage",
+      storage: createJSONStorage(() => localStorage),
+      // onRehydrateStorage: (state) => {
+      //   console.log("Hydration starts");
+
+      //   return (state, error) => {
+      //     if (error) {
+      //       console.log(error);
+      //     } else {
+      //       console.log(state);
+
+      //       console.log("Hydration finished");
+      //     }
+      //   };
+      // },
+    },
+  ),
+);
