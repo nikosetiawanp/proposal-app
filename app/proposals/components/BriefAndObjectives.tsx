@@ -8,9 +8,17 @@ import { SetStateAction, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import ProposalHeader from "./ProposalHeader";
 import ProposalFooter from "./ProposalFooter";
+import { useStore } from "zustand";
+import { proposalStore } from "@/stores/proposal/proposalStore";
 
 export default function BriefAndObjectives() {
-  const [objectives, setObjectives] = useState([1, 2, 3, 4, 5]);
+  const proposal = useStore(proposalStore, (state) => state.proposal);
+  const setProposal = useStore(proposalStore, (state) => state.setProposal);
+  const setProposalObjectives = useStore(
+    proposalStore,
+    (state) => state.setProposalObjectives,
+  );
+
   return (
     <div className={clsx("flex h-full flex-col justify-between")}>
       {/* Header */}
@@ -25,32 +33,67 @@ export default function BriefAndObjectives() {
             id={"description"}
             label={"description"}
             placeholder={"Enter project description here"}
-            defaultValue="The client’s current website lacks a modern and consistent design, making it harder for visitors to navigate and engage with content effectively. The project aims to address these issues by improving clarity, usability, and overall user experience."
+            defaultValue={proposal?.description}
             className="text-wrap text-zinc-900"
             as="textarea"
+            onBlur={(e) => {
+              setProposal({
+                ...proposal,
+                description: e.target.value,
+              });
+            }}
           />
         </div>
 
         {/* Objectives */}
         <div className="flex flex-col gap-2">
           <SectionTitle className="ml-8">Objectives</SectionTitle>
-          <SortableContainer items={objectives} setItems={setObjectives}>
+          <SortableContainer
+            items={proposal?.objectives ?? []}
+            setItems={setProposalObjectives as any}
+          >
             <div className="flex flex-col gap-1">
-              {objectives.map((objective) => {
+              {proposal?.objectives?.map((objective, index) => {
                 return (
-                  <SortableItem key={objective} id={objective}>
+                  <SortableItem key={objective.id} id={objective.id}>
                     <div className="mt-0.5 flex items-center gap-2">
                       <ArrowRight className="text-zinc-900" />
                       <EditableText
                         id={""}
                         placeholder={"Click to write objective"}
-                        defaultValue={"Objective " + objective}
+                        defaultValue={objective.description}
                         as="textarea"
+                        onBlur={(e) => {
+                          const updatedObjectives = proposal.objectives.map(
+                            (obj) =>
+                              obj.id === objective.id
+                                ? { ...obj, description: e.target.value }
+                                : obj,
+                          );
+
+                          setProposal({
+                            ...proposal,
+                            objectives: updatedObjectives,
+                          });
+                        }}
                       />
                     </div>
                   </SortableItem>
                 );
               })}
+              <button
+                className="flex-start flex bg-red-500"
+                onClick={() => {
+                  const newObjective = {
+                    id: crypto.randomUUID(),
+                    title: "",
+                    description: "",
+                  };
+                  setProposalObjectives([...proposal.objectives, newObjective]);
+                }}
+              >
+                + Add Objective
+              </button>
             </div>
           </SortableContainer>
         </div>

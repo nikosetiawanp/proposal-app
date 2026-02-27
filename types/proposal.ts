@@ -21,9 +21,10 @@ export interface Proposal {
   clientName: string;
   timeUnit: "day" | "week" | "month";
   currency: CurrencyCode;
-  objectives: string[];
+  objectives: { id: string; title: string; description: string }[];
   services: {
-    name: string;
+    id: string;
+    title: string;
     description: string;
     budget: number;
     estimatedTimeMin: number;

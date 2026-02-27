@@ -4,6 +4,7 @@ export default function EditableText({
   id,
   label,
   placeholder,
+  value,
   defaultValue,
   className,
   as,
@@ -12,7 +13,8 @@ export default function EditableText({
   id: string;
   label?: string;
   placeholder: string;
-  defaultValue: string;
+  value?: string;
+  defaultValue?: string;
   className?: string;
   as?: "input" | "textarea";
   onBlur?: (e: any) => void;
@@ -36,6 +38,7 @@ export default function EditableText({
           id={id}
           className={clsx("resize-none", inputStyle)}
           placeholder={placeholder}
+          value={value}
           defaultValue={defaultValue}
           onBlur={onBlur}
         />
@@ -45,6 +48,7 @@ export default function EditableText({
           type="text"
           className={clsx(inputStyle)}
           placeholder={placeholder}
+          value={value}
           defaultValue={defaultValue}
           onBlur={onBlur}
         />

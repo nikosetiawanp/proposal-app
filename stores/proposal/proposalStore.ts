@@ -8,6 +8,12 @@ import { createJSONStorage, persist } from "zustand/middleware";
 type ProposalStoreState = { proposal: Proposal };
 type ProposalStoreActions = {
   setProposal: (proposal: ProposalStoreState["proposal"]) => void;
+  setProposalObjectives: (
+    objectives: ProposalStoreState["proposal"]["objectives"],
+  ) => void;
+  setProposalServices: (
+    services: ProposalStoreState["proposal"]["services"],
+  ) => void;
 };
 
 export const proposalStore = createStore<
@@ -17,23 +23,25 @@ export const proposalStore = createStore<
     (set) => ({
       proposal: { ...emptyProposal },
       setProposal: (proposal: Proposal) => set({ proposal }),
+      setProposalObjectives: (objectives: Proposal["objectives"]) =>
+        set((state) => ({
+          proposal: {
+            ...state.proposal,
+            objectives,
+          },
+        })),
+      setProposalServices: (services: Proposal["services"]) =>
+        set((state) => ({
+          proposal: {
+            ...state.proposal,
+            services,
+          },
+        })),
     }),
+
     {
       name: "proposal-storage",
       storage: createJSONStorage(() => localStorage),
-      // onRehydrateStorage: (state) => {
-      //   console.log("Hydration starts");
-
-      //   return (state, error) => {
-      //     if (error) {
-      //       console.log(error);
-      //     } else {
-      //       console.log(state);
-
-      //       console.log("Hydration finished");
-      //     }
-      //   };
-      // },
     },
   ),
 );

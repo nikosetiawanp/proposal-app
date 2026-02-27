@@ -42,15 +42,15 @@ function SortableContainer({
 
   function handleDragEnd(event: any) {
     const { active, over } = event;
+    if (!over || active.id === over.id) return;
 
-    if (active.id !== over.id) {
-      setItems((items) => {
-        const oldIndex = items.indexOf(active.id);
-        const newIndex = items.indexOf(over.id);
+    const oldIndex = items.findIndex((item) => item.id === active.id);
 
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
+    const newIndex = items.findIndex((item) => item.id === over.id);
+
+    const newItems = arrayMove(items, oldIndex, newIndex);
+
+    setItems(newItems);
   }
 
   return (
@@ -59,7 +59,6 @@ function SortableContainer({
       collisionDetection={closestCenter}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
-      // modifiers={[restrictToVerticalAxis]}
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
         {children}
@@ -72,7 +71,7 @@ function SortableItem({
   id,
   children,
 }: {
-  id: number;
+  id: string;
   children: React.ReactNode;
 }) {
   const {
