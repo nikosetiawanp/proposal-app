@@ -1,10 +1,7 @@
 "use client";
 
 import EditableText from "@/components/EditableText";
-import { defaultProposal } from "@/data/proposal/defaultProposal";
-import { getLocalDBProposal } from "@/lib/proposalDB";
 import { proposalStore } from "@/stores/proposal/proposalStore";
-import { Proposal } from "@/types/proposal";
 import clsx from "clsx";
 import { useStore } from "zustand";
 

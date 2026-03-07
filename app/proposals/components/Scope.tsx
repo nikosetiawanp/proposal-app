@@ -35,7 +35,17 @@ export default function Scope() {
             <div className="flex flex-col gap-1">
               {proposal?.services?.map((service) => {
                 return (
-                  <SortableItem key={service.id} id={service.id}>
+                  <SortableItem
+                    key={service.id}
+                    id={service.id}
+                    onDelete={() => {
+                      setProposalServices([
+                        ...proposal.services.filter(
+                          (serv) => serv.id !== service.id,
+                        ),
+                      ]);
+                    }}
+                  >
                     <div className="flex flex-col items-start">
                       {/* Title and Icon */}
                       <div className="flex items-center gap-2">

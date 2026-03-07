@@ -11,7 +11,7 @@ export const emptyProposal: Proposal = {
   proposerName: "",
   clientName: "",
   timeUnit: "week",
-  currency: "",
+  currency: "USD",
   objectives: [],
   services: [],
   settings: {
@@ -25,11 +25,11 @@ export const emptyProposal: Proposal = {
         layout: "default",
         active: true,
       },
-      tableOfContents: {
+      "table-of-contents": {
         layout: "default",
         active: false,
       },
-      briefAndObjectives: {
+      "brief-and-objectives": {
         layout: "default",
         active: true,
       },
@@ -37,7 +37,7 @@ export const emptyProposal: Proposal = {
         layout: "default",
         active: true,
       },
-      estimatedTimeline: {
+      "estimated-timeline": {
         layout: "default",
         active: true,
       },
@@ -45,11 +45,11 @@ export const emptyProposal: Proposal = {
         layout: "default",
         active: true,
       },
-      caseStudiesAndReferences: {
+      "case-studies-and-references": {
         layout: "default",
         active: false,
       },
-      additionalNotes: {
+      "additional-notes": {
         layout: "default",
         active: false,
       },
@@ -57,7 +57,7 @@ export const emptyProposal: Proposal = {
         layout: "default",
         active: false,
       },
-      thankYou: {
+      "thank-you": {
         layout: "default",
         active: false,
       },

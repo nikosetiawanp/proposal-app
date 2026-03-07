@@ -70,9 +70,11 @@ function SortableContainer({
 function SortableItem({
   id,
   children,
+  onDelete,
 }: {
   id: string;
   children: React.ReactNode;
+  onDelete: () => void;
 }) {
   const {
     attributes,
@@ -118,6 +120,7 @@ function SortableItem({
           !isDragging &&
             "rounded-lg group-hover:opacity-100 hover:cursor-pointer hover:bg-indigo-500/10 hover:text-red-400",
         )}
+        onClick={onDelete}
       >
         <Trash className="w-5" />
       </button>

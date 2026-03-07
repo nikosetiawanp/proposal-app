@@ -55,7 +55,17 @@ export default function BriefAndObjectives() {
             <div className="flex flex-col gap-1">
               {proposal?.objectives?.map((objective, index) => {
                 return (
-                  <SortableItem key={objective.id} id={objective.id}>
+                  <SortableItem
+                    key={objective.id}
+                    id={objective.id}
+                    onDelete={() => {
+                      setProposalObjectives([
+                        ...proposal.objectives.filter(
+                          (obj) => obj.id !== objective.id,
+                        ),
+                      ]);
+                    }}
+                  >
                     <div className="mt-0.5 flex items-center gap-2">
                       <ArrowRight className="text-zinc-900" />
                       <EditableText
