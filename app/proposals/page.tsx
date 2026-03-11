@@ -16,6 +16,7 @@ import { proposalStore } from "@/stores/proposal/proposalStore";
 import { PaperPreset } from "@/types/proposal";
 import { getLocalDBProposal } from "@/lib/proposalDB";
 import { useStore } from "zustand";
+import Sidebar from "./components/Sidebar";
 
 export default function Page() {
   const [scale, setScale] = useState(100);
@@ -52,28 +53,31 @@ export default function Page() {
           </Link>
         </nav>
 
-        {/* Viewport */}
-        <div className="flex h-full w-full items-center justify-center overflow-y-auto bg-zinc-200">
-          {/* Paper */}
-          {hydrated ? (
-            <div
-              style={{
-                transform: `scale(${scale / 100})`,
-                width: `${PAPER_PRESETS[proposal?.settings?.print?.paperSize as PaperPreset]?.width}px`,
-                height: `${PAPER_PRESETS[proposal?.settings?.print?.paperSize as PaperPreset]?.height}px`,
-              }}
-              className={clsx(
-                "z-0 flex h-full flex-col rounded-sm bg-white shadow-xl",
-              )}
-            >
-              {CurrentPageComponent ? <CurrentPageComponent /> : null}
-            </div>
-          ) : (
-            <span className="text-zinc-900">Loading proposal...</span>
-          )}
+        <div className="flex h-full w-full bg-red-500">
+          <Sidebar />
+          {/* Paper Viewport */}
+          <div className="flex h-full w-full items-center justify-center overflow-y-auto bg-zinc-200">
+            {/* Paper */}
+            {hydrated ? (
+              <div
+                style={{
+                  transform: `scale(${scale / 100})`,
+                  width: `${PAPER_PRESETS[proposal?.settings?.print?.paperSize as PaperPreset]?.width}px`,
+                  height: `${PAPER_PRESETS[proposal?.settings?.print?.paperSize as PaperPreset]?.height}px`,
+                }}
+                className={clsx(
+                  "z-0 flex h-full flex-col rounded-sm bg-white shadow-xl",
+                )}
+              >
+                {CurrentPageComponent ? <CurrentPageComponent /> : null}
+              </div>
+            ) : (
+              <span className="text-zinc-900">Loading proposal...</span>
+            )}
+          </div>
         </div>
 
-        <PageNavigator />
+        {/* <PageNavigator /> */}
         <ScaleControl scale={scale} setScale={setScale} />
       </main>
     </Layout>
