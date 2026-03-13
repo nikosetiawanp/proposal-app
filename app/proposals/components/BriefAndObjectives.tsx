@@ -5,7 +5,7 @@ import clsx from "clsx";
 import SectionTitle from "./SectionTitle";
 import { SortableContainer, SortableItem } from "@/components/dndkit/Sortable";
 import { SetStateAction, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
 import ProposalHeader from "./ProposalHeader";
 import ProposalFooter from "./ProposalFooter";
 import { useStore } from "zustand";
@@ -91,7 +91,28 @@ export default function BriefAndObjectives() {
                   </SortableItem>
                 );
               })}
+
               <button
+                className={clsx(
+                  "ml-9 flex items-center gap-3 opacity-30",
+                  "hover:cursor-pointer hover:opacity-100",
+                )}
+                onClick={() => {
+                  const newObjective = {
+                    id: crypto.randomUUID(),
+                    title: "",
+                    description: "",
+                  };
+                  setProposalObjectives([...proposal.objectives, newObjective]);
+                }}
+              >
+                <div className="rounded-full bg-indigo-500">
+                  <Plus className="text-white" />
+                </div>
+
+                <span className="text-indigo-500">Add Objective</span>
+              </button>
+              {/* <button
                 className="flex-start flex bg-red-500"
                 onClick={() => {
                   const newObjective = {
@@ -103,7 +124,7 @@ export default function BriefAndObjectives() {
                 }}
               >
                 + Add Objective
-              </button>
+              </button> */}
             </div>
           </SortableContainer>
         </div>

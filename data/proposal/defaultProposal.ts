@@ -3,7 +3,7 @@
 import { Proposal } from "@/types/proposal";
 
 export const defaultProposal: Proposal = {
-  id: "",
+  id: crypto.randomUUID(),
   userId: "",
   title: "",
   description: "",
@@ -16,8 +16,8 @@ export const defaultProposal: Proposal = {
   services: [],
   settings: {
     theme: {
-      headingFont: "Montserrat",
-      bodyFont: "Inter",
+      headingFont: "montserrat",
+      bodyFont: "opensans",
       accentColor: "#ef4444",
     },
     pages: {

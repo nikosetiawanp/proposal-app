@@ -7,6 +7,7 @@ export default function EditableText({
   value,
   defaultValue,
   className,
+  style,
   as,
   onBlur,
 }: {
@@ -16,6 +17,7 @@ export default function EditableText({
   value?: string;
   defaultValue?: string;
   className?: string;
+  style?: any;
   as?: "input" | "textarea";
   onBlur?: (e: any) => void;
 }) {
@@ -41,6 +43,7 @@ export default function EditableText({
           value={value}
           defaultValue={defaultValue}
           onBlur={onBlur}
+          style={style}
         />
       ) : (
         <input
@@ -51,6 +54,7 @@ export default function EditableText({
           value={value}
           defaultValue={defaultValue}
           onBlur={onBlur}
+          style={style}
         />
       )}
 

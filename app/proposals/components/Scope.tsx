@@ -5,7 +5,7 @@ import clsx from "clsx";
 import SectionTitle from "./SectionTitle";
 import { SortableContainer, SortableItem } from "@/components/dndkit/Sortable";
 import { SetStateAction, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
 import ProposalFooter from "./ProposalFooter";
 import ProposalHeader from "./ProposalHeader";
 import { useStore } from "zustand";
@@ -96,7 +96,10 @@ export default function Scope() {
               })}
 
               <button
-                className="flex-start flex bg-red-500"
+                className={clsx(
+                  "ml-9 flex items-center gap-3 opacity-30",
+                  "hover:cursor-pointer hover:opacity-100",
+                )}
                 onClick={() => {
                   const newService = {
                     id: crypto.randomUUID(),
@@ -110,7 +113,11 @@ export default function Scope() {
                   setProposalServices([...proposal.services, newService]);
                 }}
               >
-                + Add Service
+                <div className="rounded-full bg-indigo-500">
+                  <Plus className="text-white" />
+                </div>
+
+                <span className="text-indigo-500">Add Service</span>
               </button>
             </div>
           </SortableContainer>

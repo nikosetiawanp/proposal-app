@@ -29,8 +29,11 @@ export default function Cover() {
       </div>
 
       {/* Center */}
-      <div className="flex flex-col justify-center gap-6 px-9">
-        <span className="text-4xl text-[64px] font-bold text-zinc-900">
+      <div className={clsx("flex flex-col justify-center gap-6 px-9")}>
+        <span
+          style={{ fontFamily: proposal?.settings?.theme?.headingFont }}
+          className={clsx("text-4xl text-[64px] font-bold text-zinc-900")}
+        >
           Web Development Proposal
         </span>
 
@@ -39,6 +42,7 @@ export default function Cover() {
           label="Project title"
           placeholder="Project title"
           className="text-[32px] font-bold text-zinc-900"
+          style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
           defaultValue={proposal?.title}
           onBlur={(e) => {
             setProposal({
@@ -47,11 +51,23 @@ export default function Cover() {
             });
           }}
         />
+
+        <span className="text-indigo-500">
+          Heading font : {proposal?.settings?.theme?.headingFont}
+        </span>
+        <span className="text-indigo-500">
+          Body font : {proposal?.settings?.theme?.bodyFont}
+        </span>
       </div>
 
       {/* Bottom */}
       <div className="flex items-end justify-between px-9 py-6">
-        <span className="text-[20px] text-zinc-900">4 July 2026</span>
+        <span
+          style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+          className="text-[20px] text-zinc-900"
+        >
+          4 July 2026
+        </span>
         <div className="flex flex-col gap-2">
           <span className="ml-1 text-[20px] text-zinc-900">Prepared for</span>
           <EditableText
