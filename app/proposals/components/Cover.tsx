@@ -19,6 +19,7 @@ export default function Cover() {
           placeholder="Proposer's Name"
           defaultValue={proposal?.proposerName}
           className="text-[24px] font-bold text-zinc-900"
+          style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
           onBlur={(e) => {
             setProposal({
               ...proposal,
@@ -51,13 +52,6 @@ export default function Cover() {
             });
           }}
         />
-
-        <span className="text-indigo-500">
-          Heading font : {proposal?.settings?.theme?.headingFont}
-        </span>
-        <span className="text-indigo-500">
-          Body font : {proposal?.settings?.theme?.bodyFont}
-        </span>
       </div>
 
       {/* Bottom */}
@@ -66,15 +60,21 @@ export default function Cover() {
           style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
           className="text-[20px] text-zinc-900"
         >
-          4 July 2026
+          {proposal?.date}
         </span>
         <div className="flex flex-col gap-2">
-          <span className="ml-1 text-[20px] text-zinc-900">Prepared for</span>
+          <span
+            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            className="ml-1 text-[20px] text-zinc-900"
+          >
+            Prepared for
+          </span>
           <EditableText
             id="client-name"
             label="Client's name"
             placeholder="Client's Name"
             className="text-[20px] text-zinc-900"
+            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             defaultValue={proposal?.clientName}
             onBlur={(e) => {
               setProposal({

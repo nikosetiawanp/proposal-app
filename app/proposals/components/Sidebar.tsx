@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { DropdownMenu, Select, Tabs } from "radix-ui";
+import { Tabs } from "radix-ui";
 import { useEffect, useState } from "react";
 import {
   ChevronDown,

@@ -30,28 +30,28 @@ export const fontPairings = [
   {
     title: "Raleway & Source Sans 3",
     heading: "raleway",
-    body: "sourcesans",
+    body: "source sans",
     description:
       "A refined combination that feels airy, modern, and professional.",
   },
   {
     title: "Merriweather & Open Sans",
     heading: "merriweather",
-    body: "opensans",
+    body: "open sans",
     description:
       "A warm editorial pairing that blends tradition with readability.",
   },
   {
     title: "Bebas Neue & Inter",
-    heading: "bebasneue",
+    heading: "bebas neue",
     body: "inter",
     description:
       "A bold, impactful pairing with strong presence and clean support.",
   },
   {
     title: "DM Serif Display & Work Sans",
-    heading: "dmserif",
-    body: "worksans",
+    heading: "dm serif display",
+    body: "work sans",
     description: "A stylish mix of classic character and modern simplicity.",
   },
   {
@@ -62,8 +62,8 @@ export const fontPairings = [
   },
   {
     title: "Libre Baskerville & Source Sans 3",
-    heading: "librebaskerville",
-    body: "sourcesans",
+    heading: "libre baskerville",
+    body: "source sans 3",
     description:
       "A timeless pairing that balances literary elegance with clarity.",
   },
