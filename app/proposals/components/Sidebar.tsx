@@ -18,6 +18,9 @@ import { proposalPages } from "@/data/proposal/proposalPages";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 import { fontPairings, fonts } from "@/data/proposal/fonts";
+import { PAPER_PRESETS } from "@/data/PaperPresets";
+import { PaperPreset } from "@/types/proposal";
+import Cover from "./Cover";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -87,7 +90,7 @@ export default function Sidebar() {
 
       {/* Content Container */}
       <div className="w-[375px]">
-        <div className="border-b border-zinc-200 bg-white p-4">
+        <div className="border-b border-zinc-200 p-4">
           <span className="text-[24px] font-bold text-zinc-900">
             {activeTab}
           </span>
@@ -194,6 +197,19 @@ export default function Sidebar() {
                 </Link>
               );
             })}
+
+            {/* <div className="relative flex h-25 w-full justify-start rounded-xl bg-zinc-100">
+              <div
+                style={{
+                  transform: `scale(${20 / 100})`,
+                  width: `${PAPER_PRESETS[proposal?.settings?.print?.paperSize as PaperPreset]?.width}px`,
+                  height: `${PAPER_PRESETS[proposal?.settings?.print?.paperSize as PaperPreset]?.height}px`,
+                }}
+                className="bg-white shadow-xl"
+              >
+                <Cover />
+              </div>
+            </div> */}
           </div>
         </Tabs.Content>
 

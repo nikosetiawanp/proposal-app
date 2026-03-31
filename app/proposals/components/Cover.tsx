@@ -60,7 +60,8 @@ export default function Cover() {
           style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
           className="text-[20px] text-zinc-900"
         >
-          {proposal?.date}
+          20 March 2024
+          {/* {proposal?.date} */}
         </span>
         <div className="flex flex-col gap-2">
           <span

@@ -9,7 +9,7 @@ export const fontPairings = [
   {
     title: "Montserrat & Open Sans",
     heading: "montserrat",
-    body: "opensans",
+    body: "open sans",
     description:
       "A clean, modern pairing that feels friendly, balanced, and highly readable.",
   },
