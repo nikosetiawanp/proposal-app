@@ -14,10 +14,10 @@ import PageNavigator from "./components/PageNavigator";
 import { proposalPages } from "@/data/proposal/proposalPages";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 import { PaperPreset } from "@/types/proposal";
-import { getLocalDBProposal } from "@/lib/proposalDB";
 import { useStore } from "zustand";
-import Sidebar from "./components/Sidebar";
+import LeftSidebar from "./components/LeftSidebar";
 import { DropdownMenu } from "radix-ui";
+import RightSidebar from "./components/RightSidebar";
 
 export default function Page() {
   const [scale, setScale] = useState(100);
@@ -104,7 +104,7 @@ export default function Page() {
         </nav>
 
         <div className="flex h-full w-full">
-          <Sidebar />
+          <LeftSidebar />
           {/* Paper Viewport */}
           <div className="flex h-full w-full items-center justify-center overflow-y-auto bg-zinc-200">
             {/* Paper */}
@@ -125,10 +125,11 @@ export default function Page() {
               <span className="text-zinc-900">Loading proposal...</span>
             )}
           </div>
+          <RightSidebar />
         </div>
 
         {/* <PageNavigator /> */}
-        <ScaleControl scale={scale} setScale={setScale} />
+        {/* <ScaleControl scale={scale} setScale={setScale} /> */}
       </main>
     </Layout>
   );
