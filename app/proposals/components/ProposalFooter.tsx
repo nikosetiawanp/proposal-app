@@ -11,6 +11,7 @@ export default function ProposalFooter() {
       <span className="text-zinc-900">
         <EditableText
           id={""}
+          style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
           placeholder={"Project Title"}
           defaultValue={proposal?.title}
           onBlur={(e) => {
@@ -21,7 +22,12 @@ export default function ProposalFooter() {
           }}
         />
       </span>
-      <span className="text-zinc-900">1</span>
+      <span
+        className="text-zinc-900"
+        style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+      >
+        1
+      </span>
     </div>
   );
 }

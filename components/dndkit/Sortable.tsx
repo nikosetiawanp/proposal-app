@@ -97,9 +97,8 @@ function SortableItem({
       {...attributes}
       style={{ ...style, width: "100%" }}
       className={clsx(
-        "h-fit w-full",
-        "group flex items-start rounded-lg p-1",
-        "hover:bg-white",
+        "h-fit w-full px-1",
+        "group flex items-center rounded-lg",
         isDragging && "z-50 bg-white shadow-lg backdrop-blur-sm",
       )}
     >
@@ -107,7 +106,7 @@ function SortableItem({
       <div
         {...listeners}
         className={clsx(
-          "p-1 text-indigo-500/50 opacity-0 transition-colors",
+          "mr-1 text-indigo-500/50 opacity-0 transition-colors",
           "group-hover:opacity-100 hover:cursor-pointer hover:text-indigo-500",
         )}
       >

@@ -15,7 +15,7 @@ import {
 
 import Cover from "../../app/proposals/components/Cover";
 import Timeline from "../../app/proposals/components/Timeline";
-import BriefAndObjectives from "../../app/proposals/components/BriefAndObjectives";
+import ExecutiveSummary from "../../app/proposals/components/ExecutiveSummary";
 import Scope from "@/app/proposals/components/Scope";
 import Budget from "@/app/proposals/components/Budget";
 
@@ -50,7 +50,7 @@ export const proposalPages: {
     name: "Brief and Objectives",
     slug: "brief-and-objectives",
     icon: Target,
-    component: BriefAndObjectives,
+    component: ExecutiveSummary,
     canBeHidden: false,
     defaultActive: true,
     defaultLayout: "default",

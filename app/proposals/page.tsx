@@ -18,6 +18,7 @@ import { useStore } from "zustand";
 import LeftSidebar from "./components/LeftSidebar";
 import { DropdownMenu } from "radix-ui";
 import RightSidebar from "./components/RightSidebar";
+import ProposalPaper from "./components/ProposalPaper";
 
 export default function Page() {
   const [scale, setScale] = useState(100);
@@ -39,7 +40,7 @@ export default function Page() {
 
   return (
     <Layout>
-      <main className="relative flex h-screen w-full flex-col items-center justify-start">
+      <main className="relative flex h-screen w-full flex-col items-center justify-start overflow-hidden">
         {/* Top Nav */}
         <nav className="z-50 flex w-full justify-between border-b border-b-zinc-300 bg-white px-4 py-4">
           {/* Logo */}
@@ -77,7 +78,10 @@ export default function Page() {
             </svg>
 
             <div className="flex items-center gap-2">
-              <span className="text-[24px] font-bold text-zinc-900">
+              <span
+                className="text-[24px] font-bold text-zinc-900"
+                style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+              >
                 {proposal?.title}
               </span>
               <DropdownMenu.Root>
@@ -103,28 +107,29 @@ export default function Page() {
           </div>
         </nav>
 
-        <div className="flex h-full w-full">
+        {/* Page Wrapper */}
+        <div className="flex h-full w-screen">
+          {/* Left sidebar */}
           <LeftSidebar />
-          {/* Paper Viewport */}
-          <div className="flex h-full w-full items-center justify-center overflow-y-auto bg-zinc-200">
+
+          {/* Viewport */}
+          <div className="flex h-full w-full flex-col items-center justify-start overflow-y-scroll bg-zinc-200 pb-20">
             {/* Paper */}
             {hydrated ? (
-              <div
-                style={{
-                  transform: `scale(${scale / 100})`,
-                  width: `${PAPER_PRESETS[proposal?.settings?.print?.paperSize as PaperPreset]?.width}px`,
-                  height: `${PAPER_PRESETS[proposal?.settings?.print?.paperSize as PaperPreset]?.height}px`,
-                }}
-                className={clsx(
-                  "z-0 flex h-full flex-col rounded-sm bg-white shadow-xl",
-                )}
-              >
-                {CurrentPageComponent ? <CurrentPageComponent /> : null}
-              </div>
+              proposalPages.map((page, index) => {
+                const active = proposal.settings.pages[page.slug].active;
+                return active ? (
+                  <ProposalPaper key={index}>
+                    <page.component />
+                  </ProposalPaper>
+                ) : null;
+              })
             ) : (
               <span className="text-zinc-900">Loading proposal...</span>
             )}
           </div>
+
+          {/* Right sidebar */}
           <RightSidebar />
         </div>
 

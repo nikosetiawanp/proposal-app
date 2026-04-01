@@ -11,7 +11,7 @@
         "optional": true,
         "layout": "ordered"
       },
-      "briefAndObjectives": {
+      "executiveSummary": {
         "active": false,
         "optional": true,
         "layout": "list"

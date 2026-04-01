@@ -1,6 +1,6 @@
 {
   "proposal": {
-    "briefAndObjectives": {
+    "executiveSummary": {
       "list": {
         "name": "List",
         "component": "/components/layouts/proposal/List.tsx",

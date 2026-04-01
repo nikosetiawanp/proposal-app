@@ -69,6 +69,28 @@ export const fontPairings = [
   },
 ];
 
+export const headingFonts = [
+  { name: "Oswald", value: "oswald" },
+  { name: "Montserrat", value: "montserrat" },
+  { name: "Playfair Display", value: "playfair" },
+  { name: "Poppins", value: "poppins" },
+  { name: "Raleway", value: "raleway" },
+  { name: "Merriweather", value: "merriweather" },
+  { name: "Bebas Neue", value: "bebas neue" },
+  { name: "DM Serif Display", value: "dm serif display" },
+  { name: "Nunito", value: "nunito" },
+  { name: "Libre Baskerville", value: "libre baskerville" },
+];
+
+export const bodyFonts = [
+  { name: "Inter", value: "inter" },
+  { name: "Open Sans", value: "open sans" },
+  { name: "Lato", value: "lato" },
+  { name: "Roboto", value: "roboto" },
+  { name: "Source Sans 3", value: "source sans 3" },
+  { name: "Work Sans", value: "work sans" },
+];
+
 export const fonts = {
   oswald: "Oswald, sans-serif",
   inter: "Inter, sans-serif",

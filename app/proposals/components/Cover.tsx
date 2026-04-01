@@ -10,9 +10,9 @@ export default function Cover() {
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
 
   return (
-    <div className={clsx("flex h-full flex-col justify-between")}>
+    <div className={clsx("flex h-full flex-col")}>
       {/* Top */}
-      <div className="px-9 py-6">
+      {/* <div className="px-9 py-6">
         <EditableText
           id="name"
           label="Proposer's Name"
@@ -27,22 +27,22 @@ export default function Cover() {
             });
           }}
         />
-      </div>
+      </div> */}
 
-      {/* Center */}
-      <div className={clsx("flex flex-col justify-center gap-6 px-9")}>
+      {/* Top */}
+      <div className={clsx("mt-9 flex flex-col justify-center gap-2 px-9")}>
         <span
           style={{ fontFamily: proposal?.settings?.theme?.headingFont }}
           className={clsx("text-4xl text-[64px] font-bold text-zinc-900")}
         >
-          Web Development Proposal
+          Project <br /> Proposal
         </span>
 
         <EditableText
           id="project-title"
           label="Project title"
           placeholder="Project title"
-          className="text-[32px] font-bold text-zinc-900"
+          className="text-[14px] text-zinc-900"
           style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
           defaultValue={proposal?.title}
           onBlur={(e) => {
@@ -54,28 +54,25 @@ export default function Cover() {
         />
       </div>
 
-      {/* Bottom */}
-      <div className="flex items-end justify-between px-9 py-6">
-        <span
-          style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
-          className="text-[20px] text-zinc-900"
-        >
-          20 March 2024
-          {/* {proposal?.date} */}
-        </span>
-        <div className="flex flex-col gap-2">
+      {/* Image */}
+      <div className="my-6 h-full w-full px-9">
+        <div className="h-full w-full rounded-xl bg-zinc-200"></div>
+      </div>
+
+      <div className="flex flex-col pb-9">
+        <div className="flex items-center px-9">
           <span
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
-            className="ml-1 text-[20px] text-zinc-900"
+            className="text-[16px] text-zinc-900"
           >
-            Prepared for
+            Prepared for :
           </span>
           <EditableText
             id="client-name"
             label="Client's name"
             placeholder="Client's Name"
-            className="text-[20px] text-zinc-900"
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            className="text-zinc-900"
             defaultValue={proposal?.clientName}
             onBlur={(e) => {
               setProposal({
@@ -84,6 +81,37 @@ export default function Cover() {
               });
             }}
           />
+        </div>
+
+        <div className="flex items-center px-9">
+          <span
+            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            className="text-[16px] text-zinc-900"
+          >
+            Prepared by :
+          </span>
+          <EditableText
+            id="client-name"
+            label="Proposer's name"
+            placeholder="Proposer's Name"
+            className="text-[14px] text-zinc-900"
+            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            defaultValue={proposal?.proposerName}
+            onBlur={(e) => {
+              setProposal({
+                ...proposal,
+                clientName: e.target.value,
+              });
+            }}
+          />
+        </div>
+        <div className="flex items-center px-9 text-[14px]">
+          <span
+            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            className="text-[16px] text-zinc-900"
+          >
+            Issued date : 24 Mar 2024
+          </span>
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ import ProposalFooter from "./ProposalFooter";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 
-export default function BriefAndObjectives() {
+export default function ExecutiveSummary() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
   const setProposalObjectives = useStore(
@@ -25,16 +25,28 @@ export default function BriefAndObjectives() {
       <ProposalHeader />
 
       {/* Content */}
-      <div className="flex h-full flex-col gap-8">
-        {/* Brief */}
-        <div className="flex flex-col gap-2 px-8">
-          <SectionTitle>Brief</SectionTitle>
+      <div className="flex h-full flex-col gap-4">
+        {/* Overview */}
+        <div className="flex flex-col px-8">
+          <h2
+            style={{ fontFamily: proposal?.settings?.theme?.headingFont }}
+            className="text-[36px] font-bold text-zinc-900"
+          >
+            Executive Summary
+          </h2>
+          <span
+            className="font-bold text-zinc-900"
+            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+          >
+            Overview
+          </span>
           <EditableText
             id={"description"}
             label={"description"}
             placeholder={"Enter project description here"}
             defaultValue={proposal?.description}
             className="text-wrap text-zinc-900"
+            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             as="textarea"
             onBlur={(e) => {
               setProposal({
@@ -46,13 +58,18 @@ export default function BriefAndObjectives() {
         </div>
 
         {/* Objectives */}
-        <div className="flex flex-col gap-2">
-          <SectionTitle className="ml-8">Objectives</SectionTitle>
+        <div className="flex flex-col">
+          <span
+            className="ml-8 font-bold text-zinc-900"
+            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+          >
+            Objectives
+          </span>
           <SortableContainer
             items={proposal?.objectives ?? []}
             setItems={setProposalObjectives as any}
           >
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col">
               {proposal?.objectives?.map((objective, index) => {
                 return (
                   <SortableItem
@@ -66,13 +83,19 @@ export default function BriefAndObjectives() {
                       ]);
                     }}
                   >
-                    <div className="mt-0.5 flex items-center gap-2">
-                      <ArrowRight className="text-zinc-900" />
+                    <div className="mt-0.5 flex items-center gap-1">
+                      {/* <ArrowRight className="text-zinc-900" /> */}
+                      <span className="font-bold text-zinc-900">
+                        {index + 1}.
+                      </span>
                       <EditableText
                         id={""}
                         placeholder={"Click to write objective"}
                         defaultValue={objective.description}
                         as="textarea"
+                        style={{
+                          fontFamily: proposal?.settings?.theme?.bodyFont,
+                        }}
                         onBlur={(e) => {
                           const updatedObjectives = proposal.objectives.map(
                             (obj) =>
@@ -91,7 +114,6 @@ export default function BriefAndObjectives() {
                   </SortableItem>
                 );
               })}
-
               <button
                 className={clsx(
                   "ml-9 flex items-center gap-3 opacity-30",
@@ -112,21 +134,32 @@ export default function BriefAndObjectives() {
 
                 <span className="text-indigo-500">Add Objective</span>
               </button>
-              {/* <button
-                className="flex-start flex bg-red-500"
-                onClick={() => {
-                  const newObjective = {
-                    id: crypto.randomUUID(),
-                    title: "",
-                    description: "",
-                  };
-                  setProposalObjectives([...proposal.objectives, newObjective]);
-                }}
-              >
-                + Add Objective
-              </button> */}
             </div>
           </SortableContainer>
+        </div>
+
+        <div className="mx-8">
+          <span
+            className="font-bold text-zinc-900"
+            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+          >
+            Solution
+          </span>
+          <EditableText
+            id={"description"}
+            label={"description"}
+            placeholder={"Enter project description here"}
+            defaultValue={proposal?.description}
+            className="text-wrap text-zinc-900"
+            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            as="textarea"
+            onBlur={(e) => {
+              setProposal({
+                ...proposal,
+                description: e.target.value,
+              });
+            }}
+          />
         </div>
       </div>
 
