@@ -9,7 +9,7 @@ export type PaperSize = {
   height: number | string;
 };
 
-export type PaperPreset = "letter" | "a4";
+export type PaperPreset = "Letter" | "A4";
 
 export interface Proposal {
   id: string;
@@ -19,7 +19,7 @@ export interface Proposal {
   date: string;
   proposerName: string;
   clientName: string;
-  timeUnit: "day" | "week" | "month";
+  timeUnit: "Day" | "Week" | "Month";
   currency: CurrencyCode;
   objectives: { id: string; title: string; description: string }[];
   services: {
@@ -39,8 +39,13 @@ export interface Proposal {
     };
     pages: Record<ProposalPageSlug, { active: boolean; layout: string }>;
     print: {
-      paperSize: "a4" | "letter";
+      paperSize: "A4" | "Letter";
       orientation: "portrait" | "landscape";
+    };
+    format: {
+      date: "";
+      timeUnit: "Day" | "Week" | "Month";
+      currency: CurrencyCode;
     };
   };
 }

@@ -1,4 +1,4 @@
-import EditableText from "@/components/EditableText";
+import TextEditable from "@/components/TextEditable";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 
@@ -9,7 +9,7 @@ export default function ProposalFooter() {
   return (
     <div className="flex justify-between px-9 py-6">
       <span className="text-zinc-900">
-        <EditableText
+        <TextEditable
           id={""}
           style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
           placeholder={"Project Title"}

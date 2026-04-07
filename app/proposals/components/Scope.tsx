@@ -1,6 +1,6 @@
 "use client";
 
-import EditableText from "@/components/EditableText";
+import TextEditable from "@/components/TextEditable";
 import clsx from "clsx";
 import SectionTitle from "./SectionTitle";
 import { SortableContainer, SortableItem } from "@/components/dndkit/Sortable";
@@ -27,13 +27,22 @@ export default function Scope() {
       {/* Content */}
       <div className="flex h-full flex-col gap-8">
         <div className="flex flex-col gap-2">
-          <SectionTitle className="ml-8">Scope</SectionTitle>
+          <h2
+            style={{
+              fontFamily: proposal?.settings?.theme?.headingFont,
+              color: proposal?.settings?.theme?.accentColor,
+            }}
+            className="ml-9 text-[36px] font-bold"
+          >
+            Project Scope
+          </h2>
+
           <SortableContainer
             items={proposal?.services ?? []}
             setItems={setProposalServices as any}
           >
-            <div className="flex flex-col gap-1">
-              {proposal?.services?.map((service) => {
+            <div className="flex flex-col gap-2">
+              {proposal?.services?.map((service, index) => {
                 return (
                   <SortableItem
                     key={service.id}
@@ -48,13 +57,21 @@ export default function Scope() {
                   >
                     <div className="flex flex-col items-start">
                       {/* Title and Icon */}
-                      <div className="flex items-center gap-2">
-                        <ArrowRight className="h-fit text-zinc-900" />
-                        <EditableText
+                      <div className="flex items-center">
+                        {/* <span className="text-zinc-600">{index + 1}.</span> */}
+                        <TextEditable
                           id={""}
                           placeholder={"Service Title"}
                           defaultValue={service.title}
-                          className="font-bold"
+                          className={clsx(
+                            "font-bold",
+                            "text-[var(--accent-color)]",
+                          )}
+                          style={{
+                            "--accent-color":
+                              proposal?.settings?.theme?.accentColor,
+                            fontFamily: proposal?.settings?.theme?.bodyFont,
+                          }}
                           onBlur={(e) => {
                             const updatedServices = proposal.services.map(
                               (serv) =>
@@ -70,12 +87,15 @@ export default function Scope() {
                           }}
                         />
                       </div>
-                      <EditableText
+                      <TextEditable
                         id={""}
                         placeholder={"Service Description"}
                         defaultValue={service.description}
                         as="textarea"
-                        className="ml-7"
+                        className="text-zinc-600"
+                        style={{
+                          fontFamily: proposal?.settings?.theme?.bodyFont,
+                        }}
                         onBlur={(e) => {
                           const updatedServices = proposal.services.map(
                             (serv) =>

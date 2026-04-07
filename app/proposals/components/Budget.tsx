@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { GripVertical, Trash } from "lucide-react";
-import EditableText from "../../../components/EditableText";
+import TextEditable from "../../../components/TextEditable";
 import {
   SortableContainer,
   SortableItem,
@@ -14,6 +14,9 @@ import ProposalFooter from "./ProposalFooter";
 import ProposalHeader from "./ProposalHeader";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
+import { currencies } from "@/data/currencies";
+import CurrencyEditable from "@/components/CurrencyEditable";
+import { formatCurrency, parseCurrency } from "@/utils/currency";
 
 export default function Budget() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
@@ -26,6 +29,7 @@ export default function Budget() {
     (acc, service) => acc + service.budget,
     0,
   );
+
   return (
     <div className={clsx("flex h-full flex-col justify-between")}>
       {/* Header */}
@@ -35,20 +39,28 @@ export default function Budget() {
       <div className="flex h-full flex-col">
         {/* Center */}
 
-        <SectionTitle className="ml-8">Estimated Budget</SectionTitle>
-
+        <h2
+          style={{
+            fontFamily: proposal?.settings?.theme?.headingFont,
+            color: proposal?.settings?.theme?.accentColor,
+          }}
+          className="mb-4 ml-9 text-[36px] font-bold"
+        >
+          Budget
+        </h2>
         {/* Table */}
         <div className="flex w-full flex-col">
           {/* Table Header */}
-          <div className="flex px-9 py-2">
-            <span className="flex-[2] font-bold text-zinc-900">Service</span>
-            <span className="ml-5 flex-[1] font-bold text-zinc-900">
-              Budget
-            </span>
+          <div
+            className="mx-9 flex items-center px-2 py-2"
+            style={{ backgroundColor: proposal?.settings?.theme?.accentColor }}
+          >
+            <span className="flex-[2] font-bold text-white">Service</span>
+            <span className="ml-5 flex-[1] font-bold text-white">Budget</span>
           </div>
-          <div className="px-10">
+          {/* <div className="px-10">
             <Divider />
-          </div>
+          </div> */}
 
           {/* Items */}
           <SortableContainer
@@ -73,12 +85,15 @@ export default function Budget() {
                     >
                       <div className="mt-0.5 flex w-full">
                         {/* Service  */}
-                        <div className="flex-[2]">
-                          <EditableText
+                        <div className="flex flex-[2] items-end">
+                          <TextEditable
                             id="service"
                             label="Service"
                             placeholder="Service"
-                            className="text-[14px] text-zinc-900"
+                            className="ml-2 text-[14px] text-zinc-600"
+                            style={{
+                              fontFamily: proposal?.settings?.theme?.bodyFont,
+                            }}
                             defaultValue={service.title}
                             onBlur={(e) => {
                               const updatedServices = proposal.services.map(
@@ -100,20 +115,34 @@ export default function Budget() {
                         </div>
 
                         {/* Budget */}
-                        <div className="flex-[1]">
-                          <EditableText
+                        <div className="flex flex-[1] gap-[2px]">
+                          {/* <span className="mt-[2px] text-zinc-600">
+                            {
+                              currencies.find(
+                                (currency) =>
+                                  currency.code ===
+                                  proposal?.settings?.format?.currency,
+                              )?.symbol
+                            }
+                          </span> */}
+                          <CurrencyEditable
                             id="service"
                             label="Service"
                             placeholder="Service"
-                            className="text-[14px] text-zinc-900"
+                            className="text-[14px] text-zinc-600"
+                            style={{
+                              fontFamily: proposal?.settings?.theme?.bodyFont,
+                            }}
+                            value={String(service.budget)}
                             defaultValue={String(service.budget)}
                             onBlur={(e) => {
+                              const clean = parseCurrency(e.target.value);
                               const updatedServices = proposal.services.map(
                                 (serv) =>
                                   serv.id === service.id
                                     ? {
                                         ...serv,
-                                        budget: Number(e.target.value),
+                                        budget: Number(clean),
                                       }
                                     : serv,
                               );
@@ -139,13 +168,25 @@ export default function Budget() {
           {/* End of Row */}
 
           {/* Table Footer */}
-          <div className="flex px-9 py-2">
+          <div className="flex px-11 py-2">
             <div className="flex-[2]">
-              <span className="font-bold text-zinc-900">Total</span>
+              <span
+                className="font-bold text-zinc-900"
+                style={{
+                  fontFamily: proposal?.settings?.theme?.bodyFont,
+                }}
+              >
+                Total
+              </span>
             </div>
-            <div className="ml-3 flex-[1]">
-              <span className="font-bold text-zinc-900">
-                {proposal?.currency} {totalBudget}
+            <div className="ml-3 flex flex-[1]">
+              <span
+                className="font-bold text-zinc-900"
+                style={{
+                  fontFamily: proposal?.settings?.theme?.bodyFont,
+                }}
+              >
+                {formatCurrency(String(totalBudget))}
               </span>
             </div>
           </div>

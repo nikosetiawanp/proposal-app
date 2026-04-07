@@ -1,6 +1,6 @@
 "use client";
 
-import EditableText from "@/components/EditableText";
+import TextEditable from "@/components/TextEditable";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 import clsx from "clsx";
 import { useStore } from "zustand";
@@ -13,12 +13,12 @@ export default function Cover() {
     <div className={clsx("flex h-full flex-col")}>
       {/* Top */}
       {/* <div className="px-9 py-6">
-        <EditableText
+        <TextEditable
           id="name"
           label="Proposer's Name"
           placeholder="Proposer's Name"
           defaultValue={proposal?.proposerName}
-          className="text-[24px] font-bold text-zinc-900"
+          className="text-[24px] font-bold text-zinc-700"
           style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
           onBlur={(e) => {
             setProposal({
@@ -32,17 +32,20 @@ export default function Cover() {
       {/* Top */}
       <div className={clsx("mt-9 flex flex-col justify-center gap-2 px-9")}>
         <span
-          style={{ fontFamily: proposal?.settings?.theme?.headingFont }}
-          className={clsx("text-4xl text-[64px] font-bold text-zinc-900")}
+          style={{
+            fontFamily: proposal?.settings?.theme?.headingFont,
+            color: proposal?.settings?.theme?.accentColor,
+          }}
+          className={clsx("text-4xl text-[64px] font-bold text-zinc-700")}
         >
           Project <br /> Proposal
         </span>
 
-        <EditableText
+        <TextEditable
           id="project-title"
           label="Project title"
           placeholder="Project title"
-          className="text-[14px] text-zinc-900"
+          className="text-[14px] text-zinc-700"
           style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
           defaultValue={proposal?.title}
           onBlur={(e) => {
@@ -63,16 +66,16 @@ export default function Cover() {
         <div className="flex items-center px-9">
           <span
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
-            className="text-[16px] text-zinc-900"
+            className="text-[16px] text-zinc-700"
           >
             Prepared for :
           </span>
-          <EditableText
+          <TextEditable
             id="client-name"
             label="Client's name"
             placeholder="Client's Name"
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
-            className="text-zinc-900"
+            className="text-zinc-700"
             defaultValue={proposal?.clientName}
             onBlur={(e) => {
               setProposal({
@@ -86,21 +89,21 @@ export default function Cover() {
         <div className="flex items-center px-9">
           <span
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
-            className="text-[16px] text-zinc-900"
+            className="text-[16px] text-zinc-700"
           >
             Prepared by :
           </span>
-          <EditableText
+          <TextEditable
             id="client-name"
             label="Proposer's name"
             placeholder="Proposer's Name"
-            className="text-[14px] text-zinc-900"
+            className="text-[14px] text-zinc-700"
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             defaultValue={proposal?.proposerName}
             onBlur={(e) => {
               setProposal({
                 ...proposal,
-                clientName: e.target.value,
+                proposerName: e.target.value,
               });
             }}
           />
@@ -108,7 +111,7 @@ export default function Cover() {
         <div className="flex items-center px-9 text-[14px]">
           <span
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
-            className="text-[16px] text-zinc-900"
+            className="text-[16px] text-zinc-700"
           >
             Issued date : 24 Mar 2024
           </span>

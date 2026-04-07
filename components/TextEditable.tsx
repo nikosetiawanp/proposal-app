@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-export default function EditableText({
+export default function TextEditable({
   id,
   label,
   placeholder,
@@ -28,7 +28,7 @@ export default function EditableText({
     "selection:bg-indigo-500/50 selection:text-white",
     "placeholder:text-zinc-400",
     "transition-all",
-    "text-[16px] text-zinc-900",
+    "text-[16px]",
     "-ml-1 px-1",
     className,
   );

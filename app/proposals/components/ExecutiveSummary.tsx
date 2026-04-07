@@ -1,6 +1,6 @@
 "use client";
 
-import EditableText from "@/components/EditableText";
+import TextEditable from "@/components/TextEditable";
 import clsx from "clsx";
 import SectionTitle from "./SectionTitle";
 import { SortableContainer, SortableItem } from "@/components/dndkit/Sortable";
@@ -29,23 +29,29 @@ export default function ExecutiveSummary() {
         {/* Overview */}
         <div className="flex flex-col px-8">
           <h2
-            style={{ fontFamily: proposal?.settings?.theme?.headingFont }}
-            className="text-[36px] font-bold text-zinc-900"
+            style={{
+              fontFamily: proposal?.settings?.theme?.headingFont,
+              color: proposal?.settings?.theme?.accentColor,
+            }}
+            className="text-[36px] font-bold text-zinc-600"
           >
             Executive Summary
           </h2>
           <span
-            className="font-bold text-zinc-900"
-            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            className="font-bold text-zinc-600"
+            style={{
+              fontFamily: proposal?.settings?.theme?.bodyFont,
+              color: proposal?.settings?.theme?.accentColor,
+            }}
           >
             Overview
           </span>
-          <EditableText
+          <TextEditable
             id={"description"}
             label={"description"}
             placeholder={"Enter project description here"}
             defaultValue={proposal?.description}
-            className="text-wrap text-zinc-900"
+            className="text-wrap text-zinc-600"
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             as="textarea"
             onBlur={(e) => {
@@ -60,8 +66,11 @@ export default function ExecutiveSummary() {
         {/* Objectives */}
         <div className="flex flex-col">
           <span
-            className="ml-8 font-bold text-zinc-900"
-            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            className="ml-8 font-bold text-zinc-600"
+            style={{
+              fontFamily: proposal?.settings?.theme?.bodyFont,
+              color: proposal?.settings?.theme?.accentColor,
+            }}
           >
             Objectives
           </span>
@@ -84,12 +93,11 @@ export default function ExecutiveSummary() {
                     }}
                   >
                     <div className="mt-0.5 flex items-center gap-1">
-                      {/* <ArrowRight className="text-zinc-900" /> */}
-                      <span className="font-bold text-zinc-900">
-                        {index + 1}.
-                      </span>
-                      <EditableText
+                      {/* <ArrowRight className="text-zinc-600" /> */}
+                      <span className="text-zinc-600">{index + 1}.</span>
+                      <TextEditable
                         id={""}
+                        className="text-zinc-600"
                         placeholder={"Click to write objective"}
                         defaultValue={objective.description}
                         as="textarea"
@@ -140,17 +148,20 @@ export default function ExecutiveSummary() {
 
         <div className="mx-8">
           <span
-            className="font-bold text-zinc-900"
-            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            className="font-bold text-zinc-600"
+            style={{
+              fontFamily: proposal?.settings?.theme?.bodyFont,
+              color: proposal?.settings?.theme?.accentColor,
+            }}
           >
             Solution
           </span>
-          <EditableText
+          <TextEditable
             id={"description"}
             label={"description"}
             placeholder={"Enter project description here"}
             defaultValue={proposal?.description}
-            className="text-wrap text-zinc-900"
+            className="text-wrap text-zinc-600"
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             as="textarea"
             onBlur={(e) => {

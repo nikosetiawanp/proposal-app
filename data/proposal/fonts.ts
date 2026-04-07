@@ -87,7 +87,6 @@ export const bodyFonts = [
   { name: "Open Sans", value: "open sans" },
   { name: "Lato", value: "lato" },
   { name: "Roboto", value: "roboto" },
-  { name: "Source Sans 3", value: "source sans 3" },
   { name: "Work Sans", value: "work sans" },
 ];
 

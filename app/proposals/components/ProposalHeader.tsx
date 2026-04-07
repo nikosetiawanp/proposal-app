@@ -1,19 +1,27 @@
-import EditableText from "@/components/EditableText";
+import TextEditable from "@/components/TextEditable";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 import { useStore } from "zustand";
 
 export default function ProposalHeader() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
+  const setProposal = useStore(proposalStore, (state) => state.setProposal);
 
   return (
     <div
       className="flex justify-between px-9 py-4"
       style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
     >
-      <EditableText
+      <TextEditable
         id={""}
+        className="text-zinc-600"
         placeholder={"Proposer's Name"}
-        defaultValue={"Proposer's Name"}
+        defaultValue={proposal?.proposerName}
+        onBlur={(e) => {
+          setProposal({
+            ...proposal,
+            clientName: e.target.value,
+          });
+        }}
       />
     </div>
   );

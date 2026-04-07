@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import EditableText from "../../../components/EditableText";
+import TextEditable from "../../../components/TextEditable";
 import {
   SortableContainer,
   SortableItem,
@@ -40,20 +40,30 @@ export default function Timeline() {
       <div className="flex h-full flex-col">
         {/* Center */}
 
-        <SectionTitle className="ml-8">Estimated Timeline</SectionTitle>
-
+        <h2
+          style={{
+            fontFamily: proposal?.settings?.theme?.headingFont,
+            color: proposal?.settings?.theme?.accentColor,
+          }}
+          className="mb-4 ml-9 text-[36px] font-bold"
+        >
+          Timeline
+        </h2>
         {/* Table */}
         <div className="flex w-full flex-col">
           {/* Table Header */}
-          <div className="flex px-9 py-2">
-            <span className="flex-[2] font-bold text-zinc-900">Service</span>
-            <span className="ml-5 flex-[1] font-bold text-zinc-900">
+          <div
+            className="mx-9 flex items-center px-2 py-2"
+            style={{ backgroundColor: proposal?.settings?.theme?.accentColor }}
+          >
+            <span className="flex-[2] font-bold text-white">Service</span>
+            <span className="ml-5 flex-[1] font-bold text-white">
               Estimated Timeline
             </span>
           </div>
-          <div className="px-10">
+          {/* <div className="px-10">
             <Divider />
-          </div>
+          </div> */}
 
           {/* Items */}
           <SortableContainer
@@ -76,14 +86,17 @@ export default function Timeline() {
                         ]);
                       }}
                     >
-                      <div className="mt-0.5 flex h-full w-full">
+                      <div className="mt-0.5 flex h-full w-full items-center">
                         {/* Item */}
                         <div className="flex-[2]">
-                          <EditableText
+                          <TextEditable
                             id="service"
                             label="Service"
                             placeholder="Service"
-                            className="text-[14px] text-zinc-900"
+                            className="ml-2 text-[14px] text-zinc-600"
+                            style={{
+                              fontFamily: proposal?.settings?.theme?.bodyFont,
+                            }}
                             defaultValue={service.title}
                             onBlur={(e) => {
                               const updatedServices = proposal.services.map(
@@ -105,12 +118,15 @@ export default function Timeline() {
                         </div>
 
                         {/* Timeline */}
-                        <div className="flex-[1]">
-                          <EditableText
+                        <div className="flex flex-[1] items-end">
+                          <TextEditable
                             id="service"
                             label="Service"
                             placeholder="Service"
-                            className="text-[14px] text-zinc-900"
+                            className="text-[14px] text-zinc-600"
+                            style={{
+                              fontFamily: proposal?.settings?.theme?.bodyFont,
+                            }}
                             defaultValue={String(service.estimatedTimeMin)}
                             onBlur={(e) => {
                               const updatedServices = proposal.services.map(
@@ -131,10 +147,13 @@ export default function Timeline() {
                               });
                             }}
                           />
+                          <span className="mb-0.25 text-zinc-600">
+                            {proposal?.settings?.format?.timeUnit}
+                          </span>
                         </div>
                       </div>
                     </SortableItem>
-                    <div className="px-10">
+                    <div className="px-9">
                       <Divider />
                     </div>
                   </React.Fragment>
@@ -146,13 +165,25 @@ export default function Timeline() {
           {/* End of Row */}
 
           {/* Table Footer */}
-          <div className="flex px-9 py-2">
+          <div className="flex px-11 py-2">
             <div className="flex-[2]">
-              <span className="font-bold text-zinc-900">Total</span>
+              <span
+                className="font-bold text-zinc-900"
+                style={{
+                  fontFamily: proposal?.settings?.theme?.bodyFont,
+                }}
+              >
+                Total
+              </span>
             </div>
-            <div className="ml-3 flex-[1]">
-              <span className="font-bold text-zinc-900">
-                {totalTimeMin} {proposal?.timeUnit}
+            <div className="ml-4 flex-[1]">
+              <span
+                className="font-bold text-zinc-900"
+                style={{
+                  fontFamily: proposal?.settings?.theme?.bodyFont,
+                }}
+              >
+                {totalTimeMin} {proposal?.settings?.format?.timeUnit}
               </span>
             </div>
           </div>
