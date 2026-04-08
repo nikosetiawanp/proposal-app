@@ -13,6 +13,8 @@ import ProposalFooter from "./ProposalFooter";
 import ProposalHeader from "./ProposalHeader";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
+import { formatDuration, parseDuration } from "@/utils/duration";
+import DurationEditable from "@/components/DurationEditable";
 
 export default function Timeline() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
@@ -119,7 +121,7 @@ export default function Timeline() {
 
                         {/* Timeline */}
                         <div className="flex flex-[1] items-end">
-                          <TextEditable
+                          <DurationEditable
                             id="service"
                             label="Service"
                             placeholder="Service"
@@ -127,16 +129,16 @@ export default function Timeline() {
                             style={{
                               fontFamily: proposal?.settings?.theme?.bodyFont,
                             }}
+                            value={String(service.estimatedTimeMin)}
                             defaultValue={String(service.estimatedTimeMin)}
                             onBlur={(e) => {
+                              const clean = parseDuration(e.target.value);
                               const updatedServices = proposal.services.map(
                                 (serv) =>
                                   serv.id === service.id
                                     ? {
                                         ...serv,
-                                        estimatedTimeMin: Number(
-                                          e.target.value,
-                                        ),
+                                        estimatedTimeMin: clean,
                                       }
                                     : serv,
                               );
@@ -147,9 +149,6 @@ export default function Timeline() {
                               });
                             }}
                           />
-                          <span className="mb-0.25 text-zinc-600">
-                            {proposal?.settings?.format?.timeUnit}
-                          </span>
                         </div>
                       </div>
                     </SortableItem>
@@ -183,7 +182,10 @@ export default function Timeline() {
                   fontFamily: proposal?.settings?.theme?.bodyFont,
                 }}
               >
-                {totalTimeMin} {proposal?.settings?.format?.timeUnit}
+                {formatDuration(
+                  Number(totalTimeMin),
+                  proposal?.settings?.format?.timeUnit,
+                )}
               </span>
             </div>
           </div>
