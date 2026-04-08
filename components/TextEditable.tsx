@@ -10,6 +10,7 @@ export default function TextEditable({
   style,
   as,
   onBlur,
+  onChange,
 }: {
   id: string;
   label?: string;
@@ -20,6 +21,7 @@ export default function TextEditable({
   style?: any;
   as?: "input" | "textarea";
   onBlur?: (e: any) => void;
+  onChange?: (e: any) => void;
 }) {
   const inputStyle = clsx(
     "peer field-sizing-content w-fit rounded-sm border-2 border-white/0 outline-none",
@@ -43,6 +45,7 @@ export default function TextEditable({
           value={value}
           defaultValue={defaultValue}
           onBlur={onBlur}
+          onChange={onChange}
           style={style}
         />
       ) : (
@@ -54,6 +57,7 @@ export default function TextEditable({
           value={value}
           defaultValue={defaultValue}
           onBlur={onBlur}
+          onChange={onChange}
           style={style}
         />
       )}

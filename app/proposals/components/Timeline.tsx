@@ -99,8 +99,8 @@ export default function Timeline() {
                             style={{
                               fontFamily: proposal?.settings?.theme?.bodyFont,
                             }}
-                            defaultValue={service.title}
-                            onBlur={(e) => {
+                            value={service.title}
+                            onChange={(e) => {
                               const updatedServices = proposal.services.map(
                                 (serv) =>
                                   serv.id === service.id

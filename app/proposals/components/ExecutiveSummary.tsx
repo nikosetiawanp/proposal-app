@@ -50,11 +50,11 @@ export default function ExecutiveSummary() {
             id={"description"}
             label={"description"}
             placeholder={"Enter project description here"}
-            defaultValue={proposal?.description}
+            value={proposal?.description}
             className="text-wrap text-zinc-600"
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             as="textarea"
-            onBlur={(e) => {
+            onChange={(e) => {
               setProposal({
                 ...proposal,
                 description: e.target.value,
@@ -99,12 +99,12 @@ export default function ExecutiveSummary() {
                         id={""}
                         className="text-zinc-600"
                         placeholder={"Click to write objective"}
-                        defaultValue={objective.description}
+                        value={objective.description}
                         as="textarea"
                         style={{
                           fontFamily: proposal?.settings?.theme?.bodyFont,
                         }}
-                        onBlur={(e) => {
+                        onChange={(e) => {
                           const updatedObjectives = proposal.objectives.map(
                             (obj) =>
                               obj.id === objective.id
@@ -160,11 +160,11 @@ export default function ExecutiveSummary() {
             id={"description"}
             label={"description"}
             placeholder={"Enter project description here"}
-            defaultValue={proposal?.description}
+            value={proposal?.description}
             className="text-wrap text-zinc-600"
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             as="textarea"
-            onBlur={(e) => {
+            onChange={(e) => {
               setProposal({
                 ...proposal,
                 description: e.target.value,

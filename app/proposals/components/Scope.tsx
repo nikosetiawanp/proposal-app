@@ -60,9 +60,9 @@ export default function Scope() {
                       <div className="flex items-center">
                         {/* <span className="text-zinc-600">{index + 1}.</span> */}
                         <TextEditable
-                          id={""}
+                          id={"service-title-" + index}
                           placeholder={"Service Title"}
-                          defaultValue={service.title}
+                          value={service.title}
                           className={clsx(
                             "font-bold",
                             "text-[var(--accent-color)]",
@@ -72,7 +72,7 @@ export default function Scope() {
                               proposal?.settings?.theme?.accentColor,
                             fontFamily: proposal?.settings?.theme?.bodyFont,
                           }}
-                          onBlur={(e) => {
+                          onChange={(e) => {
                             const updatedServices = proposal.services.map(
                               (serv) =>
                                 serv.id === service.id
@@ -88,15 +88,15 @@ export default function Scope() {
                         />
                       </div>
                       <TextEditable
-                        id={""}
+                        id={"service-description-" + index}
                         placeholder={"Service Description"}
-                        defaultValue={service.description}
+                        value={service.description}
                         as="textarea"
                         className="text-zinc-600"
                         style={{
                           fontFamily: proposal?.settings?.theme?.bodyFont,
                         }}
-                        onBlur={(e) => {
+                        onChange={(e) => {
                           const updatedServices = proposal.services.map(
                             (serv) =>
                               serv.id === service.id

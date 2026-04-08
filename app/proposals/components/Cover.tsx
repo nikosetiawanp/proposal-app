@@ -12,24 +12,6 @@ export default function Cover() {
   return (
     <div className={clsx("flex h-full flex-col")}>
       {/* Top */}
-      {/* <div className="px-9 py-6">
-        <TextEditable
-          id="name"
-          label="Proposer's Name"
-          placeholder="Proposer's Name"
-          defaultValue={proposal?.proposerName}
-          className="text-[24px] font-bold text-zinc-700"
-          style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
-          onBlur={(e) => {
-            setProposal({
-              ...proposal,
-              proposerName: e.target.value,
-            });
-          }}
-        />
-      </div> */}
-
-      {/* Top */}
       <div className={clsx("mt-9 flex flex-col justify-center gap-2 px-9")}>
         <span
           style={{
@@ -47,8 +29,8 @@ export default function Cover() {
           placeholder="Project title"
           className="text-[14px] text-zinc-700"
           style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
-          defaultValue={proposal?.title}
-          onBlur={(e) => {
+          value={proposal?.title}
+          onChange={(e) => {
             setProposal({
               ...proposal,
               title: e.target.value,
@@ -76,8 +58,8 @@ export default function Cover() {
             placeholder="Client's Name"
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             className="text-zinc-700"
-            defaultValue={proposal?.clientName}
-            onBlur={(e) => {
+            value={proposal?.clientName}
+            onChange={(e) => {
               setProposal({
                 ...proposal,
                 clientName: e.target.value,
@@ -99,8 +81,8 @@ export default function Cover() {
             placeholder="Proposer's Name"
             className="text-[14px] text-zinc-700"
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
-            defaultValue={proposal?.proposerName}
-            onBlur={(e) => {
+            value={proposal?.proposerName}
+            onChange={(e) => {
               setProposal({
                 ...proposal,
                 proposerName: e.target.value,

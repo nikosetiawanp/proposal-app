@@ -13,8 +13,8 @@ export default function ProposalFooter() {
           id={""}
           style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
           placeholder={"Project Title"}
-          defaultValue={proposal?.title}
-          onBlur={(e) => {
+          value={proposal?.title}
+          onChange={(e) => {
             setProposal({
               ...proposal,
               title: e.target.value,

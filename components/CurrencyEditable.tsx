@@ -22,6 +22,7 @@ export default function CurrencyEditable({
   style?: any;
   as?: "input" | "textarea";
   onBlur?: (e: any) => void;
+  onchange?: (e: any) => void;
 }) {
   const inputStyle = clsx(
     "peer field-sizing-content w-fit rounded-sm border-2 border-white/0 outline-none",

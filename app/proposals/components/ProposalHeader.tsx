@@ -15,8 +15,8 @@ export default function ProposalHeader() {
         id={""}
         className="text-zinc-600"
         placeholder={"Proposer's Name"}
-        defaultValue={proposal?.proposerName}
-        onBlur={(e) => {
+        value={proposal?.proposerName}
+        onChange={(e) => {
           setProposal({
             ...proposal,
             clientName: e.target.value,
