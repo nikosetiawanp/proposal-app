@@ -16,6 +16,23 @@ type ProposalStoreActions = {
   ) => void;
 };
 
+let timeout: ReturnType<typeof setTimeout> | null = null;
+const debouncedStorage = createJSONStorage(() => ({
+  getItem: (name: string) => {
+    return localStorage.getItem(name);
+  },
+  setItem: (name: string, value: string) => {
+    if (timeout) clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+      localStorage.setItem(name, value);
+    }, 0);
+  },
+  removeItem: (name: string) => {
+    localStorage.removeItem(name);
+  },
+}));
+
 export const proposalStore = createStore<
   ProposalStoreState & ProposalStoreActions
 >()(
@@ -54,7 +71,8 @@ export const proposalStore = createStore<
 
     {
       name: "proposal-storage",
-      storage: createJSONStorage(() => localStorage),
+      // storage: createJSONStorage(() => localStorage),
+      storage: debouncedStorage,
     },
   ),
 );

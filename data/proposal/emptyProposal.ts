@@ -10,7 +10,7 @@ export const emptyProposal: Proposal = {
   date: new Date().toISOString(),
   proposerName: "",
   clientName: "",
-  timeUnit: "week",
+  timeUnit: "Week",
   currency: "USD",
   objectives: [],
   services: [],
@@ -63,8 +63,13 @@ export const emptyProposal: Proposal = {
       },
     },
     print: {
-      paperSize: "letter",
+      paperSize: "Letter",
       orientation: "portrait",
+    },
+    format: {
+      date: "",
+      timeUnit: "Week",
+      currency: "USD",
     },
   },
 };

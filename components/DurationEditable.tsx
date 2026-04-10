@@ -13,6 +13,7 @@ export default function DurationEditable({
   className,
   style,
   onBlur,
+  onChange,
 }: {
   id: string;
   label?: string;
@@ -22,6 +23,7 @@ export default function DurationEditable({
   className?: string;
   style?: any;
   onBlur?: (e: any) => void;
+  onChange?: (e: any) => void;
 }) {
   const inputStyle = clsx(
     "peer field-sizing-content w-fit rounded-sm border-2 border-white/0 outline-none",
@@ -46,7 +48,7 @@ export default function DurationEditable({
         className={clsx(inputStyle)}
         placeholder={placeholder}
         value={formatDuration(raw, proposal?.settings?.format?.timeUnit)}
-        defaultValue={defaultValue}
+        // defaultValue={defaultValue}
         onBlur={onBlur}
         style={style}
         onChange={(e) => {
