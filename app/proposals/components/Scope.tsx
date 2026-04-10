@@ -63,14 +63,10 @@ export default function Scope() {
                           id={"service-title-" + index}
                           placeholder={"Service Title"}
                           value={service.title}
-                          className={clsx(
-                            "font-bold",
-                            "text-[var(--accent-color)]",
-                          )}
+                          className="font-bold text-zinc-900"
                           style={{
-                            "--accent-color":
-                              proposal?.settings?.theme?.accentColor,
                             fontFamily: proposal?.settings?.theme?.bodyFont,
+                            color: proposal?.settings?.theme?.accentColor,
                           }}
                           onChange={(e) => {
                             const updatedServices = proposal.services.map(
@@ -125,7 +121,7 @@ export default function Scope() {
                     id: crypto.randomUUID(),
                     title: "",
                     description: "",
-                    budget: 0,
+                    budget: "",
                     estimatedTimeMin: 0,
                     estimatedTimeMax: 0,
                     optional: false,

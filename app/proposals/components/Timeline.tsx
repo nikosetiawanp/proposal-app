@@ -93,7 +93,6 @@ export default function Timeline() {
                         <div className="flex-[2]">
                           <TextEditable
                             id="service"
-                            label="Service"
                             placeholder="Service"
                             className="ml-2 text-[14px] text-zinc-600"
                             style={{
@@ -121,24 +120,27 @@ export default function Timeline() {
 
                         {/* Timeline */}
                         <div className="flex flex-[1] items-end">
-                          <DurationEditable
+                          <TextEditable
                             id="service"
-                            label="Service"
                             placeholder="Service"
                             className="text-[14px] text-zinc-600"
                             style={{
                               fontFamily: proposal?.settings?.theme?.bodyFont,
                             }}
-                            value={String(service.estimatedTimeMin)}
-                            defaultValue={String(service.estimatedTimeMin)}
-                            onBlur={(e) => {
-                              const clean = parseDuration(e.target.value);
+                            suffix={
+                              proposal?.settings?.format?.timeUnit +
+                              (service.estimatedTimeMin > 1 ? "s" : "")
+                            }
+                            value={service.estimatedTimeMin}
+                            onChange={(e) => {
                               const updatedServices = proposal.services.map(
                                 (serv) =>
                                   serv.id === service.id
                                     ? {
                                         ...serv,
-                                        estimatedTimeMin: clean,
+                                        estimatedTimeMin: Number(
+                                          e.target.value,
+                                        ),
                                       }
                                     : serv,
                               );
@@ -182,10 +184,9 @@ export default function Timeline() {
                   fontFamily: proposal?.settings?.theme?.bodyFont,
                 }}
               >
-                {formatDuration(
-                  Number(totalTimeMin),
-                  proposal?.settings?.format?.timeUnit,
-                )}
+                {totalTimeMin}{" "}
+                {proposal?.settings?.format?.timeUnit +
+                  (totalTimeMin > 1 ? "s" : "")}
               </span>
             </div>
           </div>

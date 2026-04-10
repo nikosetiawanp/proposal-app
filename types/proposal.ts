@@ -26,7 +26,7 @@ export interface Proposal {
     id: string;
     title: string;
     description: string;
-    budget: number;
+    budget: string;
     estimatedTimeMin: number;
     estimatedTimeMax: number;
     optional: boolean;

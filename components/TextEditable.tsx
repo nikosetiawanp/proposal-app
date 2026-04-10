@@ -1,78 +1,97 @@
 import clsx from "clsx";
+import { useRef } from "react";
 
-export default function TextEditable({
-  id,
-  label,
-  placeholder,
-  value,
-  defaultValue,
-  className,
-  style,
-  as,
-  onBlur,
-  onChange,
-}: {
-  id: string;
-  label?: string;
-  placeholder: string;
-  value?: string;
-  defaultValue?: string;
+type Props = {
+  as?: "input" | "textarea";
   className?: string;
   style?: any;
-  as?: "input" | "textarea";
-  onBlur?: (e: any) => void;
-  onChange?: (e: any) => void;
-}) {
-  const inputStyle = clsx(
-    "peer field-sizing-content w-fit rounded-sm border-2 border-white/0 outline-none",
-    "focus:border-indigo-500 focus:bg-indigo-500/10 focus:text-indigo-500",
-    "hover:cursor-text hover:border-indigo-500/50",
-    "selection:bg-indigo-500/50 selection:text-white",
-    "placeholder:text-zinc-400",
-    "transition-all",
-    "text-[16px]",
-    "-ml-1 px-1",
-    className,
-  );
+  color?: string;
+  fontFamily?: string;
+  prefix?: string;
+  suffix?: string;
+} & React.InputHTMLAttributes<HTMLInputElement> &
+  React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+
+export default function TextEditable({
+  as,
+  className,
+  prefix,
+  suffix,
+  color,
+  fontFamily,
+  ...props
+}: Props) {
+  const Component = as ? as : "input";
+  const inputRef = useRef<any>(null);
 
   return (
-    <div className="relative flex w-fit flex-col">
-      {as === "textarea" ? (
-        <textarea
-          id={id}
-          className={clsx("resize-none", inputStyle)}
-          placeholder={placeholder}
-          value={value}
-          defaultValue={defaultValue}
-          onBlur={onBlur}
-          onChange={onChange}
-          style={style}
-        />
-      ) : (
-        <input
-          id={id}
-          type="text"
-          className={clsx(inputStyle)}
-          placeholder={placeholder}
-          value={value}
-          defaultValue={defaultValue}
-          onBlur={onBlur}
-          onChange={onChange}
-          style={style}
-        />
+    <div
+      onClick={() => inputRef.current?.focus()}
+      className={clsx(
+        "relative -ml-1 flex w-fit items-baseline gap-1 rounded-sm border-2 border-indigo-500/0 px-1",
+        "focus-within:border-indigo-500 focus-within:bg-indigo-500/10 focus-within:text-indigo-500 focus-within:hover:border-indigo-500",
+        "hover:border-indigo-500/70",
+        "transition-all",
+        className,
       )}
-
-      {/* <label
-        htmlFor={id}
+      {...props}
+    >
+      {prefix && (
+        <span
+          className={clsx("text-[16px]")}
+          style={{
+            color: color ? color : "inherit",
+            fontFamily: fontFamily ? fontFamily : "inherit",
+          }}
+        >
+          {prefix}
+        </span>
+      )}
+      <Component
+        ref={inputRef}
+        style={{
+          color: color ? color : "inherit",
+          fontFamily: fontFamily ? fontFamily : "inherit",
+        }}
         className={clsx(
-          "absolute -top-6 left-0 w-fit rounded-sm bg-indigo-500 px-2 py-1 text-[12px] font-bold text-nowrap",
-          "pointer-events-none",
-          "opacity-0 peer-hover:opacity-70 peer-focus:opacity-100",
+          "field-sizing-content w-fit outline-none",
+          "hover:cursor-text",
+          "focus:text-indigo-500",
+          "selection:bg-indigo-500/50 selection:text-white",
+          "placeholder:text-zinc-400",
+          "text-[16px]",
           "transition-all",
+          as === "textarea" && "resize-none",
         )}
-      >
-        {label}
-      </label> */}
+        {...props}
+      />
+      {suffix && (
+        <span
+          className={clsx("text-[16px]")}
+          style={{
+            color: color ? color : "inherit",
+            fontFamily: fontFamily ? fontFamily : "inherit",
+          }}
+        >
+          {suffix}
+        </span>
+      )}
+      {/* {label && (
+        <label
+          htmlFor={id}
+          className={clsx(
+            "absolute -top-6 w-fit rounded-sm bg-indigo-500 px-2 py-1 text-[12px] font-bold text-nowrap",
+            "pointer-events-none",
+            "opacity-0 peer-focus:opacity-100",
+            "transition-all",
+            !as && "left-2",
+            as === "input" && "left-2",
+            as === "textarea" && "-left-1",
+          )}
+        >
+          {label}
+        </label>
+      )} */}
     </div>
   );
 }

@@ -25,7 +25,7 @@ export default function Cover() {
 
         <TextEditable
           id="project-title"
-          label="Project title"
+          as="input"
           placeholder="Project title"
           className="text-[14px] text-zinc-700"
           style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
@@ -45,7 +45,7 @@ export default function Cover() {
       </div>
 
       <div className="flex flex-col pb-9">
-        <div className="flex items-center px-9">
+        <div className="flex items-baseline px-9">
           <span
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             className="text-[16px] text-zinc-700"
@@ -54,7 +54,6 @@ export default function Cover() {
           </span>
           <TextEditable
             id="client-name"
-            label="Client's name"
             placeholder="Client's Name"
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             className="text-zinc-700"
@@ -68,7 +67,7 @@ export default function Cover() {
           />
         </div>
 
-        <div className="flex items-center px-9">
+        <div className="flex items-baseline px-9">
           <span
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             className="text-[16px] text-zinc-700"
@@ -76,8 +75,7 @@ export default function Cover() {
             Prepared by :
           </span>
           <TextEditable
-            id="client-name"
-            label="Proposer's name"
+            as="input"
             placeholder="Proposer's Name"
             className="text-[14px] text-zinc-700"
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
@@ -90,7 +88,7 @@ export default function Cover() {
             }}
           />
         </div>
-        <div className="flex items-center px-9 text-[14px]">
+        <div className="flex items-baseline px-9 text-[14px]">
           <span
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             className="text-[16px] text-zinc-700"

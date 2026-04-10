@@ -26,7 +26,7 @@ export default function Budget() {
     (state) => state.setProposalServices,
   );
   const totalBudget = proposal?.services?.reduce(
-    (acc, service) => acc + service.budget,
+    (acc, service) => acc + Number(service.budget.replace(/,/g, "")),
     0,
   );
 
@@ -88,7 +88,6 @@ export default function Budget() {
                         <div className="flex flex-[2] items-end">
                           <TextEditable
                             id="service"
-                            label="Service"
                             placeholder="Service"
                             className="ml-2 text-[14px] text-zinc-600"
                             style={{
@@ -116,33 +115,47 @@ export default function Budget() {
 
                         {/* Budget */}
                         <div className="flex flex-[1] gap-[2px]">
-                          {/* <span className="mt-[2px] text-zinc-600">
-                            {
+                          <TextEditable
+                            id="service"
+                            placeholder="Service"
+                            className="text-[14px] text-zinc-600"
+                            style={{
+                              fontFamily: proposal?.settings?.theme?.bodyFont,
+                            }}
+                            prefix={
                               currencies.find(
                                 (currency) =>
                                   currency.code ===
                                   proposal?.settings?.format?.currency,
                               )?.symbol
                             }
-                          </span> */}
-                          <CurrencyEditable
-                            id="service"
-                            label="Service"
-                            placeholder="Service"
-                            className="text-[14px] text-zinc-600"
-                            style={{
-                              fontFamily: proposal?.settings?.theme?.bodyFont,
-                            }}
-                            value={String(service.budget)}
-                            defaultValue={String(service.budget)}
-                            onBlur={(e) => {
-                              const clean = parseCurrency(e.target.value);
+                            value={service.budget}
+                            onChange={(e) => {
+                              const raw = e.target.value.replace(/,/g, ""); // remove commas
+
+                              if (raw === "") {
+                                const updatedServices = proposal.services.map(
+                                  (serv) =>
+                                    serv.id === service.id
+                                      ? { ...serv, budget: "" }
+                                      : serv,
+                                );
+
+                                setProposal({
+                                  ...proposal,
+                                  services: updatedServices,
+                                });
+                                return;
+                              }
+
+                              const formatted = Number(raw).toLocaleString();
+
                               const updatedServices = proposal.services.map(
                                 (serv) =>
                                   serv.id === service.id
                                     ? {
                                         ...serv,
-                                        budget: Number(clean),
+                                        budget: formatted, // store formatted string
                                       }
                                     : serv,
                               );
@@ -165,8 +178,6 @@ export default function Budget() {
             </div>
           </SortableContainer>
 
-          {/* End of Row */}
-
           {/* Table Footer */}
           <div className="flex px-11 py-2">
             <div className="flex-[2]">
@@ -186,7 +197,13 @@ export default function Budget() {
                   fontFamily: proposal?.settings?.theme?.bodyFont,
                 }}
               >
-                {formatCurrency(String(totalBudget))}
+                {
+                  currencies.find(
+                    (currency) =>
+                      currency.code === proposal?.settings?.format?.currency,
+                  )?.symbol
+                }{" "}
+                {totalBudget.toLocaleString()}
               </span>
             </div>
           </div>

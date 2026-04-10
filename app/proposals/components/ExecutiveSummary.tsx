@@ -33,7 +33,7 @@ export default function ExecutiveSummary() {
               fontFamily: proposal?.settings?.theme?.headingFont,
               color: proposal?.settings?.theme?.accentColor,
             }}
-            className="text-[36px] font-bold text-zinc-600"
+            className="mb-4 text-[36px] font-bold text-zinc-600"
           >
             Executive Summary
           </h2>
@@ -48,7 +48,6 @@ export default function ExecutiveSummary() {
           </span>
           <TextEditable
             id={"description"}
-            label={"description"}
             placeholder={"Enter project description here"}
             value={proposal?.description}
             className="text-wrap text-zinc-600"
@@ -92,7 +91,7 @@ export default function ExecutiveSummary() {
                       ]);
                     }}
                   >
-                    <div className="mt-0.5 flex items-center gap-1">
+                    <div className="mt-0.5 flex items-baseline gap-1">
                       {/* <ArrowRight className="text-zinc-600" /> */}
                       <span className="text-zinc-600">{index + 1}.</span>
                       <TextEditable
@@ -158,7 +157,6 @@ export default function ExecutiveSummary() {
           </span>
           <TextEditable
             id={"description"}
-            label={"description"}
             placeholder={"Enter project description here"}
             value={proposal?.description}
             className="text-wrap text-zinc-600"

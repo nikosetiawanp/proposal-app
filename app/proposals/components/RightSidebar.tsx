@@ -261,7 +261,7 @@ export default function RightSidebar() {
             label={"Time unit"}
           />
 
-          {/* Heading Font */}
+          {/* Currency */}
           <Select.Root
             value={proposal?.settings?.format?.currency}
             onValueChange={(value) => {
@@ -281,7 +281,7 @@ export default function RightSidebar() {
             <div>
               <span className="text-[14px] text-zinc-900">Currency</span>
               <Select.Trigger
-                value="Montserrat"
+                value={proposal?.settings?.format?.currency || "$"}
                 className="flex w-full items-center justify-between rounded-lg bg-zinc-100 px-3 py-2 text-[14px] text-zinc-900 hover:cursor-pointer hover:bg-zinc-200"
               >
                 <Select.Value className="text-zinc-900" />
