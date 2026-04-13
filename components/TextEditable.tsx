@@ -28,7 +28,7 @@ export default function TextEditable({
     <div
       onClick={() => inputRef.current?.focus()}
       className={clsx(
-        "relative -ml-1 flex w-fit items-baseline gap-1 rounded-sm border-2 border-indigo-500/0 px-1",
+        "relative -ml-1 flex w-fit items-baseline rounded-sm border-2 border-indigo-500/0 px-1",
         "focus-within:border-indigo-500 focus-within:bg-indigo-500/10 focus-within:text-indigo-500 focus-within:hover:border-indigo-500",
         "hover:border-indigo-500/70",
         "transition-all",

@@ -202,7 +202,7 @@ export default function Budget() {
                     (currency) =>
                       currency.code === proposal?.settings?.format?.currency,
                   )?.symbol
-                }{" "}
+                }
                 {totalBudget.toLocaleString()}
               </span>
             </div>
