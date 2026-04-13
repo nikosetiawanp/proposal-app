@@ -128,6 +128,7 @@ export default function Timeline() {
                               fontFamily: proposal?.settings?.theme?.bodyFont,
                             }}
                             suffix={
+                              "\u00A0" +
                               proposal?.settings?.format?.timeUnit +
                               (service.estimatedTimeMin > 1 ? "s" : "")
                             }

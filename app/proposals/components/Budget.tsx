@@ -7,7 +7,7 @@ import {
   SortableContainer,
   SortableItem,
 } from "../../../components/dndkit/Sortable";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Divider from "@/components/Divider";
 import SectionTitle from "./SectionTitle";
 import ProposalFooter from "./ProposalFooter";
@@ -25,10 +25,17 @@ export default function Budget() {
     proposalStore,
     (state) => state.setProposalServices,
   );
-  const totalBudget = proposal?.services?.reduce(
-    (acc, service) => acc + Number(service.budget.replace(/,/g, "")),
-    0,
-  );
+
+  // const totalBudget = proposal?.services?.reduce(
+  //   (acc, service) => acc + Number(service.budget.replace(/,/g, "")),
+  //   0,
+  // );
+
+  const services = proposal?.services;
+
+  // useEffect(() => {
+  //   console.log(services);
+  // }, [services]);
 
   return (
     <div className={clsx("flex h-full flex-col justify-between")}>
@@ -131,7 +138,7 @@ export default function Budget() {
                             }
                             value={service.budget}
                             onChange={(e) => {
-                              const raw = e.target.value.replace(/,/g, ""); // remove commas
+                              const raw = e.target.value.replace(/,/g, "");
 
                               if (raw === "") {
                                 const updatedServices = proposal.services.map(
@@ -191,7 +198,7 @@ export default function Budget() {
               </span>
             </div>
             <div className="ml-3 flex flex-[1]">
-              <span
+              {/* <span
                 className="font-bold text-zinc-900"
                 style={{
                   fontFamily: proposal?.settings?.theme?.bodyFont,
@@ -204,7 +211,7 @@ export default function Budget() {
                   )?.symbol
                 }
                 {totalBudget.toLocaleString()}
-              </span>
+              </span> */}
             </div>
           </div>
         </div>
