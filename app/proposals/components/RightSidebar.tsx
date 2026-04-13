@@ -242,7 +242,7 @@ export default function RightSidebar() {
           <Divider />
           <span className="text-[14px] font-bold text-zinc-900">Format</span>
           <SimpleSelect
-            data={["Day", "Week", "Year"]}
+            data={["Hour", "Day", "Week", "Month", "Year"]}
             value={proposal?.settings?.format?.timeUnit}
             onValueChange={(
               value: Proposal["settings"]["format"]["timeUnit"],
