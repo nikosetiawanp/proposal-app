@@ -1,13 +1,12 @@
 "use client";
 
 import clsx from "clsx";
-import { GripVertical, Trash } from "lucide-react";
 import TextEditable from "../../../components/TextEditable";
 import {
   SortableContainer,
   SortableItem,
 } from "../../../components/dndkit/Sortable";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Divider from "@/components/Divider";
 import SectionTitle from "./SectionTitle";
 import ProposalFooter from "./ProposalFooter";
@@ -31,11 +30,14 @@ export default function Budget() {
   //   0,
   // );
 
-  const services = proposal?.services;
+  const budgets = proposal?.services?.map((service) =>
+    Number(service.budget.replace(/,/g, "")),
+  );
+  const totalBudget = budgets.reduce((acc, budget) => acc + Number(budget), 0);
 
-  // useEffect(() => {
-  //   console.log(services);
-  // }, [services]);
+  useEffect(() => {
+    console.log(budgets);
+  }, []);
 
   return (
     <div className={clsx("flex h-full flex-col justify-between")}>
@@ -198,7 +200,7 @@ export default function Budget() {
               </span>
             </div>
             <div className="ml-3 flex flex-[1]">
-              {/* <span
+              <span
                 className="font-bold text-zinc-900"
                 style={{
                   fontFamily: proposal?.settings?.theme?.bodyFont,
@@ -211,7 +213,7 @@ export default function Budget() {
                   )?.symbol
                 }
                 {totalBudget.toLocaleString()}
-              </span> */}
+              </span>
             </div>
           </div>
         </div>
