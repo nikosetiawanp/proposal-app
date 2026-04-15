@@ -6,8 +6,6 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Tabs } from "radix-ui";
 import { useEffect, useState } from "react";
 
-import { Select } from "radix-ui";
-
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 
@@ -23,11 +21,20 @@ import { Proposal } from "@/types/proposal";
 import Divider from "@/components/Divider";
 import { currencies } from "@/data/currencies";
 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Field, FieldLabel } from "@/components/ui/field";
+import { Separator } from "@/components/ui/separator";
+
 export default function RightSidebar() {
-  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const currentPage = searchParams.get("page");
 
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
@@ -57,124 +64,88 @@ export default function RightSidebar() {
           </Tabs.List>
         </div>
 
+        {/* Style Tab */}
         <Tabs.Content className="flex flex-col gap-4 p-4" value="style">
-          <span className="text-[14px] font-bold text-zinc-900">Fonts</span>
+          <span className="font-bold">Fonts</span>
 
           {/* Heading Font */}
-          <Select.Root
-            value={proposal?.settings?.theme?.headingFont}
-            onValueChange={(value) => {
-              setProposal({
-                ...proposal,
-                settings: {
-                  ...proposal?.settings,
-                  theme: {
-                    ...proposal?.settings?.theme,
-                    headingFont: value,
+          <Field>
+            <FieldLabel>Heading</FieldLabel>
+            <Select
+              value={proposal?.settings?.theme?.headingFont}
+              onValueChange={(value) => {
+                setProposal({
+                  ...proposal,
+                  settings: {
+                    ...proposal?.settings,
+                    theme: {
+                      ...proposal?.settings?.theme,
+                      headingFont: value,
+                    },
                   },
-                },
-              });
-            }}
-          >
-            <div>
-              <span className="text-[14px] text-zinc-900">Heading</span>
-              <Select.Trigger
-                value="Montserrat"
-                className="flex w-full items-center justify-between rounded-lg bg-zinc-100 px-3 py-2 text-[14px] text-zinc-900 hover:cursor-pointer hover:bg-zinc-200"
-              >
-                <Select.Value className="text-zinc-900" />
-                <Select.Icon>
-                  <ChevronDown className="w-5 text-zinc-900" />
-                </Select.Icon>
-              </Select.Trigger>
-            </div>
+                });
+              }}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue className="text-zinc-900" />
+              </SelectTrigger>
 
-            <Select.Portal>
-              <Select.Content
-                position="popper"
-                sideOffset={4}
-                className="z-100 rounded-xl border border-zinc-300 bg-white p-1 shadow-lg"
-              >
-                <Select.Viewport>
-                  {headingFonts.map((font, index) => {
-                    return (
-                      <Select.Item
-                        key={index}
-                        value={font.value}
-                        className="flex w-[var(--radix-select-trigger-width)] items-center justify-between rounded-lg p-2 text-zinc-900 hover:cursor-pointer hover:bg-zinc-100"
-                        style={{ fontFamily: font.value }}
-                      >
-                        <Select.ItemText>{font.name}</Select.ItemText>
-                        <Select.ItemIndicator>
-                          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-indigo-500">
-                            <Check className="w-3 text-white" />
-                          </div>
-                        </Select.ItemIndicator>
-                      </Select.Item>
-                    );
-                  })}
-                </Select.Viewport>
-              </Select.Content>
-            </Select.Portal>
-          </Select.Root>
+              <SelectContent position="popper">
+                {headingFonts.map((font, index) => {
+                  return (
+                    <SelectItem
+                      key={index}
+                      value={font.value}
+                      style={{ fontFamily: font.value }}
+                    >
+                      {font.name}
+                    </SelectItem>
+                  );
+                })}
+              </SelectContent>
+            </Select>
+          </Field>
 
           {/* Body Font */}
-          <Select.Root
-            value={proposal?.settings?.theme?.bodyFont}
-            onValueChange={(value) => {
-              setProposal({
-                ...proposal,
-                settings: {
-                  ...proposal?.settings,
-                  theme: {
-                    ...proposal?.settings?.theme,
-                    bodyFont: value,
+          <Field>
+            <FieldLabel>Body</FieldLabel>
+            <Select
+              value={proposal?.settings?.theme?.bodyFont}
+              onValueChange={(value) => {
+                setProposal({
+                  ...proposal,
+                  settings: {
+                    ...proposal?.settings,
+                    theme: {
+                      ...proposal?.settings?.theme,
+                      bodyFont: value,
+                    },
                   },
-                },
-              });
-            }}
-          >
-            <div>
-              <span className="text-[14px] text-zinc-900">Body</span>
-              <Select.Trigger
-                value="Montserrat"
-                className="flex w-full items-center justify-between rounded-lg bg-zinc-100 px-3 py-2 text-[14px] text-zinc-900 hover:cursor-pointer hover:bg-zinc-200"
-              >
-                <Select.Value className="text-zinc-900" />
-                <Select.Icon>
-                  <ChevronDown className="w-5 text-zinc-900" />
-                </Select.Icon>
-              </Select.Trigger>
-            </div>
+                });
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue className="text-zinc-900" />
+              </SelectTrigger>
 
-            <Select.Portal>
-              <Select.Content
-                position="popper"
-                sideOffset={4}
-                className="z-100 rounded-xl border border-zinc-300 bg-white p-1 shadow-lg"
-              >
-                <Select.Viewport>
-                  {bodyFonts.map((font, index) => {
-                    return (
-                      <Select.Item
-                        key={index}
-                        value={font.value}
-                        className="w-[var(--radix-select-trigger-width)] rounded-lg p-2 text-zinc-900 hover:cursor-pointer hover:bg-zinc-100"
-                        style={{ fontFamily: font.value }}
-                      >
-                        <Select.ItemText>{font.name}</Select.ItemText>
-                      </Select.Item>
-                    );
-                  })}
-                </Select.Viewport>
-              </Select.Content>
-            </Select.Portal>
-          </Select.Root>
+              <SelectContent position="popper">
+                {bodyFonts.map((font, index) => {
+                  return (
+                    <SelectItem
+                      key={index}
+                      value={font.value}
+                      style={{ fontFamily: font.value }}
+                    >
+                      {font.name}
+                    </SelectItem>
+                  );
+                })}
+              </SelectContent>
+            </Select>
+          </Field>
 
-          <Divider />
-          <span className="text-[14px] font-bold text-zinc-900">
-            Accent Color
-          </span>
+          <Separator />
+          <span className="font-bold text-zinc-900">Accent Color</span>
           <div className="grid grid-cols-6">
             {[
               "#ef4444", // red-500
@@ -217,112 +188,128 @@ export default function RightSidebar() {
 
         {/* Document Tab */}
         <Tabs.Content className="flex flex-col gap-4 p-4" value="document">
-          <span className="text-[14px] font-bold text-zinc-900">Paper</span>
+          <span className="font-bold">Paper</span>
 
           {/* Paper Size */}
-          <SimpleSelect
-            data={["Letter", "A4"]}
-            value={proposal?.settings?.print?.paperSize}
-            onValueChange={(
-              value: Proposal["settings"]["print"]["paperSize"],
-            ) => {
-              setProposal({
-                ...proposal,
-                settings: {
-                  ...proposal?.settings,
-                  print: {
-                    ...proposal?.settings?.print,
-                    paperSize: value,
+          <Field>
+            <FieldLabel>Size</FieldLabel>
+            <Select
+              value={proposal?.settings?.print?.paperSize}
+              onValueChange={(
+                value: Proposal["settings"]["print"]["paperSize"],
+              ) => {
+                setProposal({
+                  ...proposal,
+                  settings: {
+                    ...proposal?.settings,
+                    print: {
+                      ...proposal?.settings?.print,
+                      paperSize: value,
+                    },
                   },
-                },
-              });
-            }}
-            label={"Size"}
-          />
-          <Divider />
-          <span className="text-[14px] font-bold text-zinc-900">Format</span>
-          <SimpleSelect
-            data={["Hour", "Day", "Week", "Month", "Year"]}
-            value={proposal?.settings?.format?.timeUnit}
-            onValueChange={(
-              value: Proposal["settings"]["format"]["timeUnit"],
-            ) => {
-              setProposal({
-                ...proposal,
-                settings: {
-                  ...proposal?.settings,
-                  format: {
-                    ...proposal?.settings?.format,
-                    timeUnit: value,
+                });
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue className="text-zinc-900" />
+              </SelectTrigger>
+
+              <SelectContent position="popper">
+                {["Letter", "A4"].map((size, index) => {
+                  return (
+                    <SelectItem key={index} value={size}>
+                      {size}
+                    </SelectItem>
+                  );
+                })}
+              </SelectContent>
+            </Select>
+          </Field>
+
+          <Separator />
+          <span className="font-bold text-zinc-900">Format</span>
+
+          {/* Time Unit */}
+          <Field>
+            <FieldLabel>Time</FieldLabel>
+            <Select
+              value={proposal?.settings?.format?.timeUnit}
+              onValueChange={(
+                value: Proposal["settings"]["format"]["timeUnit"],
+              ) => {
+                setProposal({
+                  ...proposal,
+                  settings: {
+                    ...proposal?.settings,
+                    format: {
+                      ...proposal?.settings?.format,
+                      timeUnit: value,
+                    },
                   },
-                },
-              });
-            }}
-            label={"Time unit"}
-          />
+                });
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue className="text-zinc-900" />
+              </SelectTrigger>
+
+              <SelectContent position="popper">
+                {["Hour", "Day", "Week", "Month", "Year"].map((size, index) => {
+                  return (
+                    <SelectItem key={index} value={size}>
+                      {size}
+                    </SelectItem>
+                  );
+                })}
+              </SelectContent>
+            </Select>
+          </Field>
 
           {/* Currency */}
-          <Select.Root
-            value={proposal?.settings?.format?.currency}
-            onValueChange={(value) => {
-              setProposal({
-                ...proposal,
-                settings: {
-                  ...proposal?.settings,
-                  format: {
-                    ...proposal?.settings?.format,
-                    currency: value,
+          <Field>
+            <FieldLabel>Currency</FieldLabel>
+            <Select
+              value={proposal?.settings?.format?.currency}
+              onValueChange={(value) => {
+                setProposal({
+                  ...proposal,
+                  settings: {
+                    ...proposal?.settings,
+                    format: {
+                      ...proposal?.settings?.format,
+                      currency: value,
+                    },
                   },
-                },
-              });
-            }}
-          >
-            {/* Currency */}
-            <div>
-              <span className="text-[14px] text-zinc-900">Currency</span>
-              <Select.Trigger
-                value={proposal?.settings?.format?.currency || "$"}
-                className="flex w-full items-center justify-between rounded-lg bg-zinc-100 px-3 py-2 text-[14px] text-zinc-900 hover:cursor-pointer hover:bg-zinc-200"
-              >
-                <Select.Value className="text-zinc-900" />
-                <Select.Icon>
-                  <ChevronDown className="w-5 text-zinc-900" />
-                </Select.Icon>
-              </Select.Trigger>
-            </div>
+                });
+              }}
+            >
+              {/* Currency */}
 
-            <Select.Portal>
-              <Select.Content
-                position="popper"
-                sideOffset={4}
-                className="z-100 max-h-50 overflow-y-scroll rounded-xl border border-zinc-300 bg-white p-1 shadow-lg"
+              <SelectTrigger
+                value={proposal?.settings?.format?.currency || "$"}
               >
-                <Select.Viewport className="">
-                  {currencies.map((currency, index) => {
-                    return (
-                      <Select.Item
-                        key={index}
-                        value={currency.code}
-                        className="flex w-[var(--radix-select-trigger-width)] items-center justify-between rounded-lg p-2 text-zinc-900 hover:cursor-pointer hover:bg-zinc-100"
-                      >
-                        <Select.ItemText>
-                          <div className="flex justify-center gap-4">
-                            <span className="font-bold">{currency.symbol}</span>
-                            <span>{currency.name}</span>
-                          </div>
-                        </Select.ItemText>
-                        <Select.ItemIndicator>
-                          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-indigo-500">
-                            <Check className="w-3 text-white" />
-                          </div>
-                        </Select.ItemIndicator>
-                      </Select.Item>
-                    );
-                  })}
-                </Select.Viewport>
-              </Select.Content>
-            </Select.Portal>
-          </Select.Root>
+                <SelectValue />
+                {/* <Select.Icon>
+                  <ChevronDown className="w-5 text-zinc-900" />
+                </Select.Icon> */}
+              </SelectTrigger>
+
+              <SelectContent position="popper" className="max-h-[240px]">
+                {currencies.map((currency, index) => {
+                  return (
+                    <SelectItem
+                      className="flex items-baseline"
+                      key={index}
+                      value={currency.code}
+                    >
+                      <span className="font-bold">{currency.symbol}</span>
+                      <span>{currency.name}</span>
+                    </SelectItem>
+                  );
+                })}
+              </SelectContent>
+            </Select>
+          </Field>
         </Tabs.Content>
       </Tabs.Root>
     </div>
@@ -341,46 +328,42 @@ function SimpleSelect({
   label: string;
 }) {
   return (
-    <Select.Root value={value} onValueChange={onValueChange}>
+    <Select value={value} onValueChange={onValueChange}>
       <div>
         <span className="text-[14px] text-zinc-900">{label}</span>
-        <Select.Trigger
+        <SelectTrigger
           value="Montserrat"
           className="flex w-full items-center justify-between rounded-lg bg-zinc-100 px-3 py-2 text-[14px] text-zinc-900 hover:cursor-pointer hover:bg-zinc-200"
         >
-          <Select.Value className="text-zinc-900" />
-          <Select.Icon>
+          <SelectValue className="text-zinc-900" />
+          {/* <Select.Icon>
             <ChevronDown className="w-5 text-zinc-900" />
-          </Select.Icon>
-        </Select.Trigger>
+          </Select.Icon> */}
+        </SelectTrigger>
       </div>
 
-      <Select.Portal>
-        <Select.Content
-          position="popper"
-          sideOffset={4}
-          className="z-100 rounded-xl border border-zinc-300 bg-white p-1 shadow-lg"
-        >
-          <Select.Viewport>
-            {data.map((layout, index) => {
-              return (
-                <Select.Item
-                  key={index}
-                  value={layout}
-                  className="flex w-[var(--radix-select-trigger-width)] items-center justify-between rounded-lg p-2 text-zinc-900 hover:cursor-pointer hover:bg-zinc-100"
-                >
-                  <Select.ItemText>{layout}</Select.ItemText>
-                  <Select.ItemIndicator>
-                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-indigo-500">
-                      <Check className="w-3 text-white" />
-                    </div>
-                  </Select.ItemIndicator>
-                </Select.Item>
-              );
-            })}
-          </Select.Viewport>
-        </Select.Content>
-      </Select.Portal>
-    </Select.Root>
+      <SelectContent
+        position="popper"
+        sideOffset={4}
+        className="z-100 rounded-xl border border-zinc-300 bg-white p-1 shadow-lg"
+      >
+        {data.map((layout, index) => {
+          return (
+            <SelectItem
+              key={index}
+              value={layout}
+              className="flex w-[var(--radix-select-trigger-width)] items-center justify-between rounded-lg p-2 text-zinc-900 hover:cursor-pointer hover:bg-zinc-100"
+            >
+              {layout}
+              {/* <SelectItemIndicator>
+                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-indigo-500">
+                  <Check className="w-3 text-white" />
+                </div>
+              </SelectItemIndicator> */}
+            </SelectItem>
+          );
+        })}
+      </SelectContent>
+    </Select>
   );
 }

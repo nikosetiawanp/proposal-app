@@ -14,8 +14,6 @@ import ProposalHeader from "./ProposalHeader";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 import { currencies } from "@/data/currencies";
-import CurrencyEditable from "@/components/CurrencyEditable";
-import { formatCurrency, parseCurrency } from "@/utils/currency";
 
 export default function Budget() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
