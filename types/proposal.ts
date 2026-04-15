@@ -16,7 +16,7 @@ export interface Proposal {
   userId: string;
   title: string;
   description: string;
-  date: string;
+  date: Date;
   proposerName: string;
   clientName: string;
   timeUnit: "Day" | "Week" | "Month";

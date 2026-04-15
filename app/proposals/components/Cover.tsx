@@ -1,5 +1,6 @@
 "use client";
 
+import { DateEditable } from "@/components/DateEditable";
 import TextEditable from "@/components/TextEditable";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 import clsx from "clsx";
@@ -93,7 +94,18 @@ export default function Cover() {
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             className="text-[16px] text-zinc-700"
           >
-            Issued date : 24 Mar 2024
+            Issued Date :
+            <DateEditable
+              className=""
+              value={proposal?.date}
+              onSelect={(date: Date) => {
+                setProposal({
+                  ...proposal,
+                  date: date,
+                });
+              }}
+              style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            />
           </span>
         </div>
       </div>
