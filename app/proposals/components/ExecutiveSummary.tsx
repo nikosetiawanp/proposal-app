@@ -47,16 +47,16 @@ export default function ExecutiveSummary() {
             Overview
           </span>
           <TextEditable
-            id={"description"}
+            id={"overview"}
             placeholder={"Enter project description here"}
-            value={proposal?.description}
+            value={proposal?.overview}
             className="text-wrap text-zinc-600"
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             as="textarea"
             onChange={(e) => {
               setProposal({
                 ...proposal,
-                description: e.target.value,
+                overview: e.target.value,
               });
             }}
           />
@@ -158,14 +158,14 @@ export default function ExecutiveSummary() {
           <TextEditable
             id={"description"}
             placeholder={"Enter project description here"}
-            value={proposal?.description}
+            value={proposal?.solution}
             className="text-wrap text-zinc-600"
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
             as="textarea"
             onChange={(e) => {
               setProposal({
                 ...proposal,
-                description: e.target.value,
+                solution: e.target.value,
               });
             }}
           />

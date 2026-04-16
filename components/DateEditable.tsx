@@ -30,6 +30,7 @@ export function DateEditable({
   style?: React.CSSProperties;
 }) {
   const [open, setOpen] = useState(false);
+  const proposal = useStore(proposalStore, (state) => state.proposal);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -49,7 +50,7 @@ export function DateEditable({
           {...props}
         >
           {value ? (
-            format(value, "PPP")
+            format(value, proposal?.settings?.format?.date || "dd MMMM yyyy")
           ) : (
             <span className="text-[16px] text-zinc-400">
               Click to pick a date

@@ -15,11 +15,12 @@ export interface Proposal {
   id: string;
   userId: string;
   title: string;
-  description: string;
+  overview: string;
+  solution: string;
   date: Date;
   proposerName: string;
   clientName: string;
-  timeUnit: "Day" | "Week" | "Month";
+  timeUnit: "Hour" | "Day" | "Week" | "Month" | "Year";
   currency: CurrencyCode;
   objectives: { id: string; title: string; description: string }[];
   services: {
@@ -43,7 +44,7 @@ export interface Proposal {
       orientation: "portrait" | "landscape";
     };
     format: {
-      date: "";
+      date: any;
       timeUnit: "Day" | "Week" | "Month";
       currency: CurrencyCode;
     };

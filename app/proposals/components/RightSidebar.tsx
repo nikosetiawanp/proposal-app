@@ -33,6 +33,8 @@ import {
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Separator } from "@/components/ui/separator";
 
+import { format } from "date-fns";
+
 export default function RightSidebar() {
   const searchParams = useSearchParams();
 
@@ -284,14 +286,10 @@ export default function RightSidebar() {
               }}
             >
               {/* Currency */}
-
               <SelectTrigger
                 value={proposal?.settings?.format?.currency || "$"}
               >
                 <SelectValue />
-                {/* <Select.Icon>
-                  <ChevronDown className="w-5 text-zinc-900" />
-                </Select.Icon> */}
               </SelectTrigger>
 
               <SelectContent position="popper" className="max-h-[240px]">
@@ -307,6 +305,37 @@ export default function RightSidebar() {
                     </SelectItem>
                   );
                 })}
+              </SelectContent>
+            </Select>
+          </Field>
+
+          {/* Date */}
+          <Field>
+            <FieldLabel>Date</FieldLabel>
+            <Select
+              value={proposal?.settings?.format?.date}
+              onValueChange={(value) => {
+                setProposal({
+                  ...proposal,
+                  settings: {
+                    ...proposal?.settings,
+                    format: {
+                      ...proposal?.settings?.format,
+                      date: value as any,
+                    },
+                  },
+                });
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent position="popper">
+                {["d MMMM yyyy", "MMMM, d yyyy"].map((f, index) => (
+                  <SelectItem key={index} value={f}>
+                    {format(new Date(), f)}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </Field>
