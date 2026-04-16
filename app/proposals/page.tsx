@@ -16,9 +16,19 @@ import { proposalStore } from "@/stores/proposal/proposalStore";
 import { PaperPreset } from "@/types/proposal";
 import { useStore } from "zustand";
 import LeftSidebar from "./components/LeftSidebar";
-import { DropdownMenu } from "radix-ui";
 import RightSidebar from "./components/RightSidebar";
 import ProposalPaper from "./components/ProposalPaper";
+
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Page() {
   const [scale, setScale] = useState(100);
@@ -77,13 +87,14 @@ export default function Page() {
               </defs>
             </svg>
 
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
               <span
                 className="text-[24px] font-bold text-zinc-900"
                 style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
               >
                 {proposal?.title}
               </span>
+
               <DropdownMenu.Root>
                 <DropdownMenu.Trigger className="rounded-md p-1 text-zinc-400 hover:cursor-pointer hover:bg-zinc-100">
                   <EllipsisVertical />
@@ -103,7 +114,20 @@ export default function Page() {
                   </DropdownMenu.Content>
                 </DropdownMenu.Portal>
               </DropdownMenu.Root>
-            </div>
+            </div> */}
+
+            <DropdownMenu>
+              <DropdownMenuTrigger className="font-bold">
+                <Button variant="ghost">
+                  {proposal?.title}
+                  <EllipsisVertical />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem>New Project...</DropdownMenuItem>
+                <DropdownMenuItem>Open...</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </nav>
 
