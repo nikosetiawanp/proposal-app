@@ -1,7 +1,7 @@
 "use client";
 
 import { Proposal } from "@/types/proposal";
-import { bodyFonts, fonts, headingFonts } from "./fonts";
+import { bodyFonts, headingFonts } from "./fonts";
 
 export const defaultProposal: Proposal = {
   id: crypto.randomUUID(),
@@ -22,13 +22,13 @@ export const defaultProposal: Proposal = {
       id: crypto.randomUUID(),
       title: "Improve Online Presence",
       description:
-        "Create a modern, responsive website that clearly communicates the client's brand and offerings. This should help increase credibility and attract more potential customers.",
+        "Objectives should clearly define the desired outcome and its impact. Here, the focus is on strengthening the brand’s online presence through a modern, responsive website that builds trust and attracts potential customers.",
     },
     {
       id: crypto.randomUUID(),
       title: "Increase Conversions",
       description:
-        "Design clear user flows and call-to-actions to guide visitors toward key actions such as contacting, purchasing, or signing up.",
+        "Clarity and direction are key when defining objectives. This one centers on guiding users through the website with intuitive flows and effective call-to-actions, encouraging actions like contacting, purchasing, or signing up.",
     },
   ],
 
@@ -57,8 +57,8 @@ export const defaultProposal: Proposal = {
 
   settings: {
     theme: {
-      headingFont: headingFonts[0].value,
-      bodyFont: bodyFonts[0].value,
+      headingFont: "Montserrat",
+      bodyFont: "Inter",
       accentColor: "#ef4444",
     },
 
@@ -111,7 +111,7 @@ export const defaultProposal: Proposal = {
     },
 
     format: {
-      date: "MM/dd/YYYY",
+      date: "MMMM, d yyyy",
       timeUnit: "Week",
       currency: "USD",
     },

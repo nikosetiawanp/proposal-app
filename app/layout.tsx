@@ -2,12 +2,10 @@
 
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
-import { useEffect } from "react";
-import { useStore } from "zustand";
-import { proposalStore } from "@/stores/proposal/proposalStore";
 import { cn } from "@/lib/utils";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,19 +22,36 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const proposal = useStore(proposalStore, (state) => state.proposal);
-  // useEffect(() => {
-  //   const font = proposal?.settings?.theme?.headingFont;
-  //   if (!font) return;
-
-  //   document.fonts.load(`1rem ${font}`).then(() => {});
-  // }, [proposal?.settings?.theme?.headingFont]);
-
   return (
     <html lang="en" className={cn("font-sans", inter.variable)}>
       <head>
+        {/* Sans */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:wght@300..800&family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100..900&family=Poppins:wght@100..900&display=swap"
+          rel="stylesheet"
+        />
+
+        {/* Serif */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap"
+          rel="stylesheet"
+        />
+
+        {/* Condensed */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
+          rel="stylesheet"
+        />
+
+        {/* Mono */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+
+        {/* Extra (separate to avoid conflicts) */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap"
           rel="stylesheet"
         />
       </head>
@@ -44,7 +59,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>
   );

@@ -3,7 +3,6 @@
 import {
   closestCenter,
   DndContext,
-  DragOverlay,
   KeyboardSensor,
   PointerSensor,
   useSensor,
@@ -21,6 +20,14 @@ import clsx from "clsx";
 import { GripVertical, Trash } from "lucide-react";
 import { SetStateAction, useState } from "react";
 import { CSS } from "@dnd-kit/utilities";
+import { Button } from "../ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 function SortableContainer({
   items,
@@ -32,7 +39,12 @@ function SortableContainer({
   children: React.ReactNode;
 }) {
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        delay: 100,
+        tolerance: 5,
+      },
+    }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
@@ -99,21 +111,53 @@ function SortableItem({
       className={clsx(
         "h-fit w-full px-1",
         "group flex items-center rounded-lg",
-        isDragging && "z-50 bg-white shadow-lg backdrop-blur-sm",
+        "hover:bg-zinc-100",
+        isDragging && "z-50 shadow-lg backdrop-blur-sm",
       )}
     >
       {/* Handle */}
-      <div
-        {...listeners}
-        className={clsx(
-          "mr-1 text-indigo-500/50 opacity-0 transition-colors",
-          "group-hover:opacity-100 hover:cursor-pointer hover:text-indigo-500",
-        )}
-      >
-        <GripVertical />
-      </div>
+      <DropdownMenu>
+        {/* Trigger */}
+        {/* <DropdownMenuTrigger> */}
+        <div
+          {...listeners}
+          className={clsx(
+            "mr-1 rounded-md py-1 text-zinc-400 opacity-0 transition-colors",
+            "group-hover:opacity-100 hover:cursor-pointer hover:text-indigo-500",
+            "focus:opacity-100",
+          )}
+        >
+          <GripVertical />
+        </div>
+        {/* </DropdownMenuTrigger> */}
+
+        {/* <TooltipContent className="flex-col">
+            <span>
+              <b>Drag</b> to reorder
+            </span>
+            <span>
+              <b>Click</b> to open menu
+            </span>
+          </TooltipContent> */}
+
+        <DropdownMenuContent>
+          <DropdownMenuItem>Add below</DropdownMenuItem>
+          <DropdownMenuItem>Delete</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
       <div className="w-full">{children}</div>
       <button
+        className={clsx(
+          "p-1 text-zinc-300 opacity-0",
+          !isDragging &&
+            "rounded-lg group-hover:opacity-100 hover:cursor-pointer hover:bg-zinc-200 hover:text-red-400",
+        )}
+        onClick={onDelete}
+      >
+        <Trash className="w-5" />
+      </button>
+      {/* <button
         className={clsx(
           "p-1 text-zinc-300 opacity-0",
           !isDragging &&
@@ -122,7 +166,7 @@ function SortableItem({
         onClick={onDelete}
       >
         <Trash className="w-5" />
-      </button>
+      </button> */}
     </div>
   );
 }

@@ -62,20 +62,20 @@ export default function TopNavbar() {
         </svg>
 
         {/* File name & Menu Button */}
-        <DropdownMenu>
-          <DropdownMenuTrigger className="font-bold">
-            <Button variant="ghost" asChild>
-              <span>
-                {proposal?.title}
+        <div className="flex items-center">
+          <span className="text-[20px] font-bold">{proposal?.title}</span>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Button variant="ghost" size="icon">
                 <EllipsisVertical />
-              </span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem>New Project...</DropdownMenuItem>
-            <DropdownMenuItem>Open...</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem>New Project...</DropdownMenuItem>
+              <DropdownMenuItem>Open...</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
 
       <AlertDialog>

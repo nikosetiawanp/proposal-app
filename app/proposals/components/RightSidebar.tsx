@@ -4,7 +4,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Tabs } from "radix-ui";
-import { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
@@ -36,8 +36,6 @@ import { Separator } from "@/components/ui/separator";
 import { format } from "date-fns";
 
 export default function RightSidebar() {
-  const searchParams = useSearchParams();
-
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
   const [selectedTab, setSelectedTab] = useState("style");
@@ -91,17 +89,32 @@ export default function RightSidebar() {
               <SelectTrigger className="w-full">
                 <SelectValue className="text-zinc-900" />
               </SelectTrigger>
-
               <SelectContent position="popper">
-                {headingFonts.map((font, index) => {
+                {["Sans", "Serif", "Mono"].map((category, index) => {
                   return (
-                    <SelectItem
-                      key={index}
-                      value={font.value}
-                      style={{ fontFamily: font.value }}
-                    >
-                      {font.name}
-                    </SelectItem>
+                    <React.Fragment key={index}>
+                      {headingFonts.find(
+                        (font) => font.category === category,
+                      ) && (
+                        <SelectGroup key={index}>
+                          <SelectLabel>{category}</SelectLabel>
+                          {headingFonts.map((font, index) => {
+                            return (
+                              font.category === category && (
+                                <SelectItem
+                                  key={index}
+                                  value={font.value}
+                                  style={{ fontFamily: font.value }}
+                                >
+                                  {font.name}
+                                </SelectItem>
+                              )
+                            );
+                          })}
+                        </SelectGroup>
+                      )}
+                      {index < 3 && <Separator />}
+                    </React.Fragment>
                   );
                 })}
               </SelectContent>
@@ -131,15 +144,29 @@ export default function RightSidebar() {
               </SelectTrigger>
 
               <SelectContent position="popper">
-                {bodyFonts.map((font, index) => {
+                {["Sans", "Serif", "Mono"].map((category, index) => {
                   return (
-                    <SelectItem
-                      key={index}
-                      value={font.value}
-                      style={{ fontFamily: font.value }}
-                    >
-                      {font.name}
-                    </SelectItem>
+                    <React.Fragment key={index}>
+                      {bodyFonts.find((font) => font.category === category) && (
+                        <SelectGroup key={index}>
+                          <SelectLabel>{category}</SelectLabel>
+                          {bodyFonts.map((font, index) => {
+                            return (
+                              font.category === category && (
+                                <SelectItem
+                                  key={index}
+                                  value={font.value}
+                                  style={{ fontFamily: font.value }}
+                                >
+                                  {font.name}
+                                </SelectItem>
+                              )
+                            );
+                          })}
+                        </SelectGroup>
+                      )}
+                      {index < 3 && <Separator />}
+                    </React.Fragment>
                   );
                 })}
               </SelectContent>
