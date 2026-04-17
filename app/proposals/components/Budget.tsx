@@ -75,7 +75,7 @@ export default function Budget() {
             setItems={setProposalServices as any}
           >
             <div className="flex flex-col">
-              {proposal?.services?.map((service) => {
+              {proposal?.services?.map((service, index) => {
                 return (
                   // Row
                   <React.Fragment key={service.id}>
@@ -88,6 +88,21 @@ export default function Budget() {
                             (serv) => serv.id !== service.id,
                           ),
                         ]);
+                      }}
+                      onCreate={() => {
+                        const newService = {
+                          id: crypto.randomUUID(),
+                          title: "",
+                          description: "",
+                          budget: "0",
+                          estimatedTimeMin: 0,
+                          estimatedTimeMax: 0,
+                          optional: false,
+                        };
+
+                        const newItems = [...proposal.services];
+                        newItems.splice(index + 1, 0, newService);
+                        setProposalServices(newItems);
                       }}
                     >
                       <div className="mt-0.5 flex w-full">
@@ -124,7 +139,7 @@ export default function Budget() {
                         <div className="flex flex-[1] gap-[2px]">
                           <TextEditable
                             id="service"
-                            placeholder="Service"
+                            placeholder="0"
                             className="text-[14px] text-zinc-600"
                             style={{
                               fontFamily: proposal?.settings?.theme?.bodyFont,

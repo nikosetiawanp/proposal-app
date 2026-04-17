@@ -54,6 +54,21 @@ export default function Scope() {
                         ),
                       ]);
                     }}
+                    onCreate={() => {
+                      const newService = {
+                        id: crypto.randomUUID(),
+                        title: "",
+                        description: "",
+                        budget: "0",
+                        estimatedTimeMin: 0,
+                        estimatedTimeMax: 0,
+                        optional: false,
+                      };
+
+                      const newItems = [...proposal.services];
+                      newItems.splice(index + 1, 0, newService);
+                      setProposalServices(newItems);
+                    }}
                   >
                     <div className="flex flex-col items-start">
                       {/* Title and Icon */}
@@ -111,7 +126,7 @@ export default function Scope() {
                 );
               })}
 
-              <button
+              {/* <button
                 className={clsx(
                   "ml-9 flex items-center gap-3 opacity-30",
                   "hover:cursor-pointer hover:opacity-100",
@@ -134,7 +149,7 @@ export default function Scope() {
                 </div>
 
                 <span className="text-indigo-500">Add Service</span>
-              </button>
+              </button> */}
             </div>
           </SortableContainer>
         </div>

@@ -73,7 +73,7 @@ export default function Timeline() {
             setItems={setProposalServices as any}
           >
             <div className="flex flex-col">
-              {proposal?.services?.map((service) => {
+              {proposal?.services?.map((service, index) => {
                 return (
                   // Row
                   <React.Fragment key={service.id}>
@@ -86,6 +86,21 @@ export default function Timeline() {
                             (serv) => serv.id !== service.id,
                           ),
                         ]);
+                      }}
+                      onCreate={() => {
+                        const newService = {
+                          id: crypto.randomUUID(),
+                          title: "",
+                          description: "",
+                          budget: "0",
+                          estimatedTimeMin: 0,
+                          estimatedTimeMax: 0,
+                          optional: false,
+                        };
+
+                        const newItems = [...proposal.services];
+                        newItems.splice(index + 1, 0, newService);
+                        setProposalServices(newItems);
                       }}
                     >
                       <div className="mt-0.5 flex h-full w-full items-center">

@@ -42,7 +42,7 @@ export function DateEditable({
             "transition-all",
             "hover:cursor-pointer hover:border-indigo-500/70 hover:bg-indigo-500/0 hover:text-zinc-700",
             open &&
-              "border-indigo-500 bg-indigo-500/10 text-indigo-500 hover:border-indigo-500 hover:bg-indigo-500/10 hover:text-indigo-500 data-[state=open]:bg-indigo-500/10 data-[state=open]:text-zinc-700",
+              "border-indigo-500 text-indigo-500 hover:border-indigo-500 hover:text-indigo-500 data-[state=open]:bg-indigo-500/0 data-[state=open]:text-zinc-700",
             className,
           )}
           style={style}

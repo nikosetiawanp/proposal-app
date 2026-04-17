@@ -91,9 +91,6 @@ export default function ExecutiveSummary() {
                       ]);
                     }}
                     onCreate={() => {
-                      const index = proposal.objectives.findIndex(
-                        (o) => o.id === objective.id,
-                      );
                       const newObjective = {
                         id: crypto.randomUUID(),
                         title: "",
@@ -103,10 +100,7 @@ export default function ExecutiveSummary() {
                       const newItems = [...proposal.objectives];
                       newItems.splice(index + 1, 0, newObjective);
 
-                      setProposalObjectives([
-                        ...proposal.objectives,
-                        newObjective,
-                      ]);
+                      setProposalObjectives(newItems);
                     }}
                   >
                     <div className="mt-0.5 flex items-baseline gap-1">
@@ -115,7 +109,7 @@ export default function ExecutiveSummary() {
                       <TextEditable
                         id={""}
                         className="text-zinc-600"
-                        placeholder={"Click to write objective"}
+                        placeholder="Click to start writing..."
                         value={objective.description}
                         as="textarea"
                         style={{
