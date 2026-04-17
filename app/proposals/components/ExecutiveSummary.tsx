@@ -42,6 +42,7 @@ export default function ExecutiveSummary() {
             style={{
               fontFamily: proposal?.settings?.theme?.bodyFont,
               color: proposal?.settings?.theme?.accentColor,
+              fontSize: "16px",
             }}
           >
             Overview
@@ -51,7 +52,10 @@ export default function ExecutiveSummary() {
             placeholder={"Enter project description here"}
             value={proposal?.overview}
             className="text-wrap text-zinc-600"
-            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            style={{
+              fontFamily: proposal?.settings?.theme?.bodyFont,
+              fontSize: "14px",
+            }}
             as="textarea"
             onChange={(e) => {
               setProposal({
@@ -69,6 +73,7 @@ export default function ExecutiveSummary() {
             style={{
               fontFamily: proposal?.settings?.theme?.bodyFont,
               color: proposal?.settings?.theme?.accentColor,
+              fontSize: "16px",
             }}
           >
             Objectives
@@ -114,6 +119,7 @@ export default function ExecutiveSummary() {
                         as="textarea"
                         style={{
                           fontFamily: proposal?.settings?.theme?.bodyFont,
+                          fontSize: "14px",
                         }}
                         onChange={(e) => {
                           const updatedObjectives = proposal.objectives.map(
@@ -171,6 +177,7 @@ export default function ExecutiveSummary() {
             style={{
               fontFamily: proposal?.settings?.theme?.bodyFont,
               color: proposal?.settings?.theme?.accentColor,
+              fontSize: "16px",
             }}
           >
             Solution
@@ -180,7 +187,10 @@ export default function ExecutiveSummary() {
             placeholder={"Enter project description here"}
             value={proposal?.solution}
             className="text-wrap text-zinc-600"
-            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            style={{
+              fontFamily: proposal?.settings?.theme?.bodyFont,
+              fontSize: "14px",
+            }}
             as="textarea"
             onChange={(e) => {
               setProposal({

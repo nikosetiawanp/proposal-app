@@ -82,6 +82,7 @@ export default function Scope() {
                           style={{
                             fontFamily: proposal?.settings?.theme?.bodyFont,
                             color: proposal?.settings?.theme?.accentColor,
+                            fontSize: "16px",
                           }}
                           onChange={(e) => {
                             const updatedServices = proposal.services.map(
@@ -106,6 +107,7 @@ export default function Scope() {
                         className="text-zinc-600"
                         style={{
                           fontFamily: proposal?.settings?.theme?.bodyFont,
+                          fontSize: "14px",
                         }}
                         onChange={(e) => {
                           const updatedServices = proposal.services.map(

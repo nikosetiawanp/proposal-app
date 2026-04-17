@@ -58,7 +58,7 @@ export default function RightSidebar() {
         defaultValue="typography"
         className="flex flex-col"
       >
-        <span className="m-4 font-bold">Proposal Settings</span>
+        <span className="m-4 font-bold text-indigo-500">Proposal Settings</span>
         <Separator />
         <AccordionItem value="typography">
           <AccordionTrigger className={accordionTriggerStyle}>

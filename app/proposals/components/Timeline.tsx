@@ -112,6 +112,7 @@ export default function Timeline() {
                             className="ml-2 text-[14px] text-zinc-600"
                             style={{
                               fontFamily: proposal?.settings?.theme?.bodyFont,
+                              fontSize: "14px",
                             }}
                             value={service.title}
                             onChange={(e) => {
@@ -137,10 +138,11 @@ export default function Timeline() {
                         <div className="flex flex-[1] items-end">
                           <TextEditable
                             id="service"
-                            placeholder="Service"
-                            className="text-[14px] text-zinc-600"
+                            placeholder="0"
+                            className="ml-[1px] text-[14px] text-zinc-600"
                             style={{
                               fontFamily: proposal?.settings?.theme?.bodyFont,
+                              fontSize: "14px",
                             }}
                             suffix={
                               "\u00A0" +
@@ -188,16 +190,18 @@ export default function Timeline() {
                 className="font-bold text-zinc-900"
                 style={{
                   fontFamily: proposal?.settings?.theme?.bodyFont,
+                  fontSize: "14px",
                 }}
               >
                 Total
               </span>
             </div>
-            <div className="ml-4 flex-[1]">
+            <div className="ml-5 flex-[1]">
               <span
                 className="font-bold text-zinc-900"
                 style={{
                   fontFamily: proposal?.settings?.theme?.bodyFont,
+                  fontSize: "14px",
                 }}
               >
                 {totalTimeMin}{" "}

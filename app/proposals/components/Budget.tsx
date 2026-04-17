@@ -114,6 +114,7 @@ export default function Budget() {
                             className="ml-2 text-[14px] text-zinc-600"
                             style={{
                               fontFamily: proposal?.settings?.theme?.bodyFont,
+                              fontSize: "14px",
                             }}
                             value={service.title}
                             onChange={(e) => {
@@ -140,9 +141,10 @@ export default function Budget() {
                           <TextEditable
                             id="service"
                             placeholder="0"
-                            className="text-[14px] text-zinc-600"
+                            className="ml-[1px] text-[14px] text-zinc-600"
                             style={{
                               fontFamily: proposal?.settings?.theme?.bodyFont,
+                              fontSize: "14px",
                             }}
                             prefix={
                               currencies.find(
@@ -207,16 +209,18 @@ export default function Budget() {
                 className="font-bold text-zinc-900"
                 style={{
                   fontFamily: proposal?.settings?.theme?.bodyFont,
+                  fontSize: "14px",
                 }}
               >
                 Total
               </span>
             </div>
-            <div className="ml-3 flex flex-[1]">
+            <div className="ml-5 flex flex-[1]">
               <span
                 className="font-bold text-zinc-900"
                 style={{
                   fontFamily: proposal?.settings?.theme?.bodyFont,
+                  fontSize: "14px",
                 }}
               >
                 {

@@ -13,7 +13,7 @@ export default function ProposalHeader() {
     >
       <TextEditable
         id={""}
-        className="text-zinc-600"
+        className="text-sm text-zinc-600"
         placeholder={"Proposer's Name"}
         value={proposal?.proposerName}
         onChange={(e) => {
@@ -21,6 +21,9 @@ export default function ProposalHeader() {
             ...proposal,
             clientName: e.target.value,
           });
+        }}
+        style={{
+          fontSize: "14px",
         }}
       />
     </div>

@@ -28,8 +28,11 @@ export default function Cover() {
           id="project-title"
           as="input"
           placeholder="Project title"
-          className="text-[14px] text-zinc-700"
-          style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+          className="text-zinc-700"
+          style={{
+            fontFamily: proposal?.settings?.theme?.bodyFont,
+            fontSize: "16px",
+          }}
           value={proposal?.title}
           onChange={(e) => {
             setProposal({
@@ -49,14 +52,17 @@ export default function Cover() {
         <div className="flex items-baseline px-9">
           <span
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
-            className="text-[16px] text-zinc-700"
+            className="text-[14px] text-zinc-700"
           >
             Prepared for :
           </span>
           <TextEditable
             id="client-name"
             placeholder="Client's Name"
-            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            style={{
+              fontFamily: proposal?.settings?.theme?.bodyFont,
+              fontSize: "14px",
+            }}
             className="text-zinc-700"
             value={proposal?.clientName}
             onChange={(e) => {
@@ -71,7 +77,7 @@ export default function Cover() {
         <div className="flex items-baseline px-9">
           <span
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
-            className="text-[16px] text-zinc-700"
+            className="text-[14px] text-zinc-700"
           >
             Prepared by :
           </span>
@@ -79,7 +85,10 @@ export default function Cover() {
             as="input"
             placeholder="Proposer's Name"
             className="text-[14px] text-zinc-700"
-            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            style={{
+              fontFamily: proposal?.settings?.theme?.bodyFont,
+              fontSize: "14px",
+            }}
             value={proposal?.proposerName}
             onChange={(e) => {
               setProposal({
@@ -92,7 +101,7 @@ export default function Cover() {
         <div className="flex items-baseline px-9 text-[14px]">
           <span
             style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
-            className="text-[16px] text-zinc-700"
+            className="text-[14px] text-zinc-700"
           >
             Issued Date :
             <DateEditable
@@ -104,7 +113,10 @@ export default function Cover() {
                   date: date,
                 });
               }}
-              style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+              style={{
+                fontFamily: proposal?.settings?.theme?.bodyFont,
+                fontSize: "14px",
+              }}
             />
           </span>
         </div>

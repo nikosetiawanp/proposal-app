@@ -11,7 +11,10 @@ export default function ProposalFooter() {
       <span className="text-zinc-900">
         <TextEditable
           id={""}
-          style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+          style={{
+            fontFamily: proposal?.settings?.theme?.bodyFont,
+            fontSize: "14px",
+          }}
           placeholder={"Project Title"}
           value={proposal?.title}
           onChange={(e) => {
@@ -24,7 +27,10 @@ export default function ProposalFooter() {
       </span>
       <span
         className="text-zinc-900"
-        style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+        style={{
+          fontFamily: proposal?.settings?.theme?.bodyFont,
+          fontSize: "14px",
+        }}
       >
         1
       </span>

@@ -42,6 +42,7 @@ export default function TextEditable({
           style={{
             color: color ? color : "inherit",
             fontFamily: fontFamily ? fontFamily : "inherit",
+            fontSize: "14px",
           }}
         >
           {prefix}
@@ -71,6 +72,7 @@ export default function TextEditable({
           style={{
             color: color ? color : "inherit",
             fontFamily: fontFamily ? fontFamily : "inherit",
+            fontSize: "14px",
           }}
         >
           {suffix}
