@@ -17,7 +17,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import clsx from "clsx";
-import { GripVertical, Trash } from "lucide-react";
+import { EllipsisVertical, GripVertical, Plus, Trash } from "lucide-react";
 import { SetStateAction, useState } from "react";
 import { CSS } from "@dnd-kit/utilities";
 import { Button } from "../ui/button";
@@ -83,10 +83,12 @@ function SortableItem({
   id,
   children,
   onDelete,
+  onCreate,
 }: {
   id: string;
   children: React.ReactNode;
   onDelete: () => void;
+  onCreate: () => void;
 }) {
   const {
     attributes,
@@ -116,57 +118,41 @@ function SortableItem({
       )}
     >
       {/* Handle */}
-      <DropdownMenu>
-        {/* Trigger */}
-        {/* <DropdownMenuTrigger> */}
-        <div
-          {...listeners}
-          className={clsx(
-            "mr-1 rounded-md py-1 text-zinc-400 opacity-0 transition-colors",
-            "group-hover:opacity-100 hover:cursor-pointer hover:text-indigo-500",
-            "focus:opacity-100",
-          )}
-        >
-          <GripVertical />
-        </div>
-        {/* </DropdownMenuTrigger> */}
-
-        {/* <TooltipContent className="flex-col">
-            <span>
-              <b>Drag</b> to reorder
-            </span>
-            <span>
-              <b>Click</b> to open menu
-            </span>
-          </TooltipContent> */}
-
-        <DropdownMenuContent>
-          <DropdownMenuItem>Add below</DropdownMenuItem>
-          <DropdownMenuItem>Delete</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <div
+        {...listeners}
+        className={clsx(
+          "mr-1 rounded-md py-1 text-zinc-300 opacity-0 transition-colors",
+          "group-hover:opacity-100 hover:cursor-pointer hover:text-indigo-500",
+          "focus:opacity-100",
+        )}
+      >
+        <GripVertical />
+      </div>
 
       <div className="w-full">{children}</div>
-      <button
-        className={clsx(
-          "p-1 text-zinc-300 opacity-0",
-          !isDragging &&
-            "rounded-lg group-hover:opacity-100 hover:cursor-pointer hover:bg-zinc-200 hover:text-red-400",
-        )}
-        onClick={onDelete}
-      >
-        <Trash className="w-5" />
-      </button>
-      {/* <button
-        className={clsx(
-          "p-1 text-zinc-300 opacity-0",
-          !isDragging &&
-            "rounded-lg group-hover:opacity-100 hover:cursor-pointer hover:bg-indigo-500/10 hover:text-red-400",
-        )}
-        onClick={onDelete}
-      >
-        <Trash className="w-5" />
-      </button> */}
+
+      <DropdownMenu>
+        <DropdownMenuTrigger
+          className={clsx(
+            "rounded-lg p-1 text-zinc-300 opacity-0",
+            !isDragging &&
+              "group-hover:opacity-100 hover:bg-zinc-200 focus:opacity-100 data-[state=open]:opacity-100",
+          )}
+        >
+          <EllipsisVertical />
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent>
+          <DropdownMenuItem onSelect={onDelete}>
+            <Trash />
+            <span>Delete</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem onSelect={onCreate}>
+            <Plus />
+            <span>Add below</span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 }

@@ -3,24 +3,11 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { Tabs } from "radix-ui";
-import { useEffect, useState } from "react";
-import {
-  ChevronDown,
-  Eye,
-  EyeClosed,
-  EyeOff,
-  Layers,
-  Palette,
-  Settings,
-} from "lucide-react";
+import { useEffect } from "react";
+import { Eye, EyeClosed, EyeOff } from "lucide-react";
 import { proposalPages } from "@/data/proposal/proposalPages";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
-import { fontPairings, fonts } from "@/data/proposal/fonts";
-import { PAPER_PRESETS } from "@/data/PaperPresets";
-import { PaperPreset } from "@/types/proposal";
-import Cover from "./Cover";
 
 export default function LeftSidebar() {
   const pathname = usePathname();
@@ -42,10 +29,10 @@ export default function LeftSidebar() {
   }, []);
 
   return (
-    <div className="hidden w-[512px] border-r border-zinc-300 bg-white lg:block">
+    <div className="hidden w-lg border-r border-zinc-300 bg-white lg:block">
       {/* Pages List */}
       <div className="flex flex-col p-4">
-        <span className="mb-2 text-[20px] font-bold text-zinc-900">Pages</span>
+        <span className="mb-2 text-sm font-bold text-zinc-900">Pages</span>
         {proposalPages?.map((page, index) => {
           const active = currentPage === page.slug;
           const hidden =
