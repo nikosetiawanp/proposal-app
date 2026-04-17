@@ -61,7 +61,11 @@ export const defaultProposal: Proposal = {
       bodyFont: "Inter",
       accentColor: "#ef4444",
     },
-
+    colorPalette: {
+      backgroundColor: "#0f172a", // deep navy
+      textColor: "#e2e8f0", // soft white
+      accentColor: "#38bdf8",
+    },
     pages: {
       cover: {
         layout: "default",

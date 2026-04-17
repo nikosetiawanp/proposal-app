@@ -18,10 +18,8 @@ import {
 } from "@dnd-kit/sortable";
 import clsx from "clsx";
 import { EllipsisVertical, GripVertical, Plus, Trash } from "lucide-react";
-import { SetStateAction, useState } from "react";
+import { SetStateAction } from "react";
 import { CSS } from "@dnd-kit/utilities";
-import { Button } from "../ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -113,20 +111,21 @@ function SortableItem({
       className={clsx(
         "h-fit w-full px-1",
         "group flex items-center rounded-lg",
-        "hover:bg-zinc-100",
-        isDragging && "z-50 shadow-lg backdrop-blur-sm",
+        isDragging && "z-50 shadow-lg",
       )}
     >
       {/* Handle */}
       <div
-        {...listeners}
         className={clsx(
-          "mr-1 rounded-md py-1 text-zinc-300 opacity-0 transition-colors",
-          "group-hover:opacity-100 hover:cursor-pointer hover:text-indigo-500",
-          "focus:opacity-100",
+          "mr-1 rounded-md py-1 text-zinc-300 transition-colors",
+          "hover:text-primary hover:cursor-pointer",
         )}
       >
-        <GripVertical />
+        <GripVertical
+          {...listeners}
+          onClick={(e) => e.stopPropagation()}
+          className="opacity-0 group-hover:opacity-100"
+        />
       </div>
 
       <div className="w-full">{children}</div>
@@ -136,7 +135,7 @@ function SortableItem({
           className={clsx(
             "rounded-lg p-1 text-zinc-300 opacity-0",
             !isDragging &&
-              "group-hover:opacity-100 hover:bg-zinc-200 focus:opacity-100 data-[state=open]:opacity-100",
+              "group-hover:opacity-100 hover:cursor-pointer focus:opacity-100 data-[state=open]:opacity-100",
           )}
         >
           <EllipsisVertical />
@@ -149,7 +148,7 @@ function SortableItem({
           </DropdownMenuItem>
           <DropdownMenuItem onSelect={onCreate}>
             <Plus />
-            <span>Add below</span>
+            <span>Add item</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -38,11 +38,11 @@ export function DateEditable({
           variant="outline"
           data-empty={!value}
           className={clsx(
-            "-ml-1 h-fit w-fit rounded-sm border-2 border-indigo-500/0 bg-white/0 px-1 py-0 text-[16px] font-normal shadow-none",
+            "border-primary/0 h-fit w-fit rounded-xs border-[2px] bg-white/0 px-0 py-0 text-[16px] font-normal shadow-none",
             "transition-all",
-            "hover:cursor-pointer hover:border-indigo-500/70 hover:bg-indigo-500/0 hover:text-zinc-700",
+            "hover:border-primary hover:bg-primary/0 hover:cursor-pointer",
             open &&
-              "border-indigo-500 text-indigo-500 hover:border-indigo-500 hover:text-indigo-500 data-[state=open]:bg-indigo-500/0 data-[state=open]:text-zinc-700",
+              "border-primary hover:border-primary data-[state=open]:bg-primary/0",
             className,
           )}
           style={style}
@@ -64,7 +64,7 @@ export function DateEditable({
           onSelect={onSelect}
           classNames={{
             day_selected:
-              "bg-indigo-500 text-white hover:bg-indigo-600 focus:bg-indigo-500",
+              "bg-primary text-white hover:bg-indigo-600 focus:bg-primary",
           }}
         />
       </PopoverContent>

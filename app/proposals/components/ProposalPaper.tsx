@@ -19,9 +19,11 @@ export default function ProposalPaper({
         width: `${PAPER_PRESETS[proposal?.settings?.print?.paperSize]?.width}px`,
         minHeight: `${PAPER_PRESETS[proposal?.settings?.print?.paperSize]?.height}px`,
         maxHeight: `${PAPER_PRESETS[proposal?.settings?.print?.paperSize]?.height}px`,
+        backgroundColor: proposal?.settings?.colorPalette?.backgroundColor,
       }}
       className={clsx(
-        "z-0 flex h-full flex-col border border-zinc-300 bg-white",
+        "border-primary/0 z-0 flex h-full flex-col border-2 shadow-sm transition-all",
+        "hover:border-primary",
       )}
     >
       {children}

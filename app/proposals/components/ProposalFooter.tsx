@@ -14,6 +14,7 @@ export default function ProposalFooter() {
           style={{
             fontFamily: proposal?.settings?.theme?.bodyFont,
             fontSize: "14px",
+            color: proposal?.settings?.colorPalette?.textColor,
           }}
           placeholder={"Project Title"}
           value={proposal?.title}
@@ -30,6 +31,7 @@ export default function ProposalFooter() {
         style={{
           fontFamily: proposal?.settings?.theme?.bodyFont,
           fontSize: "14px",
+          color: proposal?.settings?.colorPalette?.textColor,
         }}
       >
         1

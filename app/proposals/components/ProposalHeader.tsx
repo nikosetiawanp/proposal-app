@@ -24,6 +24,7 @@ export default function ProposalHeader() {
         }}
         style={{
           fontSize: "14px",
+          color: proposal?.settings?.colorPalette?.textColor,
         }}
       />
     </div>

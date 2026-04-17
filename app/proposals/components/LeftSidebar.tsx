@@ -48,7 +48,7 @@ export default function LeftSidebar() {
               className={clsx(
                 "group flex items-center justify-between gap-8 rounded-xl px-1 py-1 text-[14px] font-bold",
                 !active && "text-zinc-700 hover:bg-zinc-200",
-                active && "bg-indigo-500 text-white hover:bg-indigo-500",
+                active && "bg-primary hover:bg-primary text-white",
               )}
             >
               <div

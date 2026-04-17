@@ -30,7 +30,7 @@ export default function Scope() {
           <h2
             style={{
               fontFamily: proposal?.settings?.theme?.headingFont,
-              color: proposal?.settings?.theme?.accentColor,
+              color: proposal?.settings?.colorPalette?.accentColor,
             }}
             className="ml-9 text-[36px] font-bold"
           >
@@ -81,7 +81,8 @@ export default function Scope() {
                           className="font-bold text-zinc-900"
                           style={{
                             fontFamily: proposal?.settings?.theme?.bodyFont,
-                            color: proposal?.settings?.theme?.accentColor,
+                            color:
+                              proposal?.settings?.colorPalette?.accentColor,
                             fontSize: "16px",
                           }}
                           onChange={(e) => {
@@ -108,6 +109,7 @@ export default function Scope() {
                         style={{
                           fontFamily: proposal?.settings?.theme?.bodyFont,
                           fontSize: "14px",
+                          color: proposal?.settings?.colorPalette?.textColor,
                         }}
                         onChange={(e) => {
                           const updatedServices = proposal.services.map(
@@ -127,31 +129,6 @@ export default function Scope() {
                   </SortableItem>
                 );
               })}
-
-              {/* <button
-                className={clsx(
-                  "ml-9 flex items-center gap-3 opacity-30",
-                  "hover:cursor-pointer hover:opacity-100",
-                )}
-                onClick={() => {
-                  const newService = {
-                    id: crypto.randomUUID(),
-                    title: "",
-                    description: "",
-                    budget: "",
-                    estimatedTimeMin: 0,
-                    estimatedTimeMax: 0,
-                    optional: false,
-                  };
-                  setProposalServices([...proposal.services, newService]);
-                }}
-              >
-                <div className="rounded-full bg-indigo-500">
-                  <Plus className="text-white" />
-                </div>
-
-                <span className="text-indigo-500">Add Service</span>
-              </button> */}
             </div>
           </SortableContainer>
         </div>

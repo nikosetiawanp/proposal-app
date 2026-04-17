@@ -38,6 +38,11 @@ export interface Proposal {
       bodyFont: string;
       accentColor: string;
     };
+    colorPalette: {
+      backgroundColor: string;
+      textColor: string;
+      accentColor: string;
+    };
     pages: Record<ProposalPageSlug, { active: boolean; layout: string }>;
     print: {
       paperSize: "A4" | "Letter";

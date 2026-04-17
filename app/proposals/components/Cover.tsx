@@ -2,6 +2,7 @@
 
 import { DateEditable } from "@/components/DateEditable";
 import TextEditable from "@/components/TextEditable";
+import { cn } from "@/lib/utils";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 import clsx from "clsx";
 import { useStore } from "zustand";
@@ -17,13 +18,14 @@ export default function Cover() {
         <span
           style={{
             fontFamily: proposal?.settings?.theme?.headingFont,
-            color: proposal?.settings?.theme?.accentColor,
+            color: proposal?.settings?.colorPalette?.accentColor,
           }}
-          className={clsx("text-4xl text-[64px] font-bold text-zinc-700")}
+          className={clsx("text-4xl text-[64px] font-bold")}
         >
           Project <br /> Proposal
         </span>
 
+        {/* Project Title */}
         <TextEditable
           id="project-title"
           as="input"
@@ -32,6 +34,7 @@ export default function Cover() {
           style={{
             fontFamily: proposal?.settings?.theme?.bodyFont,
             fontSize: "16px",
+            color: proposal?.settings?.colorPalette?.textColor,
           }}
           value={proposal?.title}
           onChange={(e) => {
@@ -45,13 +48,21 @@ export default function Cover() {
 
       {/* Image */}
       <div className="my-6 h-full w-full px-9">
-        <div className="h-full w-full rounded-xl bg-zinc-200"></div>
+        <div
+          className={cn("h-full w-full rounded-xl")}
+          style={{
+            backgroundColor: proposal?.settings?.colorPalette?.accentColor,
+          }}
+        ></div>
       </div>
 
       <div className="flex flex-col pb-9">
         <div className="flex items-baseline px-9">
           <span
-            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            style={{
+              fontFamily: proposal?.settings?.theme?.bodyFont,
+              color: proposal?.settings?.colorPalette?.textColor,
+            }}
             className="text-[14px] text-zinc-700"
           >
             Prepared for :
@@ -62,6 +73,7 @@ export default function Cover() {
             style={{
               fontFamily: proposal?.settings?.theme?.bodyFont,
               fontSize: "14px",
+              color: proposal?.settings?.colorPalette?.textColor,
             }}
             className="text-zinc-700"
             value={proposal?.clientName}
@@ -76,7 +88,10 @@ export default function Cover() {
 
         <div className="flex items-baseline px-9">
           <span
-            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            style={{
+              fontFamily: proposal?.settings?.theme?.bodyFont,
+              color: proposal?.settings?.colorPalette?.textColor,
+            }}
             className="text-[14px] text-zinc-700"
           >
             Prepared by :
@@ -88,6 +103,7 @@ export default function Cover() {
             style={{
               fontFamily: proposal?.settings?.theme?.bodyFont,
               fontSize: "14px",
+              color: proposal?.settings?.colorPalette?.textColor,
             }}
             value={proposal?.proposerName}
             onChange={(e) => {
@@ -100,7 +116,10 @@ export default function Cover() {
         </div>
         <div className="flex items-baseline px-9 text-[14px]">
           <span
-            style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+            style={{
+              fontFamily: proposal?.settings?.theme?.bodyFont,
+              color: proposal?.settings?.colorPalette?.textColor,
+            }}
             className="text-[14px] text-zinc-700"
           >
             Issued Date :
@@ -116,6 +135,7 @@ export default function Cover() {
               style={{
                 fontFamily: proposal?.settings?.theme?.bodyFont,
                 fontSize: "14px",
+                color: proposal?.settings?.colorPalette?.textColor,
               }}
             />
           </span>

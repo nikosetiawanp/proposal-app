@@ -45,7 +45,7 @@ export default function Timeline() {
         <h2
           style={{
             fontFamily: proposal?.settings?.theme?.headingFont,
-            color: proposal?.settings?.theme?.accentColor,
+            color: proposal?.settings?.colorPalette?.accentColor,
           }}
           className="mb-4 ml-9 text-[36px] font-bold"
         >
@@ -56,7 +56,9 @@ export default function Timeline() {
           {/* Table Header */}
           <div
             className="mx-9 flex items-center px-2 py-2"
-            style={{ backgroundColor: proposal?.settings?.theme?.accentColor }}
+            style={{
+              backgroundColor: proposal?.settings?.colorPalette?.accentColor,
+            }}
           >
             <span className="flex-[2] font-bold text-white">Service</span>
             <span className="ml-5 flex-[1] font-bold text-white">
@@ -109,10 +111,12 @@ export default function Timeline() {
                           <TextEditable
                             id="service"
                             placeholder="Service"
-                            className="ml-2 text-[14px] text-zinc-600"
+                            className="ml-[12px] text-[14px] text-zinc-600"
                             style={{
                               fontFamily: proposal?.settings?.theme?.bodyFont,
                               fontSize: "14px",
+                              color:
+                                proposal?.settings?.colorPalette?.textColor,
                             }}
                             value={service.title}
                             onChange={(e) => {
@@ -139,10 +143,12 @@ export default function Timeline() {
                           <TextEditable
                             id="service"
                             placeholder="0"
-                            className="ml-[1px] text-[14px] text-zinc-600"
+                            className="ml-[4px] text-[14px] text-zinc-600"
                             style={{
                               fontFamily: proposal?.settings?.theme?.bodyFont,
                               fontSize: "14px",
+                              color:
+                                proposal?.settings?.colorPalette?.textColor,
                             }}
                             suffix={
                               "\u00A0" +
@@ -191,6 +197,7 @@ export default function Timeline() {
                 style={{
                   fontFamily: proposal?.settings?.theme?.bodyFont,
                   fontSize: "14px",
+                  color: proposal?.settings?.colorPalette?.textColor,
                 }}
               >
                 Total
@@ -202,6 +209,7 @@ export default function Timeline() {
                 style={{
                   fontFamily: proposal?.settings?.theme?.bodyFont,
                   fontSize: "14px",
+                  color: proposal?.settings?.colorPalette?.textColor,
                 }}
               >
                 {totalTimeMin}{" "}

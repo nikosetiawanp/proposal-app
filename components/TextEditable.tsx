@@ -28,9 +28,8 @@ export default function TextEditable({
     <div
       onClick={() => inputRef.current?.focus()}
       className={clsx(
-        "relative -ml-1 flex w-fit items-baseline rounded-sm border-2 border-indigo-500/0 px-1",
-        "focus-within:border-indigo-500 focus-within:hover:border-indigo-500",
-        "hover:border-indigo-500/70",
+        "relative flex w-fit items-baseline rounded-xs border-[2px] border-indigo-500/0",
+        "hover:border-primary",
         "transition-all",
         className,
       )}
@@ -57,8 +56,6 @@ export default function TextEditable({
         className={clsx(
           "field-sizing-content w-fit outline-none",
           "hover:cursor-text",
-          // "focus:text-indigo-500",
-          "selection:bg-indigo-500/50 selection:text-white",
           "placeholder:text-zinc-400",
           "text-[16px]",
           "transition-all",

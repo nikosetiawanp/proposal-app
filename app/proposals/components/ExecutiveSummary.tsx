@@ -31,7 +31,7 @@ export default function ExecutiveSummary() {
           <h2
             style={{
               fontFamily: proposal?.settings?.theme?.headingFont,
-              color: proposal?.settings?.theme?.accentColor,
+              color: proposal?.settings?.colorPalette?.accentColor,
             }}
             className="mb-4 text-[36px] font-bold text-zinc-600"
           >
@@ -41,7 +41,7 @@ export default function ExecutiveSummary() {
             className="font-bold text-zinc-600"
             style={{
               fontFamily: proposal?.settings?.theme?.bodyFont,
-              color: proposal?.settings?.theme?.accentColor,
+              color: proposal?.settings?.colorPalette?.accentColor,
               fontSize: "16px",
             }}
           >
@@ -55,6 +55,7 @@ export default function ExecutiveSummary() {
             style={{
               fontFamily: proposal?.settings?.theme?.bodyFont,
               fontSize: "14px",
+              color: proposal?.settings?.colorPalette?.textColor,
             }}
             as="textarea"
             onChange={(e) => {
@@ -72,7 +73,7 @@ export default function ExecutiveSummary() {
             className="ml-8 font-bold text-zinc-600"
             style={{
               fontFamily: proposal?.settings?.theme?.bodyFont,
-              color: proposal?.settings?.theme?.accentColor,
+              color: proposal?.settings?.colorPalette?.accentColor,
               fontSize: "16px",
             }}
           >
@@ -110,7 +111,14 @@ export default function ExecutiveSummary() {
                   >
                     <div className="mt-0.5 flex items-baseline gap-1">
                       {/* <ArrowRight className="text-zinc-600" /> */}
-                      <span className="text-zinc-600">{index + 1}.</span>
+                      <span
+                        className="text-zinc-600"
+                        style={{
+                          color: proposal?.settings?.colorPalette?.textColor,
+                        }}
+                      >
+                        {index + 1}.
+                      </span>
                       <TextEditable
                         id={""}
                         className="text-zinc-600"
@@ -120,6 +128,7 @@ export default function ExecutiveSummary() {
                         style={{
                           fontFamily: proposal?.settings?.theme?.bodyFont,
                           fontSize: "14px",
+                          color: proposal?.settings?.colorPalette?.textColor,
                         }}
                         onChange={(e) => {
                           const updatedObjectives = proposal.objectives.map(
@@ -139,34 +148,6 @@ export default function ExecutiveSummary() {
                   </SortableItem>
                 );
               })}
-              {/* <button
-                className={clsx(
-                  "ml-9 flex items-center gap-3 opacity-30",
-                  "hover:cursor-pointer hover:opacity-100",
-                )}
-                onClick={() => {
-                  const index = proposal.objectives.findIndex(
-                    (o) => o.id === newObjective.id,
-                  );
-                  const newObjective = {
-                    id: crypto.randomUUID(),
-                    title: "New Objective",
-                    description:
-                      "Define a clear, measurable goal that contributes to the overall project outcome.",
-                  };
-
-                  const newItems = [...proposal.objectives];
-                  newItems.splice(index + 1, 0, newObjective);
-
-                  setProposalObjectives([...proposal.objectives, newObjective]);
-                }}
-              >
-                <div className="rounded-full bg-indigo-500">
-                  <Plus className="text-white" />
-                </div>
-
-                <span className="text-indigo-500">Add Objective</span>
-              </button> */}
             </div>
           </SortableContainer>
         </div>
@@ -176,7 +157,7 @@ export default function ExecutiveSummary() {
             className="font-bold text-zinc-600"
             style={{
               fontFamily: proposal?.settings?.theme?.bodyFont,
-              color: proposal?.settings?.theme?.accentColor,
+              color: proposal?.settings?.colorPalette?.accentColor,
               fontSize: "16px",
             }}
           >
@@ -190,6 +171,7 @@ export default function ExecutiveSummary() {
             style={{
               fontFamily: proposal?.settings?.theme?.bodyFont,
               fontSize: "14px",
+              color: proposal?.settings?.colorPalette?.textColor,
             }}
             as="textarea"
             onChange={(e) => {

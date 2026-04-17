@@ -61,7 +61,7 @@ export default function Page() {
           <LeftSidebar />
 
           {/* Viewport */}
-          <div className="flex h-full w-full flex-col items-center justify-start overflow-y-scroll bg-zinc-100 pb-20">
+          <div className="flex h-full w-full flex-col items-center justify-start gap-px overflow-y-scroll bg-zinc-100 pb-20">
             {/* Paper */}
             {hydrated ? (
               proposalPages.map((page, index) => {

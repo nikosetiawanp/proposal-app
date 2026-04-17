@@ -40,13 +40,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { colorPresets } from "@/data/proposal/colorPresets";
 
 export default function RightSidebar() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
 
   const accordionContentStyle = "flex flex-col gap-4 h-fit px-4";
-  const accordionTriggerStyle = "font-bold px-4";
+  const accordionTriggerStyle = "font-bold px-4 text-[12px]";
+  const fieldLabelStyle = "text-xs";
 
   return (
     <div className="hidden w-[512px] border-l border-zinc-300 bg-white lg:block">
@@ -58,7 +60,7 @@ export default function RightSidebar() {
         defaultValue="typography"
         className="flex flex-col"
       >
-        <span className="m-4 font-bold text-indigo-500">Proposal Settings</span>
+        <span className="text-primary m-4 font-bold">Proposal Settings</span>
         <Separator />
         <AccordionItem value="typography">
           <AccordionTrigger className={accordionTriggerStyle}>
@@ -67,7 +69,7 @@ export default function RightSidebar() {
           <AccordionContent className={accordionContentStyle}>
             {/* Heading Font */}
             <Field>
-              <FieldLabel>Heading font</FieldLabel>
+              <FieldLabel className={fieldLabelStyle}>Heading font</FieldLabel>
               <Select
                 value={proposal?.settings?.theme?.headingFont}
                 onValueChange={(value) => {
@@ -84,7 +86,7 @@ export default function RightSidebar() {
                 }}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue className="text-zinc-900" />
+                  <SelectValue />
                 </SelectTrigger>
                 <SelectContent position="popper">
                   {["Sans", "Serif", "Mono"].map((category, index) => {
@@ -120,7 +122,7 @@ export default function RightSidebar() {
 
             {/* Body Font */}
             <Field>
-              <FieldLabel>Body font</FieldLabel>
+              <FieldLabel className={fieldLabelStyle}>Body font</FieldLabel>
               <Select
                 value={proposal?.settings?.theme?.bodyFont}
                 onValueChange={(value) => {
@@ -137,7 +139,7 @@ export default function RightSidebar() {
                 }}
               >
                 <SelectTrigger>
-                  <SelectValue className="text-zinc-900" />
+                  <SelectValue />
                 </SelectTrigger>
 
                 <SelectContent position="popper">
@@ -179,7 +181,7 @@ export default function RightSidebar() {
             COLOR PALETTE
           </AccordionTrigger>
           <AccordionContent className={accordionContentStyle}>
-            <div className="grid grid-cols-6">
+            {/* <div className="grid grid-cols-6">
               {[
                 "#ef4444", // red-500
                 "#f97316", // orange-500
@@ -195,7 +197,6 @@ export default function RightSidebar() {
                     key={index}
                     className={clsx(
                       "flex h-[40px] w-[40px] items-center justify-center rounded-full hover:cursor-pointer",
-                      // selected && "border-3 border-indigo-500",
                     )}
                     style={{
                       backgroundColor: selected ? color + 80 : color,
@@ -217,6 +218,50 @@ export default function RightSidebar() {
                   </div>
                 );
               })}
+            </div> */}
+
+            <div className="flex justify-between">
+              {Object.entries(colorPresets).map(([category, colors], index) => {
+                return (
+                  <div className="flex flex-col gap-2" key={index}>
+                    <span className="text-xs font-semibold">{category}</span>
+                    {colors.map((color, index) => {
+                      return (
+                        <div
+                          className="border-input hover:border-primary flex overflow-hidden rounded-xs border-2 shadow-xs hover:cursor-pointer"
+                          key={index}
+                          onClick={() => {
+                            setProposal({
+                              ...proposal,
+                              settings: {
+                                ...proposal?.settings,
+                                colorPalette: {
+                                  backgroundColor: color.backgroundColor,
+                                  textColor: color.textColor,
+                                  accentColor: color.accentColor,
+                                },
+                              },
+                            });
+                          }}
+                        >
+                          <div
+                            className="h-4 w-4"
+                            style={{ backgroundColor: color.backgroundColor }}
+                          />
+                          <div
+                            className="h-4 w-4"
+                            style={{ backgroundColor: color.textColor }}
+                          />
+                          <div
+                            className="h-4 w-4"
+                            style={{ backgroundColor: color.accentColor }}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
             </div>
           </AccordionContent>
         </AccordionItem>
@@ -228,7 +273,7 @@ export default function RightSidebar() {
           <AccordionContent className={accordionContentStyle}>
             {/* Time Unit */}
             <Field>
-              <FieldLabel>Time</FieldLabel>
+              <FieldLabel className={fieldLabelStyle}>Time</FieldLabel>
               <Select
                 value={proposal?.settings?.format?.timeUnit}
                 onValueChange={(
@@ -247,7 +292,7 @@ export default function RightSidebar() {
                 }}
               >
                 <SelectTrigger>
-                  <SelectValue className="text-zinc-900" />
+                  <SelectValue />
                 </SelectTrigger>
 
                 <SelectContent position="popper">
@@ -266,7 +311,7 @@ export default function RightSidebar() {
 
             {/* Currency */}
             <Field>
-              <FieldLabel>Currency</FieldLabel>
+              <FieldLabel className={fieldLabelStyle}>Currency</FieldLabel>
               <Select
                 value={proposal?.settings?.format?.currency}
                 onValueChange={(value) => {
@@ -315,7 +360,7 @@ export default function RightSidebar() {
           <AccordionContent className={accordionContentStyle}>
             {/* Date */}
             <Field>
-              <FieldLabel>Date</FieldLabel>
+              <FieldLabel className={fieldLabelStyle}>Date</FieldLabel>
               <Select
                 value={proposal?.settings?.format?.date}
                 onValueChange={(value) => {
@@ -353,7 +398,7 @@ export default function RightSidebar() {
           <AccordionContent className={accordionContentStyle}>
             {/* Paper Size */}
             <Field>
-              <FieldLabel>Paper size</FieldLabel>
+              <FieldLabel className={fieldLabelStyle}>Paper size</FieldLabel>
               <Select
                 value={proposal?.settings?.print?.paperSize}
                 onValueChange={(
@@ -372,7 +417,7 @@ export default function RightSidebar() {
                 }}
               >
                 <SelectTrigger>
-                  <SelectValue className="text-zinc-900" />
+                  <SelectValue />
                 </SelectTrigger>
 
                 <SelectContent position="popper">

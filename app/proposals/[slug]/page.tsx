@@ -12,6 +12,8 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import PageNavigator from "./../components/PageNavigator";
 import { proposalPages } from "@/data/proposal/proposalPages";
+import { useStore } from "zustand";
+import { proposalStore } from "@/stores/proposal/proposalStore";
 
 export default function Page() {
   const [scale, setScale] = useState(100);
@@ -23,6 +25,10 @@ export default function Page() {
   const CurrentPageComponent = proposalPages.find(
     (page) => page.slug === currentPage,
   )?.component;
+
+  const proposal = useStore(proposalStore, (state) => state.proposal);
+
+  const setProposal = useStore(proposalStore, (state) => state.setProposal);
 
   return (
     <Layout>
@@ -49,10 +55,10 @@ export default function Page() {
               transform: `scale(${scale / 100})`,
               width: `${PAPER_PRESETS[paperSize].width}px`,
               height: `${PAPER_PRESETS[paperSize].height}px`,
+              backgroundColor:
+                proposal?.settings?.colorPalette?.backgroundColor,
             }}
-            className={clsx(
-              "z-0 flex h-full flex-col rounded-sm bg-white shadow-xl",
-            )}
+            className={clsx("z-0 flex h-full flex-col rounded-sm shadow-xl")}
           >
             {CurrentPageComponent ? <CurrentPageComponent /> : null}
           </div>
