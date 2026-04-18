@@ -9,14 +9,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 
-import {
-  Paintbrush,
-  FileTextIcon,
-  ChevronsUpDown,
-  ChevronDown,
-  Check,
-  ChevronDownIcon,
-} from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import { headingFonts, bodyFonts, fontPairings } from "@/data/proposal/fonts";
 import { Proposal } from "@/types/proposal";
 import Divider from "@/components/Divider";
@@ -519,37 +512,6 @@ export default function RightSidebar() {
                     );
                   })}
                 </ToggleGroup>
-                {/* <Select
-                value={proposal?.settings?.print?.paperSize}
-                onValueChange={(
-                  value: Proposal["settings"]["print"]["paperSize"],
-                ) => {
-                  setProposal({
-                    ...proposal,
-                    settings: {
-                      ...proposal?.settings,
-                      print: {
-                        ...proposal?.settings?.print,
-                        paperSize: value,
-                      },
-                    },
-                  });
-                }}
-              >
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-
-                <SelectContent position="popper">
-                  {["Letter", "A4"].map((size, index) => {
-                    return (
-                      <SelectItem key={index} value={size}>
-                        {size}
-                      </SelectItem>
-                    );
-                  })}
-                </SelectContent>
-              </Select> */}
               </Field>
             </AccordionContent>
           </AccordionItem>

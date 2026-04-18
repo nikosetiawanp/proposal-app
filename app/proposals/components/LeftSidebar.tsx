@@ -4,10 +4,15 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
-import { Eye, EyeClosed, EyeOff } from "lucide-react";
+import { Eye, EyeClosed, EyeOff, GripVertical, Plus } from "lucide-react";
 import { proposalPages } from "@/data/proposal/proposalPages";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
+import { Separator } from "@/components/ui/separator";
+import { Field, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
 export default function LeftSidebar() {
   const pathname = usePathname();
@@ -18,21 +23,148 @@ export default function LeftSidebar() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
 
-  useEffect(() => {
-    if (!currentPage) {
-      router.push(pathname + "?page=" + proposalPages[0].slug);
-    }
-  }, []);
+  const fieldLabelStyle = "text-xs";
 
-  useEffect(() => {
-    console.log(proposal.settings.pages);
-  }, []);
+  const setProposalObjectives = useStore(
+    proposalStore,
+    (state) => state.setProposalObjectives,
+  );
 
   return (
     <div className="hidden w-lg border-r border-zinc-300 bg-white lg:block">
+      <div className="p-4">
+        <span className="text-primary font-bold">Content</span>
+      </div>
+      <Separator />
+
+      <div className="scroll-hidden flex h-full flex-col gap-4 overflow-y-auto p-4 pb-32">
+        <Field>
+          <FieldLabel className={fieldLabelStyle} htmlFor="title">
+            Project Title
+          </FieldLabel>
+          <Input
+            id="title"
+            value={proposal?.title}
+            onChange={(e) => {
+              setProposal({
+                ...proposal,
+                title: e.target.value,
+              });
+            }}
+          />
+        </Field>
+        <Field>
+          <FieldLabel className={fieldLabelStyle} htmlFor="client-name">
+            Client Name
+          </FieldLabel>
+          <Input
+            id="client-name"
+            value={proposal?.clientName}
+            onChange={(e) => {
+              setProposal({
+                ...proposal,
+                clientName: e.target.value,
+              });
+            }}
+          />
+        </Field>
+        <Field>
+          <FieldLabel className={fieldLabelStyle} htmlFor="proposer-name">
+            Proposer Name
+          </FieldLabel>
+          <Input
+            id="proposer-name"
+            value={proposal?.proposerName}
+            onChange={(e) => {
+              setProposal({
+                ...proposal,
+                proposerName: e.target.value,
+              });
+            }}
+          />
+        </Field>
+        <Separator />
+        <Field>
+          <FieldLabel className={fieldLabelStyle} htmlFor="overview">
+            Overview
+          </FieldLabel>
+          <Textarea
+            id="overview"
+            value={proposal?.overview}
+            onChange={(e) => {
+              setProposal({
+                ...proposal,
+                overview: e.target.value,
+              });
+            }}
+            className="resize-none"
+          />
+        </Field>
+        <Field>
+          <div className="flex items-center justify-between">
+            <FieldLabel className={fieldLabelStyle} htmlFor="overview">
+              Objectives
+            </FieldLabel>
+            <Button
+              size="xs"
+              onClick={() => {
+                const newObjective = {
+                  id: crypto.randomUUID(),
+                  title: "",
+                  description: "",
+                };
+
+                setProposalObjectives([...proposal.objectives, newObjective]);
+              }}
+            >
+              <Plus />
+              <span>Add Item</span>
+            </Button>
+          </div>
+          {proposal?.objectives?.map((objective, index) => {
+            return (
+              <div className="flex gap-1">
+                <GripVertical className="text-border" />
+                <Textarea
+                  value={proposal?.objectives[index].description}
+                  className="resize-none"
+                  onChange={(e) => {
+                    const updatedObjectives = proposal.objectives.map((obj) =>
+                      obj.id === objective.id
+                        ? { ...obj, description: e.target.value }
+                        : obj,
+                    );
+
+                    setProposal({
+                      ...proposal,
+                      objectives: updatedObjectives,
+                    });
+                  }}
+                />
+              </div>
+            );
+          })}
+        </Field>
+
+        <Field>
+          <FieldLabel className={fieldLabelStyle} htmlFor="solution">
+            Solution
+          </FieldLabel>
+          <Textarea
+            id="solution"
+            value={proposal?.solution}
+            onChange={(e) => {
+              setProposal({
+                ...proposal,
+                solution: e.target.value,
+              });
+            }}
+            className="resize-none"
+          />
+        </Field>
+      </div>
       {/* Pages List */}
-      <div className="flex flex-col p-4">
-        <span className="mb-2 text-sm font-bold text-zinc-900">Pages</span>
+      {/* <div className="flex flex-col p-4">
         {proposalPages?.map((page, index) => {
           const active = currentPage === page.slug;
           const hidden =
@@ -62,8 +194,6 @@ export default function LeftSidebar() {
                 </div>
                 {page.name}
               </div>
-
-              {/* Hide Unhide */}
               <button
                 className={clsx(
                   "rounded-lg p-1 opacity-0 group-hover:opacity-100 hover:cursor-pointer disabled:group-hover:opacity-30",
@@ -120,12 +250,11 @@ export default function LeftSidebar() {
                     )}
                   />
                 )}
-                {/* {!canBeHidden && <EyeOff />} */}
               </button>
             </Link>
           );
         })}
-      </div>
+      </div> */}
     </div>
   );
 }
