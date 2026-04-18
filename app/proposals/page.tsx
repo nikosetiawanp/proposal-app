@@ -10,7 +10,6 @@ import { useSearchParams } from "next/navigation";
 
 import Link from "next/link";
 import { ChevronLeft, EllipsisVertical, Trash } from "lucide-react";
-import PageNavigator from "./components/PageNavigator";
 import { proposalPages } from "@/data/proposal/proposalPages";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 import { PaperPreset } from "@/types/proposal";
@@ -61,7 +60,7 @@ export default function Page() {
           <LeftSidebar />
 
           {/* Viewport */}
-          <div className="flex h-full w-full flex-col items-center justify-start gap-px overflow-y-scroll bg-zinc-100 pb-20">
+          <div className="scroll-hidden flex h-full w-full flex-col items-center justify-start gap-4 overflow-y-scroll bg-zinc-100 pt-6 pb-20">
             {/* Paper */}
             {hydrated ? (
               proposalPages.map((page, index) => {

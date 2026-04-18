@@ -30,7 +30,7 @@ export default function ExecutiveSummary() {
         <div className="flex flex-col px-8">
           <h2
             style={{
-              fontFamily: proposal?.settings?.theme?.headingFont,
+              fontFamily: proposal?.settings?.typography?.headingFont,
               color: proposal?.settings?.colorPalette?.accentColor,
             }}
             className="mb-4 text-[36px] font-bold text-zinc-600"
@@ -40,7 +40,7 @@ export default function ExecutiveSummary() {
           <span
             className="font-bold text-zinc-600"
             style={{
-              fontFamily: proposal?.settings?.theme?.bodyFont,
+              fontFamily: proposal?.settings?.typography?.bodyFont,
               color: proposal?.settings?.colorPalette?.accentColor,
               fontSize: "16px",
             }}
@@ -53,7 +53,7 @@ export default function ExecutiveSummary() {
             value={proposal?.overview}
             className="text-wrap text-zinc-600"
             style={{
-              fontFamily: proposal?.settings?.theme?.bodyFont,
+              fontFamily: proposal?.settings?.typography?.bodyFont,
               fontSize: "14px",
               color: proposal?.settings?.colorPalette?.textColor,
             }}
@@ -72,7 +72,7 @@ export default function ExecutiveSummary() {
           <span
             className="ml-8 font-bold text-zinc-600"
             style={{
-              fontFamily: proposal?.settings?.theme?.bodyFont,
+              fontFamily: proposal?.settings?.typography?.bodyFont,
               color: proposal?.settings?.colorPalette?.accentColor,
               fontSize: "16px",
             }}
@@ -126,7 +126,7 @@ export default function ExecutiveSummary() {
                         value={objective.description}
                         as="textarea"
                         style={{
-                          fontFamily: proposal?.settings?.theme?.bodyFont,
+                          fontFamily: proposal?.settings?.typography?.bodyFont,
                           fontSize: "14px",
                           color: proposal?.settings?.colorPalette?.textColor,
                         }}
@@ -156,7 +156,7 @@ export default function ExecutiveSummary() {
           <span
             className="font-bold text-zinc-600"
             style={{
-              fontFamily: proposal?.settings?.theme?.bodyFont,
+              fontFamily: proposal?.settings?.typography?.bodyFont,
               color: proposal?.settings?.colorPalette?.accentColor,
               fontSize: "16px",
             }}
@@ -169,7 +169,7 @@ export default function ExecutiveSummary() {
             value={proposal?.solution}
             className="text-wrap text-zinc-600"
             style={{
-              fontFamily: proposal?.settings?.theme?.bodyFont,
+              fontFamily: proposal?.settings?.typography?.bodyFont,
               fontSize: "14px",
               color: proposal?.settings?.colorPalette?.textColor,
             }}

@@ -23,7 +23,7 @@ export default function ProposalPaper({
       }}
       className={clsx(
         "border-primary/0 z-0 flex h-full flex-col border-2 shadow-sm transition-all",
-        "hover:border-primary",
+        // "hover:border-primary",
       )}
     >
       {children}

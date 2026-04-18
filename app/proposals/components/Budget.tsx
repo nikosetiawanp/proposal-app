@@ -48,7 +48,7 @@ export default function Budget() {
 
         <h2
           style={{
-            fontFamily: proposal?.settings?.theme?.headingFont,
+            fontFamily: proposal?.settings?.typography?.headingFont,
             color: proposal?.settings?.colorPalette?.accentColor,
           }}
           className="mb-4 ml-9 text-[36px] font-bold"
@@ -115,7 +115,8 @@ export default function Budget() {
                             placeholder="Service"
                             className="ml-[12px] text-[14px] text-zinc-600"
                             style={{
-                              fontFamily: proposal?.settings?.theme?.bodyFont,
+                              fontFamily:
+                                proposal?.settings?.typography?.bodyFont,
                               fontSize: "14px",
                               color:
                                 proposal?.settings?.colorPalette?.textColor,
@@ -147,7 +148,8 @@ export default function Budget() {
                             placeholder="0"
                             className="ml-[4px] text-[14px] text-zinc-600"
                             style={{
-                              fontFamily: proposal?.settings?.theme?.bodyFont,
+                              fontFamily:
+                                proposal?.settings?.typography?.bodyFont,
                               fontSize: "14px",
                               color:
                                 proposal?.settings?.colorPalette?.textColor,
@@ -214,7 +216,7 @@ export default function Budget() {
               <span
                 className="font-bold text-zinc-900"
                 style={{
-                  fontFamily: proposal?.settings?.theme?.bodyFont,
+                  fontFamily: proposal?.settings?.typography?.bodyFont,
                   fontSize: "14px",
                   color: proposal?.settings?.colorPalette?.textColor,
                 }}
@@ -226,7 +228,7 @@ export default function Budget() {
               <span
                 className="font-bold text-zinc-900"
                 style={{
-                  fontFamily: proposal?.settings?.theme?.bodyFont,
+                  fontFamily: proposal?.settings?.typography?.bodyFont,
                   fontSize: "14px",
                   color: proposal?.settings?.colorPalette?.textColor,
                 }}

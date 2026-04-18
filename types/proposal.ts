@@ -33,10 +33,10 @@ export interface Proposal {
     optional: boolean;
   }[];
   settings: {
-    theme: {
+    typography: {
       headingFont: string;
       bodyFont: string;
-      accentColor: string;
+      useCustomFont: boolean;
     };
     colorPalette: {
       backgroundColor: string;

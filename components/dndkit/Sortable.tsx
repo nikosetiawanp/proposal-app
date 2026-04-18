@@ -17,7 +17,13 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import clsx from "clsx";
-import { EllipsisVertical, GripVertical, Plus, Trash } from "lucide-react";
+import {
+  Ellipsis,
+  EllipsisVertical,
+  GripVertical,
+  Plus,
+  Trash,
+} from "lucide-react";
 import { SetStateAction } from "react";
 import { CSS } from "@dnd-kit/utilities";
 import {
@@ -111,7 +117,7 @@ function SortableItem({
       className={clsx(
         "h-fit w-full px-1",
         "group flex items-center rounded-lg",
-        isDragging && "z-50 shadow-lg",
+        isDragging && "z-50",
       )}
     >
       {/* Handle */}
@@ -138,7 +144,7 @@ function SortableItem({
               "group-hover:opacity-100 hover:cursor-pointer focus:opacity-100 data-[state=open]:opacity-100",
           )}
         >
-          <EllipsisVertical />
+          <Ellipsis />
         </DropdownMenuTrigger>
 
         <DropdownMenuContent>

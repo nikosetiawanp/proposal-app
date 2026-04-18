@@ -29,7 +29,7 @@ export default function Scope() {
         <div className="flex flex-col gap-2">
           <h2
             style={{
-              fontFamily: proposal?.settings?.theme?.headingFont,
+              fontFamily: proposal?.settings?.typography?.headingFont,
               color: proposal?.settings?.colorPalette?.accentColor,
             }}
             className="ml-9 text-[36px] font-bold"
@@ -80,7 +80,8 @@ export default function Scope() {
                           value={service.title}
                           className="font-bold text-zinc-900"
                           style={{
-                            fontFamily: proposal?.settings?.theme?.bodyFont,
+                            fontFamily:
+                              proposal?.settings?.typography?.bodyFont,
                             color:
                               proposal?.settings?.colorPalette?.accentColor,
                             fontSize: "16px",
@@ -107,7 +108,7 @@ export default function Scope() {
                         as="textarea"
                         className="text-zinc-600"
                         style={{
-                          fontFamily: proposal?.settings?.theme?.bodyFont,
+                          fontFamily: proposal?.settings?.typography?.bodyFont,
                           fontSize: "14px",
                           color: proposal?.settings?.colorPalette?.textColor,
                         }}

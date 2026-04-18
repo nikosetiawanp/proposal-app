@@ -12,7 +12,7 @@ export default function ProposalFooter() {
         <TextEditable
           id={""}
           style={{
-            fontFamily: proposal?.settings?.theme?.bodyFont,
+            fontFamily: proposal?.settings?.typography?.bodyFont,
             fontSize: "14px",
             color: proposal?.settings?.colorPalette?.textColor,
           }}
@@ -29,7 +29,7 @@ export default function ProposalFooter() {
       <span
         className="text-zinc-900"
         style={{
-          fontFamily: proposal?.settings?.theme?.bodyFont,
+          fontFamily: proposal?.settings?.typography?.bodyFont,
           fontSize: "14px",
           color: proposal?.settings?.colorPalette?.textColor,
         }}

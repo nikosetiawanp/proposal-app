@@ -56,10 +56,10 @@ export const defaultProposal: Proposal = {
   ],
 
   settings: {
-    theme: {
+    typography: {
       headingFont: "Montserrat",
       bodyFont: "Inter",
-      accentColor: "#ef4444",
+      useCustomFont: false,
     },
     colorPalette: {
       backgroundColor: "#0f172a", // deep navy

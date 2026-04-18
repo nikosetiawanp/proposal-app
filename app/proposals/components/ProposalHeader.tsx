@@ -9,22 +9,23 @@ export default function ProposalHeader() {
   return (
     <div
       className="flex justify-between px-9 py-4"
-      style={{ fontFamily: proposal?.settings?.theme?.bodyFont }}
+      style={{ fontFamily: proposal?.settings?.typography?.bodyFont }}
     >
       <TextEditable
-        id={""}
-        className="text-sm text-zinc-600"
-        placeholder={"Proposer's Name"}
+        as="input"
+        placeholder="Proposer's Name"
+        className="text-[14px]"
+        style={{
+          fontFamily: proposal?.settings?.typography?.bodyFont,
+          fontSize: "14px",
+          color: proposal?.settings?.colorPalette?.textColor,
+        }}
         value={proposal?.proposerName}
         onChange={(e) => {
           setProposal({
             ...proposal,
-            clientName: e.target.value,
+            proposerName: e.target.value,
           });
-        }}
-        style={{
-          fontSize: "14px",
-          color: proposal?.settings?.colorPalette?.textColor,
         }}
       />
     </div>

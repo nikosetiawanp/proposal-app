@@ -17,7 +17,7 @@ export default function Cover() {
       <div className={clsx("mt-9 flex flex-col justify-center gap-2 px-9")}>
         <span
           style={{
-            fontFamily: proposal?.settings?.theme?.headingFont,
+            fontFamily: proposal?.settings?.typography?.headingFont,
             color: proposal?.settings?.colorPalette?.accentColor,
           }}
           className={clsx("text-4xl text-[64px] font-bold")}
@@ -32,7 +32,7 @@ export default function Cover() {
           placeholder="Project title"
           className="text-zinc-700"
           style={{
-            fontFamily: proposal?.settings?.theme?.bodyFont,
+            fontFamily: proposal?.settings?.typography?.bodyFont,
             fontSize: "16px",
             color: proposal?.settings?.colorPalette?.textColor,
           }}
@@ -60,7 +60,7 @@ export default function Cover() {
         <div className="flex items-baseline px-9">
           <span
             style={{
-              fontFamily: proposal?.settings?.theme?.bodyFont,
+              fontFamily: proposal?.settings?.typography?.bodyFont,
               color: proposal?.settings?.colorPalette?.textColor,
             }}
             className="text-[14px] text-zinc-700"
@@ -71,7 +71,7 @@ export default function Cover() {
             id="client-name"
             placeholder="Client's Name"
             style={{
-              fontFamily: proposal?.settings?.theme?.bodyFont,
+              fontFamily: proposal?.settings?.typography?.bodyFont,
               fontSize: "14px",
               color: proposal?.settings?.colorPalette?.textColor,
             }}
@@ -89,7 +89,7 @@ export default function Cover() {
         <div className="flex items-baseline px-9">
           <span
             style={{
-              fontFamily: proposal?.settings?.theme?.bodyFont,
+              fontFamily: proposal?.settings?.typography?.bodyFont,
               color: proposal?.settings?.colorPalette?.textColor,
             }}
             className="text-[14px] text-zinc-700"
@@ -99,9 +99,9 @@ export default function Cover() {
           <TextEditable
             as="input"
             placeholder="Proposer's Name"
-            className="text-[14px] text-zinc-700"
+            className="text-[14px]"
             style={{
-              fontFamily: proposal?.settings?.theme?.bodyFont,
+              fontFamily: proposal?.settings?.typography?.bodyFont,
               fontSize: "14px",
               color: proposal?.settings?.colorPalette?.textColor,
             }}
@@ -117,7 +117,7 @@ export default function Cover() {
         <div className="flex items-baseline px-9 text-[14px]">
           <span
             style={{
-              fontFamily: proposal?.settings?.theme?.bodyFont,
+              fontFamily: proposal?.settings?.typography?.bodyFont,
               color: proposal?.settings?.colorPalette?.textColor,
             }}
             className="text-[14px] text-zinc-700"
@@ -133,7 +133,7 @@ export default function Cover() {
                 });
               }}
               style={{
-                fontFamily: proposal?.settings?.theme?.bodyFont,
+                fontFamily: proposal?.settings?.typography?.bodyFont,
                 fontSize: "14px",
                 color: proposal?.settings?.colorPalette?.textColor,
               }}
