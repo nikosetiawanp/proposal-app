@@ -20,6 +20,7 @@ import clsx from "clsx";
 import {
   Ellipsis,
   EllipsisVertical,
+  EllipsisVerticalIcon,
   GripVertical,
   Plus,
   Trash,
@@ -116,7 +117,7 @@ function SortableItem({
       style={{ ...style, width: "100%" }}
       className={clsx(
         "h-fit w-full px-1",
-        "group flex items-center rounded-lg",
+        "group flex items-start rounded-lg",
         isDragging && "z-50",
       )}
     >
@@ -144,7 +145,7 @@ function SortableItem({
               "group-hover:opacity-100 hover:cursor-pointer focus:opacity-100 data-[state=open]:opacity-100",
           )}
         >
-          <Ellipsis />
+          <EllipsisVerticalIcon />
         </DropdownMenuTrigger>
 
         <DropdownMenuContent>

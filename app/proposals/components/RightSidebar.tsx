@@ -110,7 +110,7 @@ export default function RightSidebar() {
                     <div className="grid grid-cols-3 gap-x-4 gap-y-8 overflow-y-scroll">
                       {fontPairings.map((pairing, index) => {
                         return (
-                          <div className="flex flex-col gap-1" key={index}>
+                          <div key={index} className="flex flex-col gap-1">
                             <span>{pairing.name}</span>
                             <DialogClose
                               onClick={() => {
@@ -422,6 +422,7 @@ export default function RightSidebar() {
                   {currencies.map((currency, index) => {
                     return (
                       <ToggleGroupItem
+                        key={index}
                         variant="outline"
                         className="flex-1 font-bold"
                         value={currency.code}

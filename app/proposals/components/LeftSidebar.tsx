@@ -13,6 +13,7 @@ import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { SortableContainer, SortableItem } from "@/components/dndkit/Sortable";
 
 export default function LeftSidebar() {
   const pathname = usePathname();
@@ -23,7 +24,8 @@ export default function LeftSidebar() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
 
-  const fieldLabelStyle = "text-xs";
+  const fieldStyle = "px-4";
+  const fieldLabelStyle = "text-xs font-bold";
 
   const setProposalObjectives = useStore(
     proposalStore,
@@ -37,8 +39,8 @@ export default function LeftSidebar() {
       </div>
       <Separator />
 
-      <div className="scroll-hidden flex h-full flex-col gap-4 overflow-y-auto p-4 pb-32">
-        <Field>
+      <div className="scroll-hidden flex h-full flex-col gap-4 overflow-y-auto pt-4 pb-32">
+        <Field className={fieldStyle}>
           <FieldLabel className={fieldLabelStyle} htmlFor="title">
             Project Title
           </FieldLabel>
@@ -53,7 +55,7 @@ export default function LeftSidebar() {
             }}
           />
         </Field>
-        <Field>
+        <Field className={fieldStyle}>
           <FieldLabel className={fieldLabelStyle} htmlFor="client-name">
             Client Name
           </FieldLabel>
@@ -68,7 +70,7 @@ export default function LeftSidebar() {
             }}
           />
         </Field>
-        <Field>
+        <Field className={fieldStyle}>
           <FieldLabel className={fieldLabelStyle} htmlFor="proposer-name">
             Proposer Name
           </FieldLabel>
@@ -84,7 +86,7 @@ export default function LeftSidebar() {
           />
         </Field>
         <Separator />
-        <Field>
+        <Field className={fieldStyle}>
           <FieldLabel className={fieldLabelStyle} htmlFor="overview">
             Overview
           </FieldLabel>
@@ -100,8 +102,8 @@ export default function LeftSidebar() {
             className="resize-none"
           />
         </Field>
-        <Field>
-          <div className="flex items-center justify-between">
+        <Field className="">
+          <div className="flex items-center justify-between px-4">
             <FieldLabel className={fieldLabelStyle} htmlFor="overview">
               Objectives
             </FieldLabel>
@@ -121,32 +123,63 @@ export default function LeftSidebar() {
               <span>Add Item</span>
             </Button>
           </div>
-          {proposal?.objectives?.map((objective, index) => {
-            return (
-              <div className="flex gap-1">
-                <GripVertical className="text-border" />
-                <Textarea
-                  value={proposal?.objectives[index].description}
-                  className="resize-none"
-                  onChange={(e) => {
-                    const updatedObjectives = proposal.objectives.map((obj) =>
-                      obj.id === objective.id
-                        ? { ...obj, description: e.target.value }
-                        : obj,
-                    );
+          <SortableContainer
+            items={proposal?.objectives ?? []}
+            setItems={setProposalObjectives as any}
+          >
+            <div className="flex w-full flex-col gap-2">
+              {proposal?.objectives?.map((objective, index) => {
+                return (
+                  <SortableItem
+                    key={objective.id}
+                    id={objective.id}
+                    onDelete={() => {
+                      setProposalObjectives([
+                        ...proposal.objectives.filter(
+                          (obj) => obj.id !== objective.id,
+                        ),
+                      ]);
+                    }}
+                    onCreate={() => {
+                      const newObjective = {
+                        id: crypto.randomUUID(),
+                        title: "",
+                        description: "",
+                      };
 
-                    setProposal({
-                      ...proposal,
-                      objectives: updatedObjectives,
-                    });
-                  }}
-                />
-              </div>
-            );
-          })}
+                      const newItems = [...proposal.objectives];
+                      newItems.splice(index + 1, 0, newObjective);
+
+                      setProposalObjectives(newItems);
+                    }}
+                  >
+                    <div className="flex gap-1">
+                      <Textarea
+                        value={proposal?.objectives[index].description}
+                        className="resize-none"
+                        onChange={(e) => {
+                          const updatedObjectives = proposal.objectives.map(
+                            (obj) =>
+                              obj.id === objective.id
+                                ? { ...obj, description: e.target.value }
+                                : obj,
+                          );
+
+                          setProposal({
+                            ...proposal,
+                            objectives: updatedObjectives,
+                          });
+                        }}
+                      />
+                    </div>
+                  </SortableItem>
+                );
+              })}
+            </div>
+          </SortableContainer>
         </Field>
 
-        <Field>
+        <Field className={fieldStyle}>
           <FieldLabel className={fieldLabelStyle} htmlFor="solution">
             Solution
           </FieldLabel>
