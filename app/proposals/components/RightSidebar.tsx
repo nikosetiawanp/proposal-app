@@ -63,7 +63,7 @@ export default function RightSidebar() {
     <div className="hidden w-[512px] border-l border-zinc-300 bg-white lg:block">
       {/* Font Change */}
       <div className="p-4">
-        <span className="text-primary font-bold">Proposal Settings</span>
+        <span className="text-primary font-bold">Settings</span>
       </div>
       <Separator />
       <div className="scroll-hidden h-full overflow-y-auto pb-32">
@@ -71,7 +71,7 @@ export default function RightSidebar() {
           type="multiple"
           // collapsible
           // defaultValue="typography"
-          className="flex flex-col overflow-y-auto"
+          className="flex flex-col"
         >
           <AccordionItem value="typography">
             <AccordionTrigger className={accordionTriggerStyle}>
@@ -356,20 +356,23 @@ export default function RightSidebar() {
             </AccordionContent>
           </AccordionItem>
 
-          <AccordionItem value="units">
+          <AccordionItem value="date-and-time">
             <AccordionTrigger className={accordionTriggerStyle}>
-              UNITS
+              DATE & TIME
             </AccordionTrigger>
+
             <AccordionContent className={accordionContentStyle}>
               {/* Time Unit */}
               <Field>
-                <FieldLabel className={fieldLabelStyle}>Time</FieldLabel>
+                <FieldLabel className={fieldLabelStyle}>Time Unit</FieldLabel>
                 <ToggleGroup
                   type="single"
+                  size="sm"
                   value={proposal?.settings?.format?.timeUnit}
                   onValueChange={(
                     value: Proposal["settings"]["format"]["timeUnit"],
                   ) => {
+                    if (!value) return;
                     setProposal({
                       ...proposal,
                       settings: {
@@ -399,48 +402,6 @@ export default function RightSidebar() {
                 </ToggleGroup>
               </Field>
 
-              {/* Currency */}
-              <Field>
-                <FieldLabel className={fieldLabelStyle}>Currency</FieldLabel>
-                <ToggleGroup
-                  className="w-auto"
-                  type="single"
-                  value={proposal?.settings?.format?.currency}
-                  onValueChange={(value) => {
-                    setProposal({
-                      ...proposal,
-                      settings: {
-                        ...proposal?.settings,
-                        format: {
-                          ...proposal?.settings?.format,
-                          currency: value,
-                        },
-                      },
-                    });
-                  }}
-                >
-                  {currencies.map((currency, index) => {
-                    return (
-                      <ToggleGroupItem
-                        key={index}
-                        variant="outline"
-                        className="flex-1 font-bold"
-                        value={currency.code}
-                      >
-                        {currency.symbol}
-                      </ToggleGroupItem>
-                    );
-                  })}
-                </ToggleGroup>
-              </Field>
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="format">
-            <AccordionTrigger className={accordionTriggerStyle}>
-              FORMAT
-            </AccordionTrigger>
-            <AccordionContent className={accordionContentStyle}>
               {/* Date */}
               <Field>
                 <FieldLabel className={fieldLabelStyle}>Date</FieldLabel>
@@ -474,15 +435,68 @@ export default function RightSidebar() {
             </AccordionContent>
           </AccordionItem>
 
-          <AccordionItem value="document">
+          <AccordionItem value="numbers-and-currency">
             <AccordionTrigger className={accordionTriggerStyle}>
-              DOCUMENT
+              NUMBERS & CURRENCY
+            </AccordionTrigger>
+            <AccordionContent className={accordionContentStyle}>
+              {/* Currency */}
+              <Field>
+                <FieldLabel className={fieldLabelStyle}>Currency</FieldLabel>
+                <ToggleGroup
+                  size="sm"
+                  className="w-auto"
+                  type="single"
+                  value={proposal?.settings?.format?.currency}
+                  onValueChange={(value) => {
+                    setProposal({
+                      ...proposal,
+                      settings: {
+                        ...proposal?.settings,
+                        format: {
+                          ...proposal?.settings?.format,
+                          currency: value,
+                        },
+                      },
+                    });
+                  }}
+                >
+                  {currencies.map((currency, index) => {
+                    return (
+                      <ToggleGroupItem
+                        key={index}
+                        variant="outline"
+                        className="flex-1 font-bold"
+                        value={currency.code}
+                      >
+                        {currency.symbol}
+                      </ToggleGroupItem>
+                    );
+                  })}
+                </ToggleGroup>
+              </Field>
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="bullets-and-numbering">
+            <AccordionTrigger className={accordionTriggerStyle}>
+              FORMAT
+            </AccordionTrigger>
+            <AccordionContent
+              className={accordionContentStyle}
+            ></AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="paper">
+            <AccordionTrigger className={accordionTriggerStyle}>
+              PAPER
             </AccordionTrigger>
             <AccordionContent className={accordionContentStyle}>
               {/* Paper Size */}
               <Field>
                 <FieldLabel className={fieldLabelStyle}>Paper size</FieldLabel>
                 <ToggleGroup
+                  size="sm"
                   type="single"
                   value={proposal?.settings?.print?.paperSize}
                   onValueChange={(

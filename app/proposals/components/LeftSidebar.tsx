@@ -14,6 +14,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { SortableContainer, SortableItem } from "@/components/dndkit/Sortable";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function LeftSidebar() {
   const pathname = usePathname();
@@ -32,6 +38,9 @@ export default function LeftSidebar() {
     (state) => state.setProposalObjectives,
   );
 
+  const accordionTriggerStyle = "font-bold px-4 text-[12px]";
+  const accordionContentStyle = "flex flex-col gap-4 h-fit";
+
   return (
     <div className="hidden w-lg border-r border-zinc-300 bg-white lg:block">
       <div className="p-4">
@@ -39,162 +48,182 @@ export default function LeftSidebar() {
       </div>
       <Separator />
 
-      <div className="scroll-hidden flex h-full flex-col gap-4 overflow-y-auto pt-4 pb-32">
-        <Field className={fieldStyle}>
-          <FieldLabel className={fieldLabelStyle} htmlFor="title">
-            Project Title
-          </FieldLabel>
-          <Input
-            id="title"
-            value={proposal?.title}
-            onChange={(e) => {
-              setProposal({
-                ...proposal,
-                title: e.target.value,
-              });
-            }}
-          />
-        </Field>
-        <Field className={fieldStyle}>
-          <FieldLabel className={fieldLabelStyle} htmlFor="client-name">
-            Client Name
-          </FieldLabel>
-          <Input
-            id="client-name"
-            value={proposal?.clientName}
-            onChange={(e) => {
-              setProposal({
-                ...proposal,
-                clientName: e.target.value,
-              });
-            }}
-          />
-        </Field>
-        <Field className={fieldStyle}>
-          <FieldLabel className={fieldLabelStyle} htmlFor="proposer-name">
-            Proposer Name
-          </FieldLabel>
-          <Input
-            id="proposer-name"
-            value={proposal?.proposerName}
-            onChange={(e) => {
-              setProposal({
-                ...proposal,
-                proposerName: e.target.value,
-              });
-            }}
-          />
-        </Field>
-        <Separator />
-        <Field className={fieldStyle}>
-          <FieldLabel className={fieldLabelStyle} htmlFor="overview">
-            Overview
-          </FieldLabel>
-          <Textarea
-            id="overview"
-            value={proposal?.overview}
-            onChange={(e) => {
-              setProposal({
-                ...proposal,
-                overview: e.target.value,
-              });
-            }}
-            className="resize-none"
-          />
-        </Field>
-        <Field className="">
-          <div className="flex items-center justify-between px-4">
-            <FieldLabel className={fieldLabelStyle} htmlFor="overview">
-              Objectives
-            </FieldLabel>
-            <Button
-              size="xs"
-              onClick={() => {
-                const newObjective = {
-                  id: crypto.randomUUID(),
-                  title: "",
-                  description: "",
-                };
+      <div className="scroll-hidden flex h-full flex-col gap-4 overflow-y-auto pb-32">
+        <Accordion type="multiple">
+          <AccordionItem value="cover">
+            <AccordionTrigger className={accordionTriggerStyle}>
+              COVER
+            </AccordionTrigger>
+            <AccordionContent className={accordionContentStyle}>
+              <Field className={fieldStyle}>
+                <FieldLabel className={fieldLabelStyle} htmlFor="title">
+                  Project Title
+                </FieldLabel>
+                <Input
+                  id="title"
+                  value={proposal?.title}
+                  onChange={(e) => {
+                    setProposal({
+                      ...proposal,
+                      title: e.target.value,
+                    });
+                  }}
+                />
+              </Field>
+              <Field className={fieldStyle}>
+                <FieldLabel className={fieldLabelStyle} htmlFor="client-name">
+                  Client Name
+                </FieldLabel>
+                <Input
+                  id="client-name"
+                  value={proposal?.clientName}
+                  onChange={(e) => {
+                    setProposal({
+                      ...proposal,
+                      clientName: e.target.value,
+                    });
+                  }}
+                />
+              </Field>
+              <Field className={fieldStyle}>
+                <FieldLabel className={fieldLabelStyle} htmlFor="proposer-name">
+                  Proposer Name
+                </FieldLabel>
+                <Input
+                  id="proposer-name"
+                  value={proposal?.proposerName}
+                  onChange={(e) => {
+                    setProposal({
+                      ...proposal,
+                      proposerName: e.target.value,
+                    });
+                  }}
+                />
+              </Field>
+            </AccordionContent>
+          </AccordionItem>
 
-                setProposalObjectives([...proposal.objectives, newObjective]);
-              }}
-            >
-              <Plus />
-              <span>Add Item</span>
-            </Button>
-          </div>
-          <SortableContainer
-            items={proposal?.objectives ?? []}
-            setItems={setProposalObjectives as any}
-          >
-            <div className="flex w-full flex-col gap-2">
-              {proposal?.objectives?.map((objective, index) => {
-                return (
-                  <SortableItem
-                    key={objective.id}
-                    id={objective.id}
-                    onDelete={() => {
-                      setProposalObjectives([
-                        ...proposal.objectives.filter(
-                          (obj) => obj.id !== objective.id,
-                        ),
-                      ]);
-                    }}
-                    onCreate={() => {
+          <AccordionItem value="executiveSummary">
+            <AccordionTrigger className={accordionTriggerStyle}>
+              EXECUTIVE SUMMARY
+            </AccordionTrigger>
+            <AccordionContent className={accordionContentStyle}>
+              <Field className={fieldStyle}>
+                <FieldLabel className={fieldLabelStyle} htmlFor="overview">
+                  Overview
+                </FieldLabel>
+                <Textarea
+                  id="overview"
+                  value={proposal?.overview}
+                  onChange={(e) => {
+                    setProposal({
+                      ...proposal,
+                      overview: e.target.value,
+                    });
+                  }}
+                  className="resize-none"
+                />
+              </Field>
+              <Field className="">
+                <div className="flex items-center justify-between px-4">
+                  <FieldLabel className={fieldLabelStyle} htmlFor="overview">
+                    Objectives
+                  </FieldLabel>
+                  <Button
+                    variant="outline"
+                    size="xs"
+                    onClick={() => {
                       const newObjective = {
                         id: crypto.randomUUID(),
                         title: "",
                         description: "",
                       };
 
-                      const newItems = [...proposal.objectives];
-                      newItems.splice(index + 1, 0, newObjective);
-
-                      setProposalObjectives(newItems);
+                      setProposalObjectives([
+                        ...proposal.objectives,
+                        newObjective,
+                      ]);
                     }}
                   >
-                    <div className="flex gap-1">
-                      <Textarea
-                        value={proposal?.objectives[index].description}
-                        className="resize-none"
-                        onChange={(e) => {
-                          const updatedObjectives = proposal.objectives.map(
-                            (obj) =>
-                              obj.id === objective.id
-                                ? { ...obj, description: e.target.value }
-                                : obj,
-                          );
+                    <Plus />
+                    <span>Add Item</span>
+                  </Button>
+                </div>
+                <SortableContainer
+                  items={proposal?.objectives ?? []}
+                  setItems={setProposalObjectives as any}
+                >
+                  <div className="flex w-full flex-col gap-2">
+                    {proposal?.objectives?.map((objective, index) => {
+                      return (
+                        <SortableItem
+                          key={objective.id}
+                          id={objective.id}
+                          onDelete={() => {
+                            setProposalObjectives([
+                              ...proposal.objectives.filter(
+                                (obj) => obj.id !== objective.id,
+                              ),
+                            ]);
+                          }}
+                          onCreate={() => {
+                            const newObjective = {
+                              id: crypto.randomUUID(),
+                              title: "",
+                              description: "",
+                            };
 
-                          setProposal({
-                            ...proposal,
-                            objectives: updatedObjectives,
-                          });
-                        }}
-                      />
-                    </div>
-                  </SortableItem>
-                );
-              })}
-            </div>
-          </SortableContainer>
-        </Field>
+                            const newItems = [...proposal.objectives];
+                            newItems.splice(index + 1, 0, newObjective);
 
-        <Field className={fieldStyle}>
-          <FieldLabel className={fieldLabelStyle} htmlFor="solution">
-            Solution
-          </FieldLabel>
-          <Textarea
-            id="solution"
-            value={proposal?.solution}
-            onChange={(e) => {
-              setProposal({
-                ...proposal,
-                solution: e.target.value,
-              });
-            }}
-            className="resize-none"
-          />
-        </Field>
+                            setProposalObjectives(newItems);
+                          }}
+                        >
+                          <div className="flex gap-1">
+                            <Textarea
+                              value={proposal?.objectives[index].description}
+                              className="resize-none"
+                              onChange={(e) => {
+                                const updatedObjectives =
+                                  proposal.objectives.map((obj) =>
+                                    obj.id === objective.id
+                                      ? { ...obj, description: e.target.value }
+                                      : obj,
+                                  );
+
+                                setProposal({
+                                  ...proposal,
+                                  objectives: updatedObjectives,
+                                });
+                              }}
+                            />
+                          </div>
+                        </SortableItem>
+                      );
+                    })}
+                  </div>
+                </SortableContainer>
+              </Field>
+
+              <Field className={fieldStyle}>
+                <FieldLabel className={fieldLabelStyle} htmlFor="solution">
+                  Solution
+                </FieldLabel>
+                <Textarea
+                  id="solution"
+                  value={proposal?.solution}
+                  onChange={(e) => {
+                    setProposal({
+                      ...proposal,
+                      solution: e.target.value,
+                    });
+                  }}
+                  className="resize-none"
+                />
+              </Field>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
       {/* Pages List */}
       {/* <div className="flex flex-col p-4">

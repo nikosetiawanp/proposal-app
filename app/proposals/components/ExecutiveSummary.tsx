@@ -112,7 +112,7 @@ export default function ExecutiveSummary() {
                     <div className="mt-0.5 flex items-baseline gap-1">
                       {/* <ArrowRight className="text-zinc-600" /> */}
                       <span
-                        className="text-zinc-600"
+                        className="text-[14px]"
                         style={{
                           color: proposal?.settings?.colorPalette?.textColor,
                         }}
