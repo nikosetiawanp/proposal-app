@@ -17,8 +17,8 @@ export default function Cover() {
       <div className={clsx("mt-9 flex flex-col justify-center gap-2 px-9")}>
         <span
           style={{
-            fontFamily: proposal?.settings?.typography?.headingFont,
-            color: proposal?.settings?.colorPalette?.accentColor,
+            fontFamily: proposal?.settings?.headingFont,
+            color: proposal?.settings?.accentColor,
           }}
           className={clsx("text-4xl text-[64px] font-bold")}
         >
@@ -32,9 +32,9 @@ export default function Cover() {
           placeholder="Project title"
           className="text-zinc-700"
           style={{
-            fontFamily: proposal?.settings?.typography?.bodyFont,
+            fontFamily: proposal?.settings?.bodyFont,
             fontSize: "16px",
-            color: proposal?.settings?.colorPalette?.textColor,
+            color: proposal?.settings?.textColor,
           }}
           value={proposal?.title}
           onChange={(e) => {
@@ -51,7 +51,7 @@ export default function Cover() {
         <div
           className={cn("h-full w-full rounded-xl")}
           style={{
-            backgroundColor: proposal?.settings?.colorPalette?.accentColor,
+            backgroundColor: proposal?.settings?.accentColor,
           }}
         ></div>
       </div>
@@ -60,8 +60,8 @@ export default function Cover() {
         <div className="flex items-baseline px-9">
           <span
             style={{
-              fontFamily: proposal?.settings?.typography?.bodyFont,
-              color: proposal?.settings?.colorPalette?.textColor,
+              fontFamily: proposal?.settings?.bodyFont,
+              color: proposal?.settings?.textColor,
             }}
             className="text-[14px] text-zinc-700"
           >
@@ -71,9 +71,9 @@ export default function Cover() {
             id="client-name"
             placeholder="Client's Name"
             style={{
-              fontFamily: proposal?.settings?.typography?.bodyFont,
+              fontFamily: proposal?.settings?.bodyFont,
               fontSize: "14px",
-              color: proposal?.settings?.colorPalette?.textColor,
+              color: proposal?.settings?.textColor,
             }}
             className="text-zinc-700"
             value={proposal?.clientName}
@@ -89,8 +89,8 @@ export default function Cover() {
         <div className="flex items-baseline px-9">
           <span
             style={{
-              fontFamily: proposal?.settings?.typography?.bodyFont,
-              color: proposal?.settings?.colorPalette?.textColor,
+              fontFamily: proposal?.settings?.bodyFont,
+              color: proposal?.settings?.textColor,
             }}
             className="text-[14px] text-zinc-700"
           >
@@ -101,9 +101,9 @@ export default function Cover() {
             placeholder="Proposer's Name"
             className="text-[14px]"
             style={{
-              fontFamily: proposal?.settings?.typography?.bodyFont,
+              fontFamily: proposal?.settings?.bodyFont,
               fontSize: "14px",
-              color: proposal?.settings?.colorPalette?.textColor,
+              color: proposal?.settings?.textColor,
             }}
             value={proposal?.proposerName}
             onChange={(e) => {
@@ -117,8 +117,8 @@ export default function Cover() {
         <div className="flex items-baseline px-9 text-[14px]">
           <span
             style={{
-              fontFamily: proposal?.settings?.typography?.bodyFont,
-              color: proposal?.settings?.colorPalette?.textColor,
+              fontFamily: proposal?.settings?.bodyFont,
+              color: proposal?.settings?.textColor,
             }}
             className="text-[14px] text-zinc-700"
           >
@@ -133,9 +133,9 @@ export default function Cover() {
                 });
               }}
               style={{
-                fontFamily: proposal?.settings?.typography?.bodyFont,
+                fontFamily: proposal?.settings?.bodyFont,
                 fontSize: "14px",
-                color: proposal?.settings?.colorPalette?.textColor,
+                color: proposal?.settings?.textColor,
               }}
             />
           </span>

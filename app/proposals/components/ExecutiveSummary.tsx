@@ -30,8 +30,8 @@ export default function ExecutiveSummary() {
         <div className="flex flex-col px-8">
           <h2
             style={{
-              fontFamily: proposal?.settings?.typography?.headingFont,
-              color: proposal?.settings?.colorPalette?.accentColor,
+              fontFamily: proposal?.settings?.headingFont,
+              color: proposal?.settings?.accentColor,
             }}
             className="mb-4 text-[36px] font-bold text-zinc-600"
           >
@@ -40,8 +40,8 @@ export default function ExecutiveSummary() {
           <span
             className="font-bold text-zinc-600"
             style={{
-              fontFamily: proposal?.settings?.typography?.bodyFont,
-              color: proposal?.settings?.colorPalette?.accentColor,
+              fontFamily: proposal?.settings?.bodyFont,
+              color: proposal?.settings?.accentColor,
               fontSize: "16px",
             }}
           >
@@ -53,9 +53,9 @@ export default function ExecutiveSummary() {
             value={proposal?.overview}
             className="text-wrap text-zinc-600"
             style={{
-              fontFamily: proposal?.settings?.typography?.bodyFont,
+              fontFamily: proposal?.settings?.bodyFont,
               fontSize: "14px",
-              color: proposal?.settings?.colorPalette?.textColor,
+              color: proposal?.settings?.textColor,
             }}
             as="textarea"
             onChange={(e) => {
@@ -72,8 +72,8 @@ export default function ExecutiveSummary() {
           <span
             className="ml-8 font-bold text-zinc-600"
             style={{
-              fontFamily: proposal?.settings?.typography?.bodyFont,
-              color: proposal?.settings?.colorPalette?.accentColor,
+              fontFamily: proposal?.settings?.bodyFont,
+              color: proposal?.settings?.accentColor,
               fontSize: "16px",
             }}
           >
@@ -114,7 +114,7 @@ export default function ExecutiveSummary() {
                       <span
                         className="text-[14px]"
                         style={{
-                          color: proposal?.settings?.colorPalette?.textColor,
+                          color: proposal?.settings?.textColor,
                         }}
                       >
                         {index + 1}.
@@ -126,9 +126,9 @@ export default function ExecutiveSummary() {
                         value={objective.description}
                         as="textarea"
                         style={{
-                          fontFamily: proposal?.settings?.typography?.bodyFont,
+                          fontFamily: proposal?.settings?.bodyFont,
                           fontSize: "14px",
-                          color: proposal?.settings?.colorPalette?.textColor,
+                          color: proposal?.settings?.textColor,
                         }}
                         onChange={(e) => {
                           const updatedObjectives = proposal.objectives.map(
@@ -156,8 +156,8 @@ export default function ExecutiveSummary() {
           <span
             className="font-bold text-zinc-600"
             style={{
-              fontFamily: proposal?.settings?.typography?.bodyFont,
-              color: proposal?.settings?.colorPalette?.accentColor,
+              fontFamily: proposal?.settings?.bodyFont,
+              color: proposal?.settings?.accentColor,
               fontSize: "16px",
             }}
           >
@@ -169,9 +169,9 @@ export default function ExecutiveSummary() {
             value={proposal?.solution}
             className="text-wrap text-zinc-600"
             style={{
-              fontFamily: proposal?.settings?.typography?.bodyFont,
+              fontFamily: proposal?.settings?.bodyFont,
               fontSize: "14px",
-              color: proposal?.settings?.colorPalette?.textColor,
+              color: proposal?.settings?.textColor,
             }}
             as="textarea"
             onChange={(e) => {

@@ -12,9 +12,9 @@ export default function ProposalFooter() {
         <TextEditable
           id={""}
           style={{
-            fontFamily: proposal?.settings?.typography?.bodyFont,
+            fontFamily: proposal?.settings?.bodyFont,
             fontSize: "14px",
-            color: proposal?.settings?.colorPalette?.textColor,
+            color: proposal?.settings?.textColor,
           }}
           placeholder={"Project Title"}
           value={proposal?.title}
@@ -29,9 +29,9 @@ export default function ProposalFooter() {
       <span
         className="text-zinc-900"
         style={{
-          fontFamily: proposal?.settings?.typography?.bodyFont,
+          fontFamily: proposal?.settings?.bodyFont,
           fontSize: "14px",
-          color: proposal?.settings?.colorPalette?.textColor,
+          color: proposal?.settings?.textColor,
         }}
       >
         1

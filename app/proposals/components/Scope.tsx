@@ -2,10 +2,7 @@
 
 import TextEditable from "@/components/TextEditable";
 import clsx from "clsx";
-import SectionTitle from "./SectionTitle";
 import { SortableContainer, SortableItem } from "@/components/dndkit/Sortable";
-import { SetStateAction, useState } from "react";
-import { ArrowRight, Plus } from "lucide-react";
 import ProposalFooter from "./ProposalFooter";
 import ProposalHeader from "./ProposalHeader";
 import { useStore } from "zustand";
@@ -29,8 +26,8 @@ export default function Scope() {
         <div className="flex flex-col gap-2">
           <h2
             style={{
-              fontFamily: proposal?.settings?.typography?.headingFont,
-              color: proposal?.settings?.colorPalette?.accentColor,
+              fontFamily: proposal?.settings?.headingFont,
+              color: proposal?.settings?.accentColor,
             }}
             className="ml-9 text-[36px] font-bold"
           >
@@ -60,9 +57,7 @@ export default function Scope() {
                         title: "",
                         description: "",
                         budget: "0",
-                        estimatedTimeMin: 0,
-                        estimatedTimeMax: 0,
-                        optional: false,
+                        duration: 0,
                       };
 
                       const newItems = [...proposal.services];
@@ -80,10 +75,8 @@ export default function Scope() {
                           value={service.title}
                           className="font-bold"
                           style={{
-                            fontFamily:
-                              proposal?.settings?.typography?.bodyFont,
-                            color:
-                              proposal?.settings?.colorPalette?.accentColor,
+                            fontFamily: proposal?.settings?.bodyFont,
+                            color: proposal?.settings?.accentColor,
                             fontSize: "16px",
                           }}
                           onChange={(e) => {
@@ -108,9 +101,9 @@ export default function Scope() {
                         as="textarea"
                         className="text-zinc-600"
                         style={{
-                          fontFamily: proposal?.settings?.typography?.bodyFont,
+                          fontFamily: proposal?.settings?.bodyFont,
                           fontSize: "14px",
-                          color: proposal?.settings?.colorPalette?.textColor,
+                          color: proposal?.settings?.textColor,
                         }}
                         onChange={(e) => {
                           const updatedServices = proposal.services.map(

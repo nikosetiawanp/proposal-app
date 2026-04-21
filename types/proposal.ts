@@ -28,30 +28,24 @@ export interface Proposal {
     title: string;
     description: string;
     budget: string;
-    estimatedTimeMin: number;
-    estimatedTimeMax: number;
-    optional: boolean;
+    duration: number;
   }[];
   settings: {
-    typography: {
-      headingFont: string;
-      bodyFont: string;
-      useCustomFont: boolean;
-    };
-    colorPalette: {
-      backgroundColor: string;
-      textColor: string;
-      accentColor: string;
-    };
-    pages: Record<ProposalPageSlug, { active: boolean; layout: string }>;
-    print: {
-      paperSize: "A4" | "Letter";
-      orientation: "portrait" | "landscape";
-    };
-    format: {
-      date: any;
-      timeUnit: "Day" | "Week" | "Month";
-      currency: CurrencyCode;
-    };
+    headingFont: string;
+    bodyFont: string;
+    useCustomFont: boolean;
+
+    backgroundColor: string;
+    textColor: string;
+    accentColor: string;
+
+    paperSize: "A4" | "Letter";
+    paperOrientation: "portrait" | "landscape";
+
+    dateFormat: any;
+    timeUnit: "Day" | "Week" | "Month";
+    currency: CurrencyCode;
+
+    // pages: Record<ProposalPageSlug, { active: boolean; layout: string }>;
   };
 }

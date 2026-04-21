@@ -254,9 +254,7 @@ export default function LeftSidebar() {
                       title: "",
                       description: "",
                       budget: "0",
-                      estimatedTimeMin: 0,
-                      estimatedTimeMax: 0,
-                      optional: false,
+                      duration: 0,
                     };
 
                     setProposalServices([...proposal.services, newService]);
@@ -289,9 +287,7 @@ export default function LeftSidebar() {
                           title: "",
                           description: "",
                           budget: "0",
-                          estimatedTimeMin: 0,
-                          estimatedTimeMax: 0,
-                          optional: false,
+                          duration: 0,
                         };
 
                         const newItems = [...proposal.services];
@@ -371,9 +367,7 @@ export default function LeftSidebar() {
                       title: "",
                       description: "",
                       budget: "0",
-                      estimatedTimeMin: 0,
-                      estimatedTimeMax: 0,
-                      optional: false,
+                      duration: 0,
                     };
 
                     setProposalServices([...proposal.services, newService]);
@@ -406,9 +400,7 @@ export default function LeftSidebar() {
                           title: "",
                           description: "",
                           budget: "0",
-                          estimatedTimeMin: 0,
-                          estimatedTimeMax: 0,
-                          optional: false,
+                          duration: 0,
                         };
 
                         const newItems = [...proposal.services];
@@ -445,7 +437,7 @@ export default function LeftSidebar() {
                           <InputGroup>
                             <InputGroupInput
                               placeholder="0"
-                              value={service?.estimatedTimeMin}
+                              value={service?.duration}
                               onChange={(e) => {
                                 const updatedServices = proposal.services.map(
                                   (serv) =>
@@ -466,8 +458,8 @@ export default function LeftSidebar() {
                               }}
                             />
                             <InputGroupAddon align="inline-end">
-                              {proposal?.settings?.format?.timeUnit}
-                              {service.estimatedTimeMin > 1 ? "s" : ""}
+                              {proposal?.settings?.timeUnit}
+                              {service.duration > 1 ? "s" : ""}
                             </InputGroupAddon>
                           </InputGroup>
                         </Field>
@@ -498,9 +490,7 @@ export default function LeftSidebar() {
                       title: "",
                       description: "",
                       budget: "0",
-                      estimatedTimeMin: 0,
-                      estimatedTimeMax: 0,
-                      optional: false,
+                      duration: 0,
                     };
 
                     setProposalServices([...proposal.services, newService]);
@@ -533,9 +523,7 @@ export default function LeftSidebar() {
                           title: "",
                           description: "",
                           budget: "0",
-                          estimatedTimeMin: 0,
-                          estimatedTimeMax: 0,
-                          optional: false,
+                          duration: 0,
                         };
 
                         const newItems = [...proposal.services];
@@ -575,13 +563,13 @@ export default function LeftSidebar() {
                                 currencies.find(
                                   (currency) =>
                                     currency.code ===
-                                    proposal?.settings?.format?.currency,
+                                    proposal?.settings?.currency,
                                 )?.symbol
                               }
                             </InputGroupAddon>
                             <InputGroupInput
                               placeholder="0"
-                              value={service?.estimatedTimeMin}
+                              value={service?.duration}
                               onChange={(e) => {
                                 const updatedServices = proposal.services.map(
                                   (serv) =>

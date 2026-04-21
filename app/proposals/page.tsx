@@ -29,6 +29,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import TopNavbar from "./components/TopNavbar";
+import Cover from "./components/Cover";
+import ExecutiveSummary from "./components/ExecutiveSummary";
+import Scope from "./components/Scope";
+import Timeline from "./components/Timeline";
+import Budget from "./components/Budget";
 
 export default function Page() {
   const [scale, setScale] = useState(100);
@@ -62,18 +67,15 @@ export default function Page() {
           {/* Viewport */}
           <div className="scroll-hidden flex h-full w-full flex-col items-center justify-start gap-4 overflow-y-scroll bg-zinc-100 pt-6 pb-20">
             {/* Paper */}
-            {hydrated ? (
-              proposalPages.map((page, index) => {
-                const active = proposal.settings.pages[page.slug].active;
-                return active ? (
-                  <ProposalPaper key={index}>
-                    <page.component />
-                  </ProposalPaper>
-                ) : null;
-              })
-            ) : (
-              <span className="text-zinc-900">Loading proposal...</span>
-            )}
+            <ProposalPaper>{<Cover />}</ProposalPaper>
+            <ProposalPaper>{<ExecutiveSummary />}</ProposalPaper>
+            <ProposalPaper>{<Scope />}</ProposalPaper>
+            <ProposalPaper>{<Timeline />}</ProposalPaper>
+            <ProposalPaper>{<Budget />}</ProposalPaper>{" "}
+            {/* {<ExecutiveSummary />}
+            {<Scope />}
+            {<Timeline />}
+            {<Budget />} */}
           </div>
 
           {/* Right sidebar */}

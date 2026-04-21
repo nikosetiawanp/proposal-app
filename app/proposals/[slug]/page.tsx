@@ -3,31 +3,37 @@
 import clsx from "clsx";
 import Layout from "../../layout";
 import { useState } from "react";
-import { PAPER_PRESETS, PaperPreset } from "../../../data/PaperPresets";
+import { PAPER_PRESETS } from "../../../data/PaperPresets";
 import ScaleControl from "./../components/ScaleControl";
 
 import { useSearchParams } from "next/navigation";
 
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import PageNavigator from "./../components/PageNavigator";
 import { proposalPages } from "@/data/proposal/proposalPages";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
+import Cover from "../components/Cover";
+import ExecutiveSummary from "../components/ExecutiveSummary";
+import Scope from "../components/Scope";
+import Timeline from "../components/Timeline";
+import Budget from "../components/Budget";
+import { Proposal } from "@/types/proposal";
+import ProposalPaper from "../components/ProposalPaper";
 
 export default function Page() {
   const [scale, setScale] = useState(100);
-  const [paperSize, setPaperSize] = useState<PaperPreset>("letter");
+  const [paperSize, setPaperSize] =
+    useState<Proposal["settings"]["paperSize"]>("Letter");
 
   const searchParams = useSearchParams();
   const currentPage = searchParams.get("page");
 
-  const CurrentPageComponent = proposalPages.find(
-    (page) => page.slug === currentPage,
-  )?.component;
+  // const CurrentPageComponent = proposalPages.find(
+  //   (page) => page.slug === currentPage,
+  // )?.component;
 
   const proposal = useStore(proposalStore, (state) => state.proposal);
-
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
 
   return (
@@ -50,21 +56,23 @@ export default function Page() {
         {/* Viewport */}
         <div className="flex h-full w-full items-center justify-center overflow-y-auto bg-zinc-200">
           {/* Paper */}
-          <div
+          {/* <div
             style={{
               transform: `scale(${scale / 100})`,
               width: `${PAPER_PRESETS[paperSize].width}px`,
               height: `${PAPER_PRESETS[paperSize].height}px`,
-              backgroundColor:
-                proposal?.settings?.colorPalette?.backgroundColor,
+              backgroundColor: proposal?.settings?.backgroundColor,
             }}
             className={clsx("z-0 flex h-full flex-col rounded-sm shadow-xl")}
-          >
-            {CurrentPageComponent ? <CurrentPageComponent /> : null}
-          </div>
+          > */}
+          <ProposalPaper>{<Cover />}</ProposalPaper>
+          <ProposalPaper>{<ExecutiveSummary />}</ProposalPaper>
+          <ProposalPaper>{<Scope />}</ProposalPaper>
+          <ProposalPaper>{<Timeline />}</ProposalPaper>
+          <ProposalPaper>{<Budget />}</ProposalPaper>
+          {/* </div> */}
         </div>
 
-        <PageNavigator />
         <ScaleControl scale={scale} setScale={setScale} />
       </main>
     </Layout>

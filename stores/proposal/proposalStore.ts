@@ -54,19 +54,26 @@ export const proposalStore = createStore<
             services,
           },
         })),
-      setProposalPages: (page: any) =>
+      setProposalSettings: (settings: Proposal["settings"]) =>
         set((state) => ({
           proposal: {
             ...state.proposal,
-            settings: {
-              ...state.proposal.settings,
-              pages: {
-                ...state.proposal.settings.pages,
-                [page.slug]: page,
-              },
-            },
+            settings,
           },
         })),
+      // setProposalPages: (page: any) =>
+      //   set((state) => ({
+      //     proposal: {
+      //       ...state.proposal,
+      //       settings: {
+      //         ...state.proposal.settings,
+      //         pages: {
+      //           ...state.proposal.settings.pages,
+      //           [page.slug]: page,
+      //         },
+      //       },
+      //     },
+      //   })),
     }),
 
     {

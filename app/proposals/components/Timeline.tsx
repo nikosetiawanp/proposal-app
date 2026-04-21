@@ -22,12 +22,7 @@ export default function Timeline() {
     (state) => state.setProposalServices,
   );
   const totalTimeMin = proposal?.services?.reduce(
-    (acc, service) => acc + service.estimatedTimeMin,
-    0,
-  );
-
-  const totalTimeMax = proposal?.services?.reduce(
-    (acc, service) => acc + service.estimatedTimeMax,
+    (acc, service) => acc + service.duration,
     0,
   );
 
@@ -42,8 +37,8 @@ export default function Timeline() {
 
         <h2
           style={{
-            fontFamily: proposal?.settings?.typography?.headingFont,
-            color: proposal?.settings?.colorPalette?.accentColor,
+            fontFamily: proposal?.settings?.headingFont,
+            color: proposal?.settings?.accentColor,
           }}
           className="mb-4 ml-9 text-[36px] font-bold"
         >
@@ -55,10 +50,10 @@ export default function Timeline() {
           <div
             className="mx-9 flex items-center px-2 py-2"
             style={{
-              backgroundColor: proposal?.settings?.colorPalette?.accentColor,
+              backgroundColor: proposal?.settings?.accentColor,
             }}
           >
-            <span className="flex-[2] font-bold text-white">Service</span>
+            <span className="flex-2 font-bold text-white">Service</span>
             <span className="ml-5 flex-[1] font-bold text-white">
               Estimated Timeline
             </span>
@@ -93,9 +88,7 @@ export default function Timeline() {
                           title: "",
                           description: "",
                           budget: "0",
-                          estimatedTimeMin: 0,
-                          estimatedTimeMax: 0,
-                          optional: false,
+                          duration: 0,
                         };
 
                         const newItems = [...proposal.services];
@@ -105,17 +98,15 @@ export default function Timeline() {
                     >
                       <div className="mt-0.5 flex h-full w-full items-center">
                         {/* Item */}
-                        <div className="flex-[2]">
+                        <div className="flex-2">
                           <TextEditable
                             id="service"
                             placeholder="Service"
                             className="ml-[12px] text-[14px] text-zinc-600"
                             style={{
-                              fontFamily:
-                                proposal?.settings?.typography?.bodyFont,
+                              fontFamily: proposal?.settings?.bodyFont,
                               fontSize: "14px",
-                              color:
-                                proposal?.settings?.colorPalette?.textColor,
+                              color: proposal?.settings?.textColor,
                             }}
                             value={service.title}
                             onChange={(e) => {
@@ -144,18 +135,16 @@ export default function Timeline() {
                             placeholder="0"
                             className="ml-[4px] text-[14px] text-zinc-600"
                             style={{
-                              fontFamily:
-                                proposal?.settings?.typography?.bodyFont,
+                              fontFamily: proposal?.settings?.bodyFont,
                               fontSize: "14px",
-                              color:
-                                proposal?.settings?.colorPalette?.textColor,
+                              color: proposal?.settings?.textColor,
                             }}
                             suffix={
                               "\u00A0" +
-                              proposal?.settings?.format?.timeUnit +
-                              (service.estimatedTimeMin > 1 ? "s" : "")
+                              proposal?.settings?.timeUnit +
+                              (service.duration > 1 ? "s" : "")
                             }
-                            value={service.estimatedTimeMin}
+                            value={service.duration}
                             onChange={(e) => {
                               const updatedServices = proposal.services.map(
                                 (serv) =>
@@ -191,13 +180,13 @@ export default function Timeline() {
 
           {/* Table Footer */}
           <div className="flex px-11 py-2">
-            <div className="flex-[2]">
+            <div className="flex-2">
               <span
                 className="font-bold text-zinc-900"
                 style={{
-                  fontFamily: proposal?.settings?.typography?.bodyFont,
+                  fontFamily: proposal?.settings?.bodyFont,
                   fontSize: "14px",
-                  color: proposal?.settings?.colorPalette?.textColor,
+                  color: proposal?.settings?.textColor,
                 }}
               >
                 Total
@@ -207,14 +196,13 @@ export default function Timeline() {
               <span
                 className="font-bold text-zinc-900"
                 style={{
-                  fontFamily: proposal?.settings?.typography?.bodyFont,
+                  fontFamily: proposal?.settings?.bodyFont,
                   fontSize: "14px",
-                  color: proposal?.settings?.colorPalette?.textColor,
+                  color: proposal?.settings?.textColor,
                 }}
               >
                 {totalTimeMin}{" "}
-                {proposal?.settings?.format?.timeUnit +
-                  (totalTimeMin > 1 ? "s" : "")}
+                {proposal?.settings?.timeUnit + (totalTimeMin > 1 ? "s" : "")}
               </span>
             </div>
           </div>

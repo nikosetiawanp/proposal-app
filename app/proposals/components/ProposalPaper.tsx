@@ -16,10 +16,10 @@ export default function ProposalPaper({
     <div
       style={{
         transform: `scale(${scale / 100})`,
-        width: `${PAPER_PRESETS[proposal?.settings?.print?.paperSize]?.width}px`,
-        minHeight: `${PAPER_PRESETS[proposal?.settings?.print?.paperSize]?.height}px`,
-        maxHeight: `${PAPER_PRESETS[proposal?.settings?.print?.paperSize]?.height}px`,
-        backgroundColor: proposal?.settings?.colorPalette?.backgroundColor,
+        width: `${PAPER_PRESETS[proposal?.settings?.paperSize]?.width}px`,
+        minHeight: `${PAPER_PRESETS[proposal?.settings?.paperSize]?.height}px`,
+        maxHeight: `${PAPER_PRESETS[proposal?.settings?.paperSize]?.height}px`,
+        backgroundColor: proposal?.settings?.backgroundColor,
       }}
       className={clsx(
         "border-primary/0 z-0 flex h-full flex-col border-2 shadow-sm transition-all",

@@ -39,9 +39,7 @@ export const defaultProposal: Proposal = {
       description:
         "Design and develop a high-converting landing page, including layout, responsive design, and basic SEO setup. Includes revisions based on feedback.",
       budget: "1200",
-      estimatedTimeMin: 1,
-      estimatedTimeMax: 2,
-      optional: false,
+      duration: 7,
     },
     {
       id: crypto.randomUUID(),
@@ -49,75 +47,70 @@ export const defaultProposal: Proposal = {
       description:
         "Development of supporting pages such as About, Services, or Contact. Structure and content will follow the agreed sitemap.",
       budget: "800",
-      estimatedTimeMin: 1,
-      estimatedTimeMax: 2,
-      optional: true,
+      duration: 14,
     },
   ],
-
   settings: {
-    typography: {
-      headingFont: "Montserrat",
-      bodyFont: "Inter",
-      useCustomFont: false,
-    },
-    colorPalette: {
-      backgroundColor: "#0f172a", // deep navy
-      textColor: "#e2e8f0", // soft white
-      accentColor: "#38bdf8",
-    },
-    pages: {
-      cover: {
-        layout: "default",
-        active: true,
-      },
-      "table-of-contents": {
-        layout: "default",
-        active: false,
-      },
-      "brief-and-objectives": {
-        layout: "default",
-        active: true,
-      },
-      scope: {
-        layout: "default",
-        active: true,
-      },
-      "estimated-timeline": {
-        layout: "default",
-        active: true,
-      },
-      budget: {
-        layout: "default",
-        active: true,
-      },
-      "case-studies-and-references": {
-        layout: "default",
-        active: false,
-      },
-      "additional-notes": {
-        layout: "default",
-        active: false,
-      },
-      contract: {
-        layout: "default",
-        active: false,
-      },
-      "thank-you": {
-        layout: "default",
-        active: false,
-      },
-    },
+    // Typography
+    headingFont: "Oswald",
+    bodyFont: "Inter",
+    useCustomFont: false,
 
-    print: {
-      paperSize: "Letter",
-      orientation: "portrait",
-    },
+    // Colors
+    backgroundColor: "#ffffff",
+    textColor: "#111111",
+    accentColor: "#2563eb",
 
-    format: {
-      date: "MMMM, d yyyy",
-      timeUnit: "Week",
-      currency: "USD",
-    },
+    // Paper
+    paperSize: "Letter",
+    paperOrientation: "portrait",
+
+    // Date
+    dateFormat: "MMMM, d yyyy",
+    timeUnit: "Week",
+    currency: "$",
+
+    // pages: {
+    //   cover: {
+    //     layout: "default",
+    //     active: true,
+    //   },
+    //   "table-of-contents": {
+    //     layout: "default",
+    //     active: false,
+    //   },
+    //   "brief-and-objectives": {
+    //     layout: "default",
+    //     active: true,
+    //   },
+    //   scope: {
+    //     layout: "default",
+    //     active: true,
+    //   },
+    //   "estimated-timeline": {
+    //     layout: "default",
+    //     active: true,
+    //   },
+    //   budget: {
+    //     layout: "default",
+    //     active: true,
+    //   },
+    //   "case-studies-and-references": {
+    //     layout: "default",
+    //     active: false,
+    //   },
+    //   "additional-notes": {
+    //     layout: "default",
+    //     active: false,
+    //   },
+    //   contract: {
+    //     layout: "default",
+    //     active: false,
+    //   },
+    //   "thank-you": {
+    //     layout: "default",
+    //     active: false,
+    //   },
+    // },
   },
 };

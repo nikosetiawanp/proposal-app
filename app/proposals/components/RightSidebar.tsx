@@ -82,23 +82,20 @@ export default function RightSidebar() {
               <Field>
                 <FieldLabel className={fieldLabelStyle}>Fonts</FieldLabel>
                 <Dialog>
-                  <DialogTrigger
-                    disabled={proposal?.settings?.typography?.useCustomFont}
-                  >
+                  <DialogTrigger disabled={proposal?.settings?.useCustomFont}>
                     <Button
                       className={cn(
                         "w-full justify-between",
                         "bg-white font-normal hover:bg-white",
-                        proposal?.settings?.typography?.useCustomFont &&
-                          "opacity-50",
+                        proposal?.settings?.useCustomFont && "opacity-50",
                       )}
                       variant="outline"
                       asChild
-                      disabled={proposal?.settings?.typography?.useCustomFont}
+                      disabled={proposal?.settings?.useCustomFont}
                     >
                       <span className="text-normal text-sm">
-                        {proposal?.settings?.typography?.headingFont} +{" "}
-                        {proposal?.settings?.typography?.bodyFont}
+                        {proposal?.settings?.headingFont} +{" "}
+                        {proposal?.settings?.bodyFont}
                         <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4" />
                       </span>
                     </Button>
@@ -118,11 +115,8 @@ export default function RightSidebar() {
                                   ...proposal,
                                   settings: {
                                     ...proposal?.settings,
-                                    typography: {
-                                      ...proposal?.settings?.typography,
-                                      headingFont: pairing.headingFont,
-                                      bodyFont: pairing.bodyFont,
-                                    },
+                                    headingFont: pairing.headingFont,
+                                    bodyFont: pairing.bodyFont,
                                   },
                                 });
                               }}
@@ -133,7 +127,7 @@ export default function RightSidebar() {
                                   style={{
                                     fontFamily: pairing.headingFont,
                                     // color:
-                                    //   proposal?.settings?.colorPalette?.textColor,
+                                    //   proposal?.settings?.textColor,
                                   }}
                                 >
                                   Heading Font
@@ -143,7 +137,7 @@ export default function RightSidebar() {
                                   style={{
                                     fontFamily: pairing.bodyFont,
                                     // color:
-                                    //   proposal?.settings?.colorPalette?.textColor,
+                                    //   proposal?.settings?.textColor,
                                   }}
                                 >
                                   And this is your body font
@@ -166,22 +160,18 @@ export default function RightSidebar() {
                       ...proposal,
                       settings: {
                         ...proposal?.settings,
-                        typography: {
-                          ...proposal?.settings?.typography,
-                          useCustomFont:
-                            !proposal?.settings?.typography?.useCustomFont,
-                        },
+                        useCustomFont: !proposal?.settings?.useCustomFont,
                       },
                     });
                   }}
-                  checked={proposal?.settings?.typography?.useCustomFont}
+                  checked={proposal?.settings?.useCustomFont}
                 />
                 <Label htmlFor="use-custom-font" className="text-xs">
                   Use custom font
                 </Label>
               </Field>
 
-              {proposal?.settings?.typography?.useCustomFont && (
+              {proposal?.settings?.useCustomFont && (
                 <>
                   <Separator />
                   {/* Heading Font */}
@@ -190,16 +180,13 @@ export default function RightSidebar() {
                       Heading font
                     </FieldLabel>
                     <Select
-                      value={proposal?.settings?.typography?.headingFont}
+                      value={proposal?.settings?.headingFont}
                       onValueChange={(value) => {
                         setProposal({
                           ...proposal,
                           settings: {
                             ...proposal?.settings,
-                            typography: {
-                              ...proposal?.settings?.typography,
-                              headingFont: value,
-                            },
+                            headingFont: value,
                           },
                         });
                       }}
@@ -245,16 +232,13 @@ export default function RightSidebar() {
                       Body font
                     </FieldLabel>
                     <Select
-                      value={proposal?.settings?.typography?.bodyFont}
+                      value={proposal?.settings?.bodyFont}
                       onValueChange={(value) => {
                         setProposal({
                           ...proposal,
                           settings: {
                             ...proposal?.settings,
-                            typography: {
-                              ...proposal?.settings?.typography,
-                              bodyFont: value,
-                            },
+                            bodyFont: value,
                           },
                         });
                       }}
@@ -322,11 +306,9 @@ export default function RightSidebar() {
                                   ...proposal,
                                   settings: {
                                     ...proposal?.settings,
-                                    colorPalette: {
-                                      backgroundColor: color.backgroundColor,
-                                      textColor: color.textColor,
-                                      accentColor: color.accentColor,
-                                    },
+                                    backgroundColor: color.backgroundColor,
+                                    textColor: color.textColor,
+                                    accentColor: color.accentColor,
                                   },
                                 });
                               }}
@@ -366,16 +348,13 @@ export default function RightSidebar() {
               <Field>
                 <FieldLabel className={fieldLabelStyle}>Date</FieldLabel>
                 <Select
-                  value={proposal?.settings?.format?.date}
+                  value={proposal?.settings?.dateFormat}
                   onValueChange={(value) => {
                     setProposal({
                       ...proposal,
                       settings: {
                         ...proposal?.settings,
-                        format: {
-                          ...proposal?.settings?.format,
-                          date: value as any,
-                        },
+                        dateFormat: value as any,
                       },
                     });
                   }}
@@ -398,19 +377,14 @@ export default function RightSidebar() {
                 <ToggleGroup
                   type="single"
                   size="sm"
-                  value={proposal?.settings?.format?.timeUnit}
-                  onValueChange={(
-                    value: Proposal["settings"]["format"]["timeUnit"],
-                  ) => {
+                  value={proposal?.settings?.timeUnit}
+                  onValueChange={(value: Proposal["settings"]["timeUnit"]) => {
                     if (!value) return;
                     setProposal({
                       ...proposal,
                       settings: {
                         ...proposal?.settings,
-                        format: {
-                          ...proposal?.settings?.format,
-                          timeUnit: value,
-                        },
+                        timeUnit: value,
                       },
                     });
                   }}
@@ -446,29 +420,26 @@ export default function RightSidebar() {
                   size="sm"
                   className="w-auto"
                   type="single"
-                  value={proposal?.settings?.format?.currency}
+                  value={proposal?.settings?.currency}
                   onValueChange={(value) => {
                     setProposal({
                       ...proposal,
                       settings: {
                         ...proposal?.settings,
-                        format: {
-                          ...proposal?.settings?.format,
-                          currency: value,
-                        },
+                        currency: value,
                       },
                     });
                   }}
                 >
-                  {currencies.map((currency, index) => {
+                  {["$", "€", "£"].map((currency, index) => {
                     return (
                       <ToggleGroupItem
                         key={index}
                         variant="outline"
                         className="flex-1 font-bold"
-                        value={currency.code}
+                        value={currency}
                       >
-                        {currency.symbol}
+                        {currency}
                       </ToggleGroupItem>
                     );
                   })}
@@ -488,18 +459,13 @@ export default function RightSidebar() {
                 <ToggleGroup
                   size="sm"
                   type="single"
-                  value={proposal?.settings?.print?.paperSize}
-                  onValueChange={(
-                    value: Proposal["settings"]["print"]["paperSize"],
-                  ) => {
+                  value={proposal?.settings?.paperSize}
+                  onValueChange={(value: Proposal["settings"]["paperSize"]) => {
                     setProposal({
                       ...proposal,
                       settings: {
                         ...proposal?.settings,
-                        print: {
-                          ...proposal?.settings?.print,
-                          paperSize: value,
-                        },
+                        paperSize: value,
                       },
                     });
                   }}

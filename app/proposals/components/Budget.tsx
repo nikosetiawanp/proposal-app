@@ -13,7 +13,6 @@ import ProposalFooter from "./ProposalFooter";
 import ProposalHeader from "./ProposalHeader";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
-import { currencies } from "@/data/currencies";
 
 export default function Budget() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
@@ -48,8 +47,8 @@ export default function Budget() {
 
         <h2
           style={{
-            fontFamily: proposal?.settings?.typography?.headingFont,
-            color: proposal?.settings?.colorPalette?.accentColor,
+            fontFamily: proposal?.settings?.headingFont,
+            color: proposal?.settings?.accentColor,
           }}
           className="mb-4 ml-9 text-[36px] font-bold"
         >
@@ -61,10 +60,10 @@ export default function Budget() {
           <div
             className="mx-9 flex items-center px-2 py-2"
             style={{
-              backgroundColor: proposal?.settings?.colorPalette?.accentColor,
+              backgroundColor: proposal?.settings?.accentColor,
             }}
           >
-            <span className="flex-[2] font-bold text-white">Service</span>
+            <span className="flex-2 font-bold text-white">Service</span>
             <span className="ml-5 flex-[1] font-bold text-white">Budget</span>
           </div>
           {/* <div className="px-10">
@@ -97,9 +96,7 @@ export default function Budget() {
                           title: "",
                           description: "",
                           budget: "0",
-                          estimatedTimeMin: 0,
-                          estimatedTimeMax: 0,
-                          optional: false,
+                          duration: 0,
                         };
 
                         const newItems = [...proposal.services];
@@ -109,17 +106,15 @@ export default function Budget() {
                     >
                       <div className="mt-0.5 flex w-full">
                         {/* Service  */}
-                        <div className="flex flex-[2] items-end">
+                        <div className="flex flex-2 items-end">
                           <TextEditable
                             id="service"
                             placeholder="Service"
-                            className="ml-[12px] text-[14px] text-zinc-600"
+                            className="ml-3 text-[14px] text-zinc-600"
                             style={{
-                              fontFamily:
-                                proposal?.settings?.typography?.bodyFont,
+                              fontFamily: proposal?.settings?.bodyFont,
                               fontSize: "14px",
-                              color:
-                                proposal?.settings?.colorPalette?.textColor,
+                              color: proposal?.settings?.textColor,
                             }}
                             value={service.title}
                             onChange={(e) => {
@@ -142,25 +137,17 @@ export default function Budget() {
                         </div>
 
                         {/* Budget */}
-                        <div className="flex flex-[1] gap-[2px]">
+                        <div className="flex flex-1 gap-0.5">
                           <TextEditable
                             id="service"
                             placeholder="0"
-                            className="ml-[4px] text-[14px] text-zinc-600"
+                            className="ml-1 text-[14px] text-zinc-600"
                             style={{
-                              fontFamily:
-                                proposal?.settings?.typography?.bodyFont,
+                              fontFamily: proposal?.settings?.bodyFont,
                               fontSize: "14px",
-                              color:
-                                proposal?.settings?.colorPalette?.textColor,
+                              color: proposal?.settings?.textColor,
                             }}
-                            prefix={
-                              currencies.find(
-                                (currency) =>
-                                  currency.code ===
-                                  proposal?.settings?.format?.currency,
-                              )?.symbol
-                            }
+                            prefix={proposal?.settings?.currency}
                             value={service.budget}
                             onChange={(e) => {
                               const raw = e.target.value.replace(/,/g, "");
@@ -212,33 +199,28 @@ export default function Budget() {
 
           {/* Table Footer */}
           <div className="flex px-11 py-2">
-            <div className="flex-[2]">
+            <div className="flex-2">
               <span
                 className="font-bold text-zinc-900"
                 style={{
-                  fontFamily: proposal?.settings?.typography?.bodyFont,
+                  fontFamily: proposal?.settings?.bodyFont,
                   fontSize: "14px",
-                  color: proposal?.settings?.colorPalette?.textColor,
+                  color: proposal?.settings?.textColor,
                 }}
               >
                 Total
               </span>
             </div>
-            <div className="ml-5 flex flex-[1]">
+            <div className="ml-5 flex flex-1">
               <span
                 className="font-bold text-zinc-900"
                 style={{
-                  fontFamily: proposal?.settings?.typography?.bodyFont,
+                  fontFamily: proposal?.settings?.bodyFont,
                   fontSize: "14px",
-                  color: proposal?.settings?.colorPalette?.textColor,
+                  color: proposal?.settings?.textColor,
                 }}
               >
-                {
-                  currencies.find(
-                    (currency) =>
-                      currency.code === proposal?.settings?.format?.currency,
-                  )?.symbol
-                }
+                {proposal?.settings?.currency}
                 {totalBudget.toLocaleString()}
               </span>
             </div>
