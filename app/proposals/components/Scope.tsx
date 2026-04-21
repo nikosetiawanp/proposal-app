@@ -78,7 +78,7 @@ export default function Scope() {
                           id={"service-title-" + index}
                           placeholder={"Service Title"}
                           value={service.title}
-                          className="font-bold text-zinc-900"
+                          className="font-bold"
                           style={{
                             fontFamily:
                               proposal?.settings?.typography?.bodyFont,

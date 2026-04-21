@@ -13,8 +13,6 @@ import ProposalFooter from "./ProposalFooter";
 import ProposalHeader from "./ProposalHeader";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
-import { formatDuration, parseDuration } from "@/utils/duration";
-import DurationEditable from "@/components/DurationEditable";
 
 export default function Timeline() {
   const proposal = useStore(proposalStore, (state) => state.proposal);

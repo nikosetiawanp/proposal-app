@@ -362,6 +362,36 @@ export default function RightSidebar() {
             </AccordionTrigger>
 
             <AccordionContent className={accordionContentStyle}>
+              {/* Date */}
+              <Field>
+                <FieldLabel className={fieldLabelStyle}>Date</FieldLabel>
+                <Select
+                  value={proposal?.settings?.format?.date}
+                  onValueChange={(value) => {
+                    setProposal({
+                      ...proposal,
+                      settings: {
+                        ...proposal?.settings,
+                        format: {
+                          ...proposal?.settings?.format,
+                          date: value as any,
+                        },
+                      },
+                    });
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent position="popper">
+                    {["d MMMM yyyy", "MMMM, d yyyy"].map((f, index) => (
+                      <SelectItem key={index} value={f}>
+                        {format(new Date(), f)}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </Field>{" "}
               {/* Time Unit */}
               <Field>
                 <FieldLabel className={fieldLabelStyle}>Time Unit</FieldLabel>
@@ -400,37 +430,6 @@ export default function RightSidebar() {
                     },
                   )}
                 </ToggleGroup>
-              </Field>
-
-              {/* Date */}
-              <Field>
-                <FieldLabel className={fieldLabelStyle}>Date</FieldLabel>
-                <Select
-                  value={proposal?.settings?.format?.date}
-                  onValueChange={(value) => {
-                    setProposal({
-                      ...proposal,
-                      settings: {
-                        ...proposal?.settings,
-                        format: {
-                          ...proposal?.settings?.format,
-                          date: value as any,
-                        },
-                      },
-                    });
-                  }}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    {["d MMMM yyyy", "MMMM, d yyyy"].map((f, index) => (
-                      <SelectItem key={index} value={f}>
-                        {format(new Date(), f)}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
               </Field>
             </AccordionContent>
           </AccordionItem>
@@ -476,15 +475,6 @@ export default function RightSidebar() {
                 </ToggleGroup>
               </Field>
             </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="bullets-and-numbering">
-            <AccordionTrigger className={accordionTriggerStyle}>
-              FORMAT
-            </AccordionTrigger>
-            <AccordionContent
-              className={accordionContentStyle}
-            ></AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="paper">

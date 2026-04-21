@@ -149,13 +149,13 @@ function SortableItem({
         </DropdownMenuTrigger>
 
         <DropdownMenuContent>
-          <DropdownMenuItem onSelect={onDelete}>
-            <Trash />
-            <span>Delete</span>
-          </DropdownMenuItem>
           <DropdownMenuItem onSelect={onCreate}>
             <Plus />
             <span>Add item</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem onSelect={onDelete}>
+            <Trash />
+            <span>Delete</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
