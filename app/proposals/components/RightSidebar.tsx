@@ -60,7 +60,7 @@ export default function RightSidebar() {
   const fieldLabelStyle = "text-xs";
 
   return (
-    <div className="hidden w-lg border-l border-zinc-300 bg-white lg:block">
+    <div className="w-lg border-l border-zinc-300 bg-white">
       {/* Font Change */}
       <div className="p-4">
         <span className="text-primary font-bold">Settings</span>
@@ -170,7 +170,7 @@ export default function RightSidebar() {
                   checked={proposal?.settings?.useCustomFont}
                 />
                 <Label htmlFor="use-custom-font" className="text-xs">
-                  Use custom font
+                  Custom font
                 </Label>
               </Field>
 
@@ -259,6 +259,36 @@ export default function RightSidebar() {
               COLOR PALETTE
             </AccordionTrigger>
             <AccordionContent className={accordionContentStyle}>
+              <Field>
+                <FieldLabel className={fieldLabelStyle}>Theme</FieldLabel>
+                <ToggleGroup
+                  type="single"
+                  value={proposal?.settings?.theme}
+                  onValueChange={(value: Proposal["settings"]["theme"]) => {
+                    if (!value) return;
+                    setProposal({
+                      ...proposal,
+                      settings: {
+                        ...proposal?.settings,
+                        theme: value,
+                      },
+                    });
+                  }}
+                >
+                  {["Light", "Dark", "Accent"].map((theme, index) => {
+                    return (
+                      <ToggleGroupItem
+                        key={index}
+                        variant="outline"
+                        value={theme}
+                        className="flex-1"
+                      >
+                        {theme}
+                      </ToggleGroupItem>
+                    );
+                  })}
+                </ToggleGroup>
+              </Field>
               <div className="flex justify-between">
                 {Object.entries(colorPresets).map(
                   ([category, colors], index) => {
@@ -270,7 +300,7 @@ export default function RightSidebar() {
                         {colors.map((color, index) => {
                           return (
                             <div
-                              className="border-input hover:border-primary flex overflow-hidden rounded-xs border-2 shadow-xs hover:cursor-pointer"
+                              className="border-input hover:border-primary flex w-fit overflow-hidden rounded-xs border-2 shadow-xs hover:cursor-pointer"
                               key={index}
                               onClick={() => {
                                 setProposal({
@@ -438,7 +468,7 @@ export default function RightSidebar() {
                   checked={proposal?.settings?.useCustomCurrency}
                 />
                 <Label htmlFor="use-custom-currency" className="text-xs">
-                  Use custom currency
+                  Custom currency
                 </Label>
               </Field>
 

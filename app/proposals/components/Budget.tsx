@@ -13,6 +13,7 @@ import ProposalFooter from "./ProposalFooter";
 import ProposalHeader from "./ProposalHeader";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
+import { Separator } from "@/components/ui/separator";
 
 export default function Budget() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
@@ -64,12 +65,19 @@ export default function Budget() {
               backgroundColor: proposal?.settings?.accentColor,
             }}
           >
-            <span className="flex-2 font-bold text-white">Service</span>
-            <span className="ml-5 flex-[1] font-bold text-white">Budget</span>
+            <span
+              className="flex-2 font-bold text-white"
+              style={{ color: proposal?.settings?.textColor }}
+            >
+              Service
+            </span>
+            <span
+              className="ml-5 flex-[1] font-bold text-white"
+              style={{ color: proposal?.settings?.textColor }}
+            >
+              Budget
+            </span>
           </div>
-          {/* <div className="px-10">
-            <Divider />
-          </div> */}
 
           {/* Items */}
           <SortableContainer
@@ -194,7 +202,12 @@ export default function Budget() {
                       </div>
                     </SortableItem>
                     <div className="px-10">
-                      <Divider />
+                      <Separator
+                        style={{
+                          background: proposal?.settings?.textColor,
+                          opacity: 0.25,
+                        }}
+                      />{" "}
                     </div>
                   </React.Fragment>
                 );

@@ -1,7 +1,6 @@
 "use client";
 
 import { Proposal } from "@/types/proposal";
-import { bodyFonts, headingFonts } from "./fonts";
 
 export const defaultProposal: Proposal = {
   id: crypto.randomUUID(),
@@ -60,6 +59,7 @@ export const defaultProposal: Proposal = {
     backgroundColor: "#ffffff",
     textColor: "#111111",
     accentColor: "#2563eb",
+    theme: "Light",
 
     // Paper
     paperSize: "Letter",

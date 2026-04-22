@@ -48,14 +48,14 @@ export default function Cover() {
       </div>
 
       {/* Image */}
-      <div className="my-6 h-full w-full px-9">
+      {/* <div className="my-6 h-full w-full px-9">
         <div
           className={cn("h-full w-full rounded-xl")}
           style={{
             backgroundColor: proposal?.settings?.accentColor,
           }}
         ></div>
-      </div>
+      </div> */}
 
       <div className="flex flex-col pb-9">
         <div className="flex items-baseline px-9">

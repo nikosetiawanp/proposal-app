@@ -11,6 +11,7 @@ export default function ProposalPaper({
 }) {
   const [scale, setScale] = useState(100);
   const proposal = useStore(proposalStore, (state) => state.proposal);
+  const theme = proposal?.settings?.theme;
 
   return (
     <div

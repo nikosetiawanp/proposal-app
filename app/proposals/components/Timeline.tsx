@@ -13,6 +13,7 @@ import ProposalFooter from "./ProposalFooter";
 import ProposalHeader from "./ProposalHeader";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
+import { Separator } from "@/components/ui/separator";
 
 export default function Timeline() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
@@ -54,8 +55,16 @@ export default function Timeline() {
               backgroundColor: proposal?.settings?.accentColor,
             }}
           >
-            <span className="flex-2 font-bold text-white">Service</span>
-            <span className="ml-5 flex-[1] font-bold text-white">
+            <span
+              className="flex-2 font-bold"
+              style={{ color: proposal?.settings?.textColor }}
+            >
+              Service
+            </span>
+            <span
+              className="ml-5 flex-[1] font-bold text-white"
+              style={{ color: proposal?.settings?.textColor }}
+            >
               Estimated Timeline
             </span>
           </div>
@@ -167,7 +176,12 @@ export default function Timeline() {
                       </div>
                     </SortableItem>
                     <div className="px-9">
-                      <Divider />
+                      <Separator
+                        style={{
+                          background: proposal?.settings?.textColor,
+                          opacity: 0.25,
+                        }}
+                      />
                     </div>
                   </React.Fragment>
                 );

@@ -38,6 +38,7 @@ export interface Proposal {
     backgroundColor: string;
     textColor: string;
     accentColor: string;
+    theme: "Light" | "Dark" | "Accent";
 
     paperSize: "A4" | "Letter";
     paperOrientation: "portrait" | "landscape";
