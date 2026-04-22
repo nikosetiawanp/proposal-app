@@ -1,44 +1,145 @@
-export const headingFonts = [
-  { name: "Oswald", value: "Oswald", category: "Sans" },
-  { name: "Playfair Display", value: "Playfair Display", category: "Serif" },
-  { name: "Montserrat", value: "Montserrat", category: "Sans" },
-  { name: "Space Mono", value: "Space Mono", category: "Mono" },
+// export const fonts = [
+//   "Abril Fatface",
+//   "Archivo Black",
+//   "Cabin",
+//   "Hind",
+//   "Inconsolata",
+//   "Inter",
+//   "Josefin Sans",
+//   "Karla",
+//   "Krub",
+//   "Lato",
+//   "Lora",
+//   "Merriweather",
+//   "Montserrat",
+//   "Montserrat Light",
+//   "Nunito",
+//   "Open Sans",
+//   "Playfair",
+//   "Raleway",
+//   "Roboto",
+//   "Rokkit",
+//   "Ubuntu",
+//   "Yeseva One",
+// ];
+
+export const fonts = [
+  "Abril Fatface",
+  "Archivo Black",
+  "Cabin",
+  "Inter",
+  "Josefin Sans",
+  "Karla",
+  "Lato",
+  "Lora",
+  "Merriweather",
+  "Montserrat",
+  "Open Sans",
+  "Roboto",
 ];
 
-export const bodyFonts = [
-  { name: "Inter", value: "Inter", category: "Sans" },
-  { name: "Open Sans", value: "Open Sans", category: "Sans" },
-  { name: "Lato", value: "Lato", category: "Sans" },
-  { name: "Space Mono", value: "Space Mono", category: "Mono" },
-];
+// export const fontPairings = [
+//   {
+//     headingFont: "Montserrat",
+//     bodyFont: "Hind",
+//   },
+//   {
+//     headingFont: "Lato",
+//     bodyFont: "Merriweather",
+//   },
+//   {
+//     headingFont: "Abril Fatface",
+//     bodyFont: "Lato",
+//   },
+//   {
+//     headingFont: "Open Sans",
+//     bodyFont: "Montserrat",
+//   },
+//   {
+//     headingFont: "Archivo Black",
+//     bodyFont: "Roboto",
+//   },
+//   {
+//     headingFont: "Roboto",
+//     bodyFont: "Rokkit",
+//   },
+//   {
+//     headingFont: "Nunito",
+//     bodyFont: "Lora",
+//   },
+//   {
+//     headingFont: "Nunito",
+//     bodyFont: "Open Sans",
+//   },
+//   {
+//     headingFont: "Ubuntu",
+//     bodyFont: "Cabin",
+//   },
+//   {
+//     headingFont: "Lora",
+//     bodyFont: "Open Sans",
+//   },
+//   {
+//     headingFont: "Josefin Sans",
+//     bodyFont: "Playfair",
+//   },
+//   {
+//     headingFont: "Yeseva One",
+//     bodyFont: "Josefin Sans",
+//   },
+//   {
+//     headingFont: "Inter",
+//     bodyFont: "Krub",
+//   },
+//   {
+//     headingFont: "Raleway",
+//     bodyFont: "Merriweather",
+//   },
+//   {
+//     headingFont: "Oswald",
+//     bodyFont: "Montserrat Light",
+//   },
+//   {
+//     headingFont: "Karla",
+//     bodyFont: "Inconsolata",
+//   },
+// ];
 
 export const fontPairings = [
-  { name: "Oswald + Inter", headingFont: "Oswald", bodyFont: "Inter" },
   {
-    name: "Playfair Display + Inter",
-    headingFont: "Playfair Display",
-    bodyFont: "Inter",
-  },
-  { name: "Poppins + Roboto", headingFont: "Poppins", bodyFont: "Roboto" },
-  {
-    name: "Montserrat + Open Sans",
     headingFont: "Montserrat",
     bodyFont: "Open Sans",
   },
   {
-    name: "Lora + Source Sans 3",
-    headingFont: "Lora",
-    bodyFont: "Source Sans 3",
-  },
-  { name: "Raleway + Inter", headingFont: "Raleway", bodyFont: "Inter" },
-  {
-    name: "DM Serif Display + DM Sans",
-    headingFont: "DM Serif Display",
-    bodyFont: "DM Sans",
+    headingFont: "Lato",
+    bodyFont: "Merriweather",
   },
   {
-    name: "Bebas Neue + Roboto",
-    headingFont: "Bebas Neue",
+    headingFont: "Abril Fatface",
+    bodyFont: "Lato",
+  },
+  {
+    headingFont: "Archivo Black",
     bodyFont: "Roboto",
+  },
+  {
+    headingFont: "Inter",
+    bodyFont: "Karla",
+  },
+  {
+    headingFont: "Lora",
+    bodyFont: "Open Sans",
+  },
+  {
+    headingFont: "Josefin Sans",
+    bodyFont: "Merriweather",
+  },
+  {
+    headingFont: "Karla",
+    bodyFont: "Inter",
+  },
+  {
+    headingFont: "Yeseva One",
+    bodyFont: "Josefin Sans",
   },
 ];

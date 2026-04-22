@@ -444,9 +444,7 @@ export default function LeftSidebar() {
                                     serv.id === service.id
                                       ? {
                                           ...serv,
-                                          estimatedTimeMin: Number(
-                                            e.target.value,
-                                          ),
+                                          duration: Number(e.target.value),
                                         }
                                       : serv,
                                 );
@@ -559,13 +557,9 @@ export default function LeftSidebar() {
                           </FieldLabel>
                           <InputGroup>
                             <InputGroupAddon align="inline-start">
-                              {
-                                currencies.find(
-                                  (currency) =>
-                                    currency.code ===
-                                    proposal?.settings?.currency,
-                                )?.symbol
-                              }
+                              {proposal?.settings?.useCustomCurrency
+                                ? proposal?.settings?.customCurrency
+                                : proposal?.settings?.currency}
                             </InputGroupAddon>
                             <InputGroupInput
                               placeholder="0"
@@ -576,9 +570,7 @@ export default function LeftSidebar() {
                                     serv.id === service.id
                                       ? {
                                           ...serv,
-                                          estimatedTimeMin: Number(
-                                            e.target.value,
-                                          ),
+                                          duration: Number(e.target.value),
                                         }
                                       : serv,
                                 );

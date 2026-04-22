@@ -44,7 +44,10 @@ export interface Proposal {
 
     dateFormat: any;
     timeUnit: "Day" | "Week" | "Month";
-    currency: CurrencyCode;
+
+    currency: string;
+    customCurrency: string;
+    useCustomCurrency: boolean;
 
     // pages: Record<ProposalPageSlug, { active: boolean; layout: string }>;
   };

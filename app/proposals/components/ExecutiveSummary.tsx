@@ -32,6 +32,7 @@ export default function ExecutiveSummary() {
             style={{
               fontFamily: proposal?.settings?.headingFont,
               color: proposal?.settings?.accentColor,
+              fontWeight: "bold",
             }}
             className="mb-4 text-[36px] font-bold text-zinc-600"
           >

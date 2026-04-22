@@ -49,6 +49,7 @@ export default function Budget() {
           style={{
             fontFamily: proposal?.settings?.headingFont,
             color: proposal?.settings?.accentColor,
+            fontWeight: "bold",
           }}
           className="mb-4 ml-9 text-[36px] font-bold"
         >
@@ -104,7 +105,7 @@ export default function Budget() {
                         setProposalServices(newItems);
                       }}
                     >
-                      <div className="mt-0.5 flex w-full">
+                      <div className="mt-1 flex w-full">
                         {/* Service  */}
                         <div className="flex flex-2 items-end">
                           <TextEditable
@@ -147,7 +148,11 @@ export default function Budget() {
                               fontSize: "14px",
                               color: proposal?.settings?.textColor,
                             }}
-                            prefix={proposal?.settings?.currency}
+                            prefix={
+                              proposal?.settings?.useCustomCurrency
+                                ? proposal?.settings?.customCurrency
+                                : proposal?.settings?.currency
+                            }
                             value={service.budget}
                             onChange={(e) => {
                               const raw = e.target.value.replace(/,/g, "");
@@ -174,7 +179,7 @@ export default function Budget() {
                                   serv.id === service.id
                                     ? {
                                         ...serv,
-                                        budget: formatted, // store formatted string
+                                        budget: formatted,
                                       }
                                     : serv,
                               );
@@ -220,7 +225,9 @@ export default function Budget() {
                   color: proposal?.settings?.textColor,
                 }}
               >
-                {proposal?.settings?.currency}
+                {proposal?.settings?.useCustomCurrency
+                  ? proposal?.settings?.customCurrency
+                  : proposal?.settings?.currency}
                 {totalBudget.toLocaleString()}
               </span>
             </div>

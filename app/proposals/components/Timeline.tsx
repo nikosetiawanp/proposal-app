@@ -39,6 +39,7 @@ export default function Timeline() {
           style={{
             fontFamily: proposal?.settings?.headingFont,
             color: proposal?.settings?.accentColor,
+            fontWeight: "bold",
           }}
           className="mb-4 ml-9 text-[36px] font-bold"
         >
@@ -96,7 +97,7 @@ export default function Timeline() {
                         setProposalServices(newItems);
                       }}
                     >
-                      <div className="mt-0.5 flex h-full w-full items-center">
+                      <div className="mt-1 flex h-full w-full items-center">
                         {/* Item */}
                         <div className="flex-2">
                           <TextEditable
@@ -151,9 +152,7 @@ export default function Timeline() {
                                   serv.id === service.id
                                     ? {
                                         ...serv,
-                                        estimatedTimeMin: Number(
-                                          e.target.value,
-                                        ),
+                                        duration: Number(e.target.value),
                                       }
                                     : serv,
                               );

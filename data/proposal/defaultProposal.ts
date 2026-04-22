@@ -38,7 +38,7 @@ export const defaultProposal: Proposal = {
       title: "Landing Page Design & Development",
       description:
         "Design and develop a high-converting landing page, including layout, responsive design, and basic SEO setup. Includes revisions based on feedback.",
-      budget: "1200",
+      budget: "1,200",
       duration: 7,
     },
     {
@@ -68,7 +68,11 @@ export const defaultProposal: Proposal = {
     // Date
     dateFormat: "MMMM, d yyyy",
     timeUnit: "Week",
+
+    // Currencies
     currency: "$",
+    customCurrency: "¥",
+    useCustomCurrency: false,
 
     // pages: {
     //   cover: {

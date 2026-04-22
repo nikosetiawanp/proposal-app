@@ -10,7 +10,7 @@ import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 
 import { ChevronDownIcon } from "lucide-react";
-import { headingFonts, bodyFonts, fontPairings } from "@/data/proposal/fonts";
+import { fontPairings, fonts } from "@/data/proposal/fonts";
 import { Proposal } from "@/types/proposal";
 import Divider from "@/components/Divider";
 import { currencies } from "@/data/currencies";
@@ -42,7 +42,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -50,6 +49,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 export default function RightSidebar() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
@@ -60,7 +60,7 @@ export default function RightSidebar() {
   const fieldLabelStyle = "text-xs";
 
   return (
-    <div className="hidden w-[512px] border-l border-zinc-300 bg-white lg:block">
+    <div className="hidden w-lg border-l border-zinc-300 bg-white lg:block">
       {/* Font Change */}
       <div className="p-4">
         <span className="text-primary font-bold">Settings</span>
@@ -100,15 +100,18 @@ export default function RightSidebar() {
                       </span>
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="min-w-[768px]">
+                  <DialogContent className="min-w-3xl">
                     <DialogHeader>
                       <DialogTitle>Select Font Pairing</DialogTitle>
                     </DialogHeader>
+
                     <div className="grid grid-cols-3 gap-x-4 gap-y-8 overflow-y-scroll">
                       {fontPairings.map((pairing, index) => {
                         return (
                           <div key={index} className="flex flex-col gap-1">
-                            <span>{pairing.name}</span>
+                            <span>
+                              {pairing.headingFont} + {pairing.bodyFont}
+                            </span>
                             <DialogClose
                               onClick={() => {
                                 setProposal({
@@ -123,7 +126,9 @@ export default function RightSidebar() {
                             >
                               <div className="border-input bg-primary flex h-48 w-full flex-col items-start justify-center gap-2 rounded-md border p-4 hover:cursor-pointer hover:opacity-50">
                                 <span
-                                  className="text-left text-4xl font-bold text-white"
+                                  className={cn(
+                                    "text-left text-4xl font-bold text-white",
+                                  )}
                                   style={{
                                     fontFamily: pairing.headingFont,
                                     // color:
@@ -136,8 +141,6 @@ export default function RightSidebar() {
                                   className="text-left text-sm text-white"
                                   style={{
                                     fontFamily: pairing.bodyFont,
-                                    // color:
-                                    //   proposal?.settings?.textColor,
                                   }}
                                 >
                                   And this is your body font
@@ -195,31 +198,15 @@ export default function RightSidebar() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent position="popper">
-                        {["Sans", "Serif", "Mono"].map((category, index) => {
+                        {fonts.map((font, index) => {
                           return (
-                            <React.Fragment key={index}>
-                              {headingFonts.find(
-                                (font) => font.category === category,
-                              ) && (
-                                <SelectGroup key={index}>
-                                  <SelectLabel>{category}</SelectLabel>
-                                  {headingFonts.map((font, index) => {
-                                    return (
-                                      font.category === category && (
-                                        <SelectItem
-                                          key={index}
-                                          value={font.value}
-                                          style={{ fontFamily: font.value }}
-                                        >
-                                          {font.name}
-                                        </SelectItem>
-                                      )
-                                    );
-                                  })}
-                                </SelectGroup>
-                              )}
-                              {index < 3 && <Separator />}
-                            </React.Fragment>
+                            <SelectItem
+                              key={index}
+                              value={font}
+                              style={{ fontFamily: font }}
+                            >
+                              {font}
+                            </SelectItem>
                           );
                         })}
                       </SelectContent>
@@ -248,31 +235,15 @@ export default function RightSidebar() {
                       </SelectTrigger>
 
                       <SelectContent position="popper">
-                        {["Sans", "Serif", "Mono"].map((category, index) => {
+                        {fonts.map((font, index) => {
                           return (
-                            <React.Fragment key={index}>
-                              {bodyFonts.find(
-                                (font) => font.category === category,
-                              ) && (
-                                <SelectGroup key={index}>
-                                  <SelectLabel>{category}</SelectLabel>
-                                  {bodyFonts.map((font, index) => {
-                                    return (
-                                      font.category === category && (
-                                        <SelectItem
-                                          key={index}
-                                          value={font.value}
-                                          style={{ fontFamily: font.value }}
-                                        >
-                                          {font.name}
-                                        </SelectItem>
-                                      )
-                                    );
-                                  })}
-                                </SelectGroup>
-                              )}
-                              {index < 3 && <Separator />}
-                            </React.Fragment>
+                            <SelectItem
+                              key={index}
+                              value={font}
+                              style={{ fontFamily: font }}
+                            >
+                              {font}
+                            </SelectItem>
                           );
                         })}
                       </SelectContent>
@@ -417,10 +388,15 @@ export default function RightSidebar() {
               <Field>
                 <FieldLabel className={fieldLabelStyle}>Currency</FieldLabel>
                 <ToggleGroup
+                  disabled={proposal?.settings?.useCustomCurrency}
                   size="sm"
                   className="w-auto"
                   type="single"
-                  value={proposal?.settings?.currency}
+                  value={
+                    proposal?.settings?.useCustomCurrency
+                      ? proposal?.settings?.customCurrency
+                      : proposal?.settings?.currency
+                  }
                   onValueChange={(value) => {
                     setProposal({
                       ...proposal,
@@ -445,6 +421,49 @@ export default function RightSidebar() {
                   })}
                 </ToggleGroup>
               </Field>
+
+              <Field orientation="horizontal">
+                <Checkbox
+                  id="use-custom-currency"
+                  onCheckedChange={() => {
+                    setProposal({
+                      ...proposal,
+                      settings: {
+                        ...proposal?.settings,
+                        useCustomCurrency:
+                          !proposal?.settings?.useCustomCurrency,
+                      },
+                    });
+                  }}
+                  checked={proposal?.settings?.useCustomCurrency}
+                />
+                <Label htmlFor="use-custom-currency" className="text-xs">
+                  Use custom currency
+                </Label>
+              </Field>
+
+              {proposal?.settings?.useCustomCurrency && (
+                <>
+                  <Separator />
+                  <Field>
+                    <FieldLabel className={fieldLabelStyle}>
+                      Custom currency
+                    </FieldLabel>
+                    <Input
+                      value={proposal?.settings?.customCurrency}
+                      onChange={(e) => {
+                        setProposal({
+                          ...proposal,
+                          settings: {
+                            ...proposal?.settings,
+                            customCurrency: e.target.value,
+                          },
+                        });
+                      }}
+                    />
+                  </Field>
+                </>
+              )}
             </AccordionContent>
           </AccordionItem>
 

@@ -28,6 +28,7 @@ export default function Scope() {
             style={{
               fontFamily: proposal?.settings?.headingFont,
               color: proposal?.settings?.accentColor,
+              fontWeight: "bold",
             }}
             className="ml-9 text-[36px] font-bold"
           >
