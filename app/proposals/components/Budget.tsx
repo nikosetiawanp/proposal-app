@@ -14,6 +14,7 @@ import ProposalHeader from "./ProposalHeader";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 import { Separator } from "@/components/ui/separator";
+import { getLuminance } from "@/utils/getLuminance";
 
 export default function Budget() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
@@ -22,6 +23,7 @@ export default function Budget() {
     proposalStore,
     (state) => state.setProposalServices,
   );
+  const accentColorLuminance = getLuminance(proposal?.settings?.accentColor);
 
   // const totalBudget = proposal?.services?.reduce(
   //   (acc, service) => acc + Number(service.budget.replace(/,/g, "")),
@@ -67,13 +69,23 @@ export default function Budget() {
           >
             <span
               className="flex-2 font-bold text-white"
-              style={{ color: proposal?.settings?.textColor }}
+              style={{
+                color:
+                  accentColorLuminance < 0.4
+                    ? proposal?.settings?.backgroundColor
+                    : proposal?.settings?.textColor,
+              }}
             >
               Service
             </span>
             <span
               className="ml-5 flex-[1] font-bold text-white"
-              style={{ color: proposal?.settings?.textColor }}
+              style={{
+                color:
+                  accentColorLuminance < 0.4
+                    ? proposal?.settings?.backgroundColor
+                    : proposal?.settings?.textColor,
+              }}
             >
               Budget
             </span>

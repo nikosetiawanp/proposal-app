@@ -14,6 +14,7 @@ import ProposalHeader from "./ProposalHeader";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 import { Separator } from "@/components/ui/separator";
+import { getLuminance } from "@/utils/getLuminance";
 
 export default function Timeline() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
@@ -27,6 +28,8 @@ export default function Timeline() {
     0,
   );
 
+  const accentColorLuminance = getLuminance(proposal?.settings?.accentColor);
+
   return (
     <div className={clsx("flex h-full flex-col justify-between")}>
       {/* Header */}
@@ -35,6 +38,8 @@ export default function Timeline() {
       {/* Content */}
       <div className="flex h-full flex-col">
         {/* Center */}
+
+        {/* <span>{accentColorLuminance}</span> */}
 
         <h2
           style={{
@@ -57,13 +62,23 @@ export default function Timeline() {
           >
             <span
               className="flex-2 font-bold"
-              style={{ color: proposal?.settings?.textColor }}
+              style={{
+                color:
+                  accentColorLuminance < 0.4
+                    ? proposal?.settings?.backgroundColor
+                    : proposal?.settings?.textColor,
+              }}
             >
               Service
             </span>
             <span
               className="ml-5 flex-[1] font-bold text-white"
-              style={{ color: proposal?.settings?.textColor }}
+              style={{
+                color:
+                  accentColorLuminance < 0.4
+                    ? proposal?.settings?.backgroundColor
+                    : proposal?.settings?.textColor,
+              }}
             >
               Estimated Timeline
             </span>

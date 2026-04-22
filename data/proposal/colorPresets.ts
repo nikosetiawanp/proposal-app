@@ -70,11 +70,6 @@ export const colorPresets: Record<string, ColorPalette[]> = {
       textColor: "#cccbaf",
       accentColor: "#e86548",
     },
-    {
-      backgroundColor: "#1f2426",
-      textColor: "#6697e4",
-      accentColor: "#d0a875", // pink
-    },
   ],
 
   Vibrant: [
@@ -86,7 +81,7 @@ export const colorPresets: Record<string, ColorPalette[]> = {
     {
       backgroundColor: "#25569b",
       textColor: "#e8dfce",
-      accentColor: "#e8dfce",
+      accentColor: "#f59e0b",
     },
     {
       backgroundColor: "#2c286f",
