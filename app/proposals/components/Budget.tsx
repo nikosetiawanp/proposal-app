@@ -15,6 +15,18 @@ import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 import { Separator } from "@/components/ui/separator";
 import { getLuminance } from "@/utils/getLuminance";
+import {
+  Table,
+  TableBody,
+  TableBodyCell,
+  TableHead,
+  TableHeadCell,
+  TableBodyRow,
+  TableHeadRow,
+  TableFooter,
+  TableFooterRow,
+  TableFooterCell,
+} from "./ProposalTable";
 
 export default function Budget() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
@@ -23,7 +35,6 @@ export default function Budget() {
     proposalStore,
     (state) => state.setProposalServices,
   );
-  const accentColorLuminance = getLuminance(proposal?.settings?.accentColor);
 
   // const totalBudget = proposal?.services?.reduce(
   //   (acc, service) => acc + Number(service.budget.replace(/,/g, "")),
@@ -60,44 +71,21 @@ export default function Budget() {
         </h2>
 
         {/* Table */}
-        <div className="flex w-full flex-col">
+        <Table>
           {/* Table Header */}
-          <div
-            className="mx-9 flex items-center px-2 py-2"
-            style={{
-              backgroundColor: proposal?.settings?.accentColor,
-            }}
-          >
-            <span
-              className="flex-2 font-bold text-white"
-              style={{
-                color:
-                  accentColorLuminance < 0.4
-                    ? proposal?.settings?.backgroundColor
-                    : proposal?.settings?.textColor,
-              }}
-            >
-              Service
-            </span>
-            <span
-              className="ml-5 flex-[1] font-bold text-white"
-              style={{
-                color:
-                  accentColorLuminance < 0.4
-                    ? proposal?.settings?.backgroundColor
-                    : proposal?.settings?.textColor,
-              }}
-            >
-              Budget
-            </span>
-          </div>
+          <TableHead>
+            <TableHeadRow>
+              <TableHeadCell className="flex-2">Budget</TableHeadCell>
+              <TableHeadCell className="flex-1">Service</TableHeadCell>
+            </TableHeadRow>
+          </TableHead>
 
           {/* Items */}
-          <SortableContainer
-            items={proposal?.services ?? []}
-            setItems={setProposalServices as any}
-          >
-            <div className="flex flex-col">
+          <TableBody>
+            <SortableContainer
+              items={proposal?.services ?? []}
+              setItems={setProposalServices as any}
+            >
               {proposal?.services?.map((service, index) => {
                 return (
                   // Row
@@ -126,13 +114,16 @@ export default function Budget() {
                         setProposalServices(newItems);
                       }}
                     >
-                      <div className="mt-1 flex w-full">
+                      <TableBodyRow
+                        index={index}
+                        lastItem={index === proposal.services.length - 1}
+                      >
                         {/* Service  */}
-                        <div className="flex flex-2 items-end">
+                        <TableBodyCell className="flex flex-2 items-end">
                           <TextEditable
                             id="service"
                             placeholder="Service"
-                            className="ml-3 text-[14px] text-zinc-600"
+                            className="ml-2 text-[14px] text-zinc-600"
                             style={{
                               fontFamily: proposal?.settings?.bodyFont,
                               fontSize: "14px",
@@ -156,14 +147,14 @@ export default function Budget() {
                               });
                             }}
                           />
-                        </div>
+                        </TableBodyCell>
 
                         {/* Budget */}
-                        <div className="flex flex-1 gap-0.5">
+                        <TableBodyCell className="ml-1 flex-1 gap-0.5">
                           <TextEditable
                             id="service"
                             placeholder="0"
-                            className="ml-1 text-[14px] text-zinc-600"
+                            className="text-[14px] text-zinc-600"
                             style={{
                               fontFamily: proposal?.settings?.bodyFont,
                               fontSize: "14px",
@@ -211,54 +202,36 @@ export default function Budget() {
                               });
                             }}
                           />
-                        </div>
-                      </div>
+                        </TableBodyCell>
+                      </TableBodyRow>
                     </SortableItem>
-                    <div className="px-10">
+                    {/* <div className="px-10">
                       <Separator
                         style={{
                           background: proposal?.settings?.textColor,
                           opacity: 0.25,
                         }}
                       />
-                    </div>
+                    </div> */}
                   </React.Fragment>
                 );
               })}
-            </div>
-          </SortableContainer>
+            </SortableContainer>
+          </TableBody>
 
           {/* Table Footer */}
-          <div className="flex px-11 py-2">
-            <div className="flex-2">
-              <span
-                className="font-bold text-zinc-900"
-                style={{
-                  fontFamily: proposal?.settings?.bodyFont,
-                  fontSize: "14px",
-                  color: proposal?.settings?.textColor,
-                }}
-              >
-                Total
-              </span>
-            </div>
-            <div className="ml-5 flex flex-1">
-              <span
-                className="font-bold text-zinc-900"
-                style={{
-                  fontFamily: proposal?.settings?.bodyFont,
-                  fontSize: "14px",
-                  color: proposal?.settings?.textColor,
-                }}
-              >
+          <TableFooter>
+            <TableFooterRow>
+              <TableFooterCell className="flex-2">Total</TableFooterCell>
+              <TableFooterCell className="ml-0.5 flex flex-1">
                 {proposal?.settings?.useCustomCurrency
                   ? proposal?.settings?.customCurrency
                   : proposal?.settings?.currency}
                 {totalBudget.toLocaleString()}
-              </span>
-            </div>
-          </div>
-        </div>
+              </TableFooterCell>
+            </TableFooterRow>
+          </TableFooter>
+        </Table>
       </div>
 
       {/* <button

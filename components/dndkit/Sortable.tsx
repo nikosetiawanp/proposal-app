@@ -124,7 +124,7 @@ function SortableItem({
       {/* Handle */}
       <div
         className={clsx(
-          "mr-1 rounded-md py-1 text-zinc-300 transition-colors",
+          "mr-2 rounded-md py-1 text-zinc-300 transition-colors",
           "hover:text-primary hover:cursor-pointer",
         )}
       >

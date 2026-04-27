@@ -74,6 +74,11 @@ export const defaultProposal: Proposal = {
     customCurrency: "¥",
     useCustomCurrency: false,
 
+    // Table
+    headerStyle: "Solid",
+    footerStyle: "Solid",
+    rowSeparator: "Color",
+
     // pages: {
     //   cover: {
     //     layout: "default",

@@ -56,10 +56,9 @@ export interface Proposal {
     useCustomCurrency: boolean;
 
     // Table
-    headerStyle: "Solid" | "Soft" | "Minimal";
-    footerStyle: "Solid" | "Soft" | "Minimal";
-    rowSeparation: "None" | "Minimal" | "Color";
-    alternatingRowColors: boolean;
+    tableHeaderStyle: "Solid" | "Soft" | "Minimal";
+    tableFooterStyle: "Solid" | "Soft" | "Minimal";
+    tableRowStyle: "None" | "Line" | "Color";
     // pages: Record<ProposalPageSlug, { active: boolean; layout: string }>;
   };
 }

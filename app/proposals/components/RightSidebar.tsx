@@ -533,6 +533,119 @@ export default function RightSidebar() {
               </Field>
             </AccordionContent>
           </AccordionItem>
+
+          <AccordionItem value="table">
+            <AccordionTrigger className={accordionTriggerStyle}>
+              TABLE
+            </AccordionTrigger>
+            <AccordionContent className={accordionContentStyle}>
+              {/* Header Style */}
+              <Field>
+                <FieldLabel className={fieldLabelStyle}>
+                  Header Style
+                </FieldLabel>
+                <ToggleGroup
+                  size="sm"
+                  type="single"
+                  value={proposal?.settings?.tableHeaderStyle}
+                  onValueChange={(
+                    value: Proposal["settings"]["tableHeaderStyle"],
+                  ) => {
+                    setProposal({
+                      ...proposal,
+                      settings: {
+                        ...proposal?.settings,
+                        tableHeaderStyle: value,
+                      },
+                    });
+                  }}
+                >
+                  {["Solid", "Soft", "Minimal"].map((size, index) => {
+                    return (
+                      <ToggleGroupItem
+                        key={index}
+                        value={size}
+                        variant="outline"
+                        className="flex-1"
+                      >
+                        {size}
+                      </ToggleGroupItem>
+                    );
+                  })}
+                </ToggleGroup>
+              </Field>
+
+              {/* Row Style */}
+              <Field>
+                <FieldLabel className={fieldLabelStyle}>Row Style</FieldLabel>
+                <ToggleGroup
+                  size="sm"
+                  type="single"
+                  value={proposal?.settings?.tableRowStyle}
+                  onValueChange={(
+                    value: Proposal["settings"]["tableRowStyle"],
+                  ) => {
+                    setProposal({
+                      ...proposal,
+                      settings: {
+                        ...proposal?.settings,
+                        tableRowStyle: value,
+                      },
+                    });
+                  }}
+                >
+                  {["None", "Line", "Color"].map((size, index) => {
+                    return (
+                      <ToggleGroupItem
+                        key={index}
+                        value={size}
+                        variant="outline"
+                        className="flex-1"
+                      >
+                        {size}
+                      </ToggleGroupItem>
+                    );
+                  })}
+                </ToggleGroup>
+              </Field>
+
+              {/* Footer Style */}
+              <Field>
+                <FieldLabel className={fieldLabelStyle}>
+                  Footer Style
+                </FieldLabel>
+                <ToggleGroup
+                  size="sm"
+                  type="single"
+                  value={proposal?.settings?.tableFooterStyle}
+                  onValueChange={(
+                    value: Proposal["settings"]["tableFooterStyle"],
+                  ) => {
+                    setProposal({
+                      ...proposal,
+                      settings: {
+                        ...proposal?.settings,
+                        tableFooterStyle: value,
+                      },
+                    });
+                  }}
+                >
+                  {["Solid", "Soft", "Minimal"].map((size, index) => {
+                    return (
+                      <ToggleGroupItem
+                        key={index}
+                        value={size}
+                        variant="outline"
+                        className="flex-1"
+                      >
+                        {size}
+                      </ToggleGroupItem>
+                    );
+                  })}
+                </ToggleGroup>
+              </Field>
+            </AccordionContent>
+          </AccordionItem>
         </Accordion>
       </div>
     </div>
