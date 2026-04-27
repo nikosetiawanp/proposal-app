@@ -31,25 +31,35 @@ export interface Proposal {
     duration: number;
   }[];
   settings: {
+    // Fonts
     headingFont: string;
     bodyFont: string;
     useCustomFont: boolean;
 
+    // Colors
     backgroundColor: string;
     textColor: string;
     accentColor: string;
     theme: "Light" | "Dark" | "Accent";
 
+    // Paper
     paperSize: "A4" | "Letter";
     paperOrientation: "portrait" | "landscape";
 
+    // Date & Time
     dateFormat: any;
     timeUnit: "Day" | "Week" | "Month";
 
+    // Currency
     currency: string;
     customCurrency: string;
     useCustomCurrency: boolean;
 
+    // Table
+    headerStyle: "Solid" | "Soft" | "Minimal";
+    footerStyle: "Solid" | "Soft" | "Minimal";
+    rowSeparation: "None" | "Minimal" | "Color";
+    alternatingRowColors: boolean;
     // pages: Record<ProposalPageSlug, { active: boolean; layout: string }>;
   };
 }

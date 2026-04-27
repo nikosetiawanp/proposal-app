@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { format } from "date-fns";
-import { Calendar as CalendarIcon } from "lucide-react";
+import { Calendar as CalendarIcon, ChevronDownIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -15,8 +15,9 @@ import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 import clsx from "clsx";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
-export function DateEditable({
+export function DatePicker({
   value,
   onSelect,
   className,
@@ -37,19 +38,19 @@ export function DateEditable({
         <Button
           variant="outline"
           data-empty={!value}
-          className={clsx(
-            "border-primary/0 h-fit w-fit rounded-xs border-[2px] bg-white/0 px-0 py-0 text-[16px] font-normal shadow-none",
-            "transition-all",
-            "hover:border-primary hover:bg-primary/0 hover:cursor-pointer",
-            open &&
-              "border-primary hover:border-primary data-[state=open]:bg-primary/0",
-            className,
+          className={cn(
+            "w-full justify-between",
+            "bg-background hover:bg-background font-normal",
+            proposal?.settings?.useCustomFont && "opacity-50",
           )}
           style={style}
           {...props}
         >
           {value ? (
-            format(value, proposal?.settings?.dateFormat || "dd MMMM yyyy")
+            <span className="text-normal flex w-full items-center justify-between text-sm">
+              {format(value, proposal?.settings?.dateFormat || "dd MMMM yyyy")}
+              <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4" />
+            </span>
           ) : (
             <span className="text-[16px] text-zinc-400">
               Click to pick a date
@@ -63,8 +64,7 @@ export function DateEditable({
           selected={value}
           onSelect={onSelect}
           classNames={{
-            day_selected:
-              "bg-primary text-white hover:bg-indigo-600 focus:bg-primary",
+            day_selected: "bg-primary text-white focus:bg-primary",
           }}
         />
       </PopoverContent>

@@ -26,6 +26,8 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { currencies } from "@/data/currencies";
+import { Popover, PopoverTrigger } from "./ui/popover";
+import { DatePicker } from "@/components/DatePicker";
 
 export default function LeftSidebar() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
@@ -48,7 +50,7 @@ export default function LeftSidebar() {
   return (
     <div className="hidden w-lg border-r border-zinc-300 bg-white lg:block">
       <div className="p-4">
-        <span className="text-primary font-bold">Content</span>
+        <span className="font-bold">Content</span>
       </div>
       <Separator />
 
@@ -104,6 +106,21 @@ export default function LeftSidebar() {
                     setProposal({
                       ...proposal,
                       proposerName: e.target.value,
+                    });
+                  }}
+                />
+              </Field>
+
+              <Field className={fieldStyle}>
+                <FieldLabel className={fieldLabelStyle} htmlFor="date">
+                  Date
+                </FieldLabel>
+                <DatePicker
+                  value={proposal?.date}
+                  onSelect={(date: Date) => {
+                    setProposal({
+                      ...proposal,
+                      date: date,
                     });
                   }}
                 />
@@ -434,7 +451,7 @@ export default function LeftSidebar() {
                           <FieldLabel className="text-xs">
                             Duration {index + 1}
                           </FieldLabel>
-                          <InputGroup>
+                          <InputGroup className="bg-background">
                             <InputGroupInput
                               placeholder="0"
                               value={service?.duration}
@@ -555,7 +572,7 @@ export default function LeftSidebar() {
                           <FieldLabel className="text-xs">
                             Budget {index + 1}
                           </FieldLabel>
-                          <InputGroup>
+                          <InputGroup className="bg-background">
                             <InputGroupAddon align="inline-start">
                               {proposal?.settings?.useCustomCurrency
                                 ? proposal?.settings?.customCurrency
@@ -563,14 +580,33 @@ export default function LeftSidebar() {
                             </InputGroupAddon>
                             <InputGroupInput
                               placeholder="0"
-                              value={service?.duration}
+                              value={service?.budget}
                               onChange={(e) => {
+                                const raw = e.target.value.replace(/,/g, "");
+
+                                if (raw === "") {
+                                  const updatedServices = proposal.services.map(
+                                    (serv) =>
+                                      serv.id === service.id
+                                        ? { ...serv, budget: "" }
+                                        : serv,
+                                  );
+
+                                  setProposal({
+                                    ...proposal,
+                                    services: updatedServices,
+                                  });
+                                  return;
+                                }
+
+                                const formatted = Number(raw).toLocaleString();
+
                                 const updatedServices = proposal.services.map(
                                   (serv) =>
                                     serv.id === service.id
                                       ? {
                                           ...serv,
-                                          duration: Number(e.target.value),
+                                          budget: formatted,
                                         }
                                       : serv,
                                 );

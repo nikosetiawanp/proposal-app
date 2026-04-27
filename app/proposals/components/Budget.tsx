@@ -58,6 +58,7 @@ export default function Budget() {
         >
           Budget
         </h2>
+
         {/* Table */}
         <div className="flex w-full flex-col">
           {/* Table Header */}
@@ -219,7 +220,7 @@ export default function Budget() {
                           background: proposal?.settings?.textColor,
                           opacity: 0.25,
                         }}
-                      />{" "}
+                      />
                     </div>
                   </React.Fragment>
                 );

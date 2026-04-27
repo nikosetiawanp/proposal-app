@@ -63,7 +63,7 @@ export default function RightSidebar() {
     <div className="w-lg border-l border-zinc-300 bg-white">
       {/* Font Change */}
       <div className="p-4">
-        <span className="text-primary font-bold">Settings</span>
+        <span className="font-bold">Settings</span>
       </div>
       <Separator />
       <div className="scroll-hidden h-full overflow-y-auto pb-32">
@@ -86,7 +86,7 @@ export default function RightSidebar() {
                     <Button
                       className={cn(
                         "w-full justify-between",
-                        "bg-white font-normal hover:bg-white",
+                        "bg-background hover:bg-background font-normal",
                         proposal?.settings?.useCustomFont && "opacity-50",
                       )}
                       variant="outline"
@@ -131,8 +131,6 @@ export default function RightSidebar() {
                                   )}
                                   style={{
                                     fontFamily: pairing.headingFont,
-                                    // color:
-                                    //   proposal?.settings?.textColor,
                                   }}
                                 >
                                   Heading Font
@@ -194,7 +192,7 @@ export default function RightSidebar() {
                         });
                       }}
                     >
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className="bg-background hover:bg-background w-full">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent position="popper">
@@ -230,7 +228,7 @@ export default function RightSidebar() {
                         });
                       }}
                     >
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-background hover:bg-background">
                         <SelectValue />
                       </SelectTrigger>
 
@@ -360,7 +358,7 @@ export default function RightSidebar() {
                     });
                   }}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-background hover:bg-background">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent position="popper">

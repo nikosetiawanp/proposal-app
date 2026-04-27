@@ -124,10 +124,5 @@ export const colorPresets: Record<string, ColorPalette[]> = {
       textColor: "#0c4a6e",
       accentColor: "#7dd3fc",
     },
-    {
-      backgroundColor: "#f0f9ff",
-      textColor: "#0c4a6e",
-      accentColor: "#7dd3fc",
-    },
   ],
 };
