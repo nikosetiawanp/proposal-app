@@ -261,6 +261,7 @@ export default function RightSidebar() {
                 <FieldLabel className={fieldLabelStyle}>Theme</FieldLabel>
                 <ToggleGroup
                   type="single"
+                  size="sm"
                   value={proposal?.settings?.theme}
                   onValueChange={(value: Proposal["settings"]["theme"]) => {
                     if (!value) return;
@@ -426,6 +427,7 @@ export default function RightSidebar() {
                       : proposal?.settings?.currency
                   }
                   onValueChange={(value) => {
+                    if (!value) return;
                     setProposal({
                       ...proposal,
                       settings: {
@@ -508,6 +510,7 @@ export default function RightSidebar() {
                   type="single"
                   value={proposal?.settings?.paperSize}
                   onValueChange={(value: Proposal["settings"]["paperSize"]) => {
+                    if (!value) return;
                     setProposal({
                       ...proposal,
                       settings: {
@@ -551,6 +554,7 @@ export default function RightSidebar() {
                   onValueChange={(
                     value: Proposal["settings"]["tableHeaderStyle"],
                   ) => {
+                    if (!value) return;
                     setProposal({
                       ...proposal,
                       settings: {
@@ -585,6 +589,7 @@ export default function RightSidebar() {
                   onValueChange={(
                     value: Proposal["settings"]["tableRowStyle"],
                   ) => {
+                    if (!value) return;
                     setProposal({
                       ...proposal,
                       settings: {
@@ -621,6 +626,7 @@ export default function RightSidebar() {
                   onValueChange={(
                     value: Proposal["settings"]["tableFooterStyle"],
                   ) => {
+                    if (!value) return;
                     setProposal({
                       ...proposal,
                       settings: {

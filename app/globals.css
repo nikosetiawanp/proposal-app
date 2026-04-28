@@ -274,3 +274,7 @@ input {
 .scroll-hidden::-webkit-scrollbar {
   display: none; /* Chrome/Safari */
 }
+
+body {
+  font-synthesis: none;
+}

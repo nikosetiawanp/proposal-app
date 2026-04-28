@@ -75,9 +75,9 @@ export const defaultProposal: Proposal = {
     useCustomCurrency: false,
 
     // Table
-    headerStyle: "Solid",
-    footerStyle: "Solid",
-    rowSeparator: "Color",
+    tableHeaderStyle: "Solid",
+    tableFooterStyle: "Solid",
+    tableRowStyle: "Color",
 
     // pages: {
     //   cover: {

@@ -3,7 +3,7 @@ import { proposalStore } from "@/stores/proposal/proposalStore";
 import { getLuminance } from "@/utils/getLuminance";
 import { cn } from "@/lib/utils";
 
-const headerFooterCellStyle = "font-bold text-left px-2";
+const headerFooterCellStyle = "font-bold text-left px-1";
 const rowStyle = "py-1 flex w-full";
 
 export function Table({ children }: { children: React.ReactNode }) {
@@ -17,7 +17,7 @@ export function TableHead({ children }: { children: React.ReactNode }) {
   const tableHeaderStyle = proposal?.settings?.tableHeaderStyle;
   return (
     <thead
-      className={"mx-9 flex justify-start border-y py-0.5"}
+      className={"mx-9 flex justify-start border-y px-0 py-0.5 text-[14px]"}
       style={
         tableHeaderStyle === "Solid"
           ? {
@@ -25,7 +25,7 @@ export function TableHead({ children }: { children: React.ReactNode }) {
               color:
                 accentColorLuminance < 0.4
                   ? proposal?.settings?.backgroundColor
-                  : proposal?.settings?.textColor,
+                  : "#FFFFFF",
 
               borderTopColor: "transparent",
               borderBottomColor: "transparent",
@@ -40,7 +40,7 @@ export function TableHead({ children }: { children: React.ReactNode }) {
             : {
                 backgroundColor: "transparent",
                 color: proposal?.settings?.accentColor,
-                borderTopColor: proposal?.settings?.accentColor,
+                borderTopColor: "transparent",
                 borderBottomColor: proposal?.settings?.accentColor,
               }
       }
@@ -89,7 +89,8 @@ export function TableBodyRow({
       style={{
         borderBottomWidth: "1px",
         borderBottomColor:
-          tableRowStyle === "Line" && !lastItem
+          // tableRowStyle === "Line" && !lastItem
+          tableRowStyle === "Line"
             ? proposal?.settings?.textColor + "30"
             : "transparent",
         backgroundColor:
@@ -121,7 +122,7 @@ export function TableFooter({ children }: { children: React.ReactNode }) {
 
   return (
     <tfoot
-      className={cn("mx-9 flex justify-start border-y py-0.5")}
+      className={cn("mx-9 flex justify-start border-b py-0.5 text-[14px]")}
       style={
         tableFooterStyle === "Solid"
           ? {
@@ -129,7 +130,7 @@ export function TableFooter({ children }: { children: React.ReactNode }) {
               color:
                 accentColorLuminance < 0.4
                   ? proposal?.settings?.backgroundColor
-                  : proposal?.settings?.textColor,
+                  : "#FFFFFF",
 
               borderTopColor: "transparent",
               borderBottomColor: "transparent",
@@ -144,8 +145,8 @@ export function TableFooter({ children }: { children: React.ReactNode }) {
             : {
                 backgroundColor: "transparent",
                 color: proposal?.settings?.accentColor,
-                borderTopColor: proposal?.settings?.accentColor,
-                borderBottomColor: proposal?.settings?.accentColor,
+                borderTopColor: "transparent",
+                borderBottomColor: "transparent",
               }
       }
     >

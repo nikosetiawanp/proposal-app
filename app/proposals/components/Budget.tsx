@@ -75,8 +75,8 @@ export default function Budget() {
           {/* Table Header */}
           <TableHead>
             <TableHeadRow>
-              <TableHeadCell className="flex-2">Budget</TableHeadCell>
-              <TableHeadCell className="flex-1">Service</TableHeadCell>
+              <TableHeadCell className="flex-2">Service</TableHeadCell>
+              <TableHeadCell className="flex-1">Budget</TableHeadCell>
             </TableHeadRow>
           </TableHead>
 

@@ -19,7 +19,6 @@ export default function Cover() {
           style={{
             fontFamily: proposal?.settings?.headingFont,
             color: proposal?.settings?.accentColor,
-            fontWeight: "bold",
           }}
           className={clsx("text-4xl text-[64px] font-bold")}
         >
