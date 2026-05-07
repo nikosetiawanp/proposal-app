@@ -71,16 +71,13 @@ export function TableBody({ children }: { children: React.ReactNode }) {
 
 export function TableBodyRow({
   index,
-  lastItem,
   children,
 }: {
   index: number;
-  lastItem: boolean;
   children: React.ReactNode;
 }) {
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const odd = index % 2 === 1;
-  const even = index % 2 === 0;
   const tableRowStyle = proposal?.settings?.tableRowStyle;
 
   return (
@@ -115,10 +112,17 @@ export function TableBodyCell({
 }
 
 // Footer
-export function TableFooter({ children }: { children: React.ReactNode }) {
+export function TableFooter({
+  children,
+  lastIndex,
+}: {
+  children: React.ReactNode;
+  lastIndex: number;
+}) {
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const accentColorLuminance = getLuminance(proposal?.settings?.accentColor);
   const tableFooterStyle = proposal?.settings?.tableFooterStyle;
+  const odd = lastIndex % 2 === 1;
 
   return (
     <tfoot
@@ -135,7 +139,7 @@ export function TableFooter({ children }: { children: React.ReactNode }) {
               borderTopColor: "transparent",
               borderBottomColor: "transparent",
             }
-          : tableFooterStyle === "Soft"
+          : tableFooterStyle === "Soft" && !odd
             ? {
                 backgroundColor: proposal?.settings?.accentColor + "10",
                 color: proposal?.settings?.accentColor,

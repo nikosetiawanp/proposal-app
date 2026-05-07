@@ -79,6 +79,24 @@ export const defaultProposal: Proposal = {
     tableFooterStyle: "Solid",
     tableRowStyle: "Color",
 
+    // Pages
+    hiddenPages: [
+      "table-of-contents",
+      "terms-and-conditions",
+      "case-studies-and-references",
+      "additional-notes",
+      "contract",
+      "thank-you",
+    ],
+    pages: [
+      { slug: "cover", active: true },
+      { slug: "table-of-contents", active: true },
+      { slug: "executive-summary", active: true },
+      { slug: "scope", active: true },
+      { slug: "timeline", active: true },
+      { slug: "budget", active: true },
+    ],
+
     // pages: {
     //   cover: {
     //     layout: "default",

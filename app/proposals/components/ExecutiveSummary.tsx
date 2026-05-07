@@ -11,7 +11,7 @@ import ProposalFooter from "./ProposalFooter";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 
-export default function ExecutiveSummary() {
+export default function ExecutiveSummary({ slug }: { slug: string }) {
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
   const setProposalObjectives = useStore(
@@ -186,7 +186,7 @@ export default function ExecutiveSummary() {
       </div>
 
       {/* Footer */}
-      <ProposalFooter />
+      <ProposalFooter slug={slug} />
     </div>
   );
 }

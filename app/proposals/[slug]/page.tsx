@@ -65,6 +65,7 @@ export default function Page() {
             }}
             className={clsx("z-0 flex h-full flex-col rounded-sm shadow-xl")}
           > */}
+
           <ProposalPaper>{<Cover />}</ProposalPaper>
           <ProposalPaper>{<ExecutiveSummary />}</ProposalPaper>
           <ProposalPaper>{<Scope />}</ProposalPaper>

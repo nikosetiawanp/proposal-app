@@ -8,7 +8,7 @@ import ProposalHeader from "./ProposalHeader";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 
-export default function Scope() {
+export default function Scope({ slug }: { slug: string }) {
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
   const setProposalServices = useStore(
@@ -130,7 +130,7 @@ export default function Scope() {
       </div>
 
       {/* Footer */}
-      <ProposalFooter />
+      <ProposalFooter slug={slug} />
     </div>
   );
 }

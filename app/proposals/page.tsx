@@ -29,7 +29,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import TopNavbar from "./components/TopNavbar";
+
 import Cover from "./components/Cover";
+import TableOfContents from "./components/TableOfContents";
 import ExecutiveSummary from "./components/ExecutiveSummary";
 import Scope from "./components/Scope";
 import Timeline from "./components/Timeline";
@@ -49,10 +51,6 @@ export default function Page() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
 
-  // useEffect(() => {
-  //   useProposalStore.getState().hydrate();
-  // }, []);
-
   return (
     <Layout>
       <main className="relative flex h-screen w-full flex-col items-center justify-start overflow-hidden">
@@ -67,23 +65,24 @@ export default function Page() {
           {/* Viewport */}
           <div className="scroll-hidden flex h-full w-full flex-col items-center justify-start gap-4 overflow-y-scroll bg-zinc-100 pt-6 pb-20">
             {/* Paper */}
-            <ProposalPaper>{<Cover />}</ProposalPaper>
-            <ProposalPaper>{<ExecutiveSummary />}</ProposalPaper>
-            <ProposalPaper>{<Scope />}</ProposalPaper>
-            <ProposalPaper>{<Timeline />}</ProposalPaper>
-            <ProposalPaper>{<Budget />}</ProposalPaper>{" "}
-            {/* {<ExecutiveSummary />}
-            {<Scope />}
-            {<Timeline />}
-            {<Budget />} */}
+
+            {proposalPages.map((page) => {
+              const active = proposal?.settings?.pages?.find(
+                (p) => p.slug === page.slug,
+              )?.active;
+              return (
+                active && (
+                  <ProposalPaper key={page.slug}>
+                    {<page.component slug={page.slug} />}
+                  </ProposalPaper>
+                )
+              );
+            })}
           </div>
 
           {/* Right sidebar */}
           <RightSidebar />
         </div>
-
-        {/* <PageNavigator /> */}
-        {/* <ScaleControl scale={scale} setScale={setScale} /> */}
       </main>
     </Layout>
   );

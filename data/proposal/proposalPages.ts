@@ -1,121 +1,45 @@
 "use client";
 
-import {
-  Target,
-  CalendarClock,
-  DollarSign,
-  ListOrdered,
-  BookOpen,
-  StickyNote,
-  HeartHandshake,
-  Signature,
-  ListChecks,
-  BookA,
-} from "lucide-react";
-
 import Cover from "../../app/proposals/components/Cover";
+import TableOfContents from "@/app/proposals/components/TableOfContents";
 import Timeline from "../../app/proposals/components/Timeline";
 import ExecutiveSummary from "../../app/proposals/components/ExecutiveSummary";
 import Scope from "@/app/proposals/components/Scope";
 import Budget from "@/app/proposals/components/Budget";
 
 export const proposalPages: {
-  name: string;
   slug: string;
-  icon: any;
-  component: any;
-  canBeHidden: boolean;
-  defaultActive: boolean;
-  defaultLayout: string;
+  component: React.FC<{ slug: string }>;
+  title: string;
 }[] = [
   {
-    name: "Cover",
     slug: "cover",
-    icon: BookA,
     component: Cover,
-    canBeHidden: false,
-    defaultActive: true,
-    defaultLayout: "default",
+    title: "Cover",
   },
   {
-    name: "Table of Contents",
     slug: "table-of-contents",
-    icon: ListOrdered,
-    component: Cover,
-    canBeHidden: true,
-    defaultActive: false,
-    defaultLayout: "default",
+    component: TableOfContents,
+    title: "Table of Contents",
   },
   {
-    name: "Brief and Objectives",
-    slug: "brief-and-objectives",
-    icon: Target,
+    slug: "executive-summary",
     component: ExecutiveSummary,
-    canBeHidden: false,
-    defaultActive: true,
-    defaultLayout: "default",
+    title: "Executive Summary",
   },
   {
-    name: "Scope",
     slug: "scope",
-    icon: ListChecks,
     component: Scope,
-    canBeHidden: false,
-    defaultActive: true,
-    defaultLayout: "default",
+    title: "Scope",
   },
   {
-    name: "Estimated Timeline",
-    slug: "estimated-timeline",
-    icon: CalendarClock,
+    slug: "timeline",
     component: Timeline,
-    canBeHidden: false,
-    defaultActive: true,
-    defaultLayout: "default",
+    title: "Timeline",
   },
   {
-    name: "Budget",
     slug: "budget",
-    icon: DollarSign,
     component: Budget,
-    canBeHidden: false,
-    defaultActive: true,
-    defaultLayout: "default",
-  },
-  {
-    name: "Case Studies and References",
-    slug: "case-studies-and-references",
-    icon: BookOpen,
-    component: Cover,
-    canBeHidden: true,
-    defaultActive: false,
-    defaultLayout: "default",
-  },
-  {
-    name: "Additional Notes",
-    slug: "additional-notes",
-    icon: StickyNote,
-    component: Cover,
-    canBeHidden: true,
-    defaultActive: false,
-    defaultLayout: "default",
-  },
-  {
-    name: "Contract",
-    slug: "contract",
-    icon: Signature,
-    component: Cover,
-    canBeHidden: true,
-    defaultActive: false,
-    defaultLayout: "default",
-  },
-  {
-    name: "Thank You",
-    slug: "thank-you",
-    icon: HeartHandshake,
-    component: Cover,
-    canBeHidden: true,
-    defaultActive: false,
-    defaultLayout: "default",
+    title: "Budget",
   },
 ];

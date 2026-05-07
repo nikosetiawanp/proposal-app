@@ -16,7 +16,7 @@ import { proposalStore } from "@/stores/proposal/proposalStore";
 import { Separator } from "@/components/ui/separator";
 import { getLuminance } from "@/utils/getLuminance";
 
-export default function Timeline() {
+export default function Timeline({ slug }: { slug: string }) {
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
   const setProposalServices = useStore(
@@ -238,7 +238,7 @@ export default function Timeline() {
       </div>
 
       {/* Footer */}
-      <ProposalFooter />
+      <ProposalFooter slug="timeline" />
     </div>
   );
 }

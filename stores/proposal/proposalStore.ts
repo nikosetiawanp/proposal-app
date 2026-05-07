@@ -47,6 +47,7 @@ export const proposalStore = createStore<
             objectives,
           },
         })),
+
       setProposalServices: (services: Proposal["services"]) =>
         set((state) => ({
           proposal: {
@@ -54,31 +55,9 @@ export const proposalStore = createStore<
             services,
           },
         })),
-      setProposalSettings: (settings: Proposal["settings"]) =>
-        set((state) => ({
-          proposal: {
-            ...state.proposal,
-            settings,
-          },
-        })),
-      // setProposalPages: (page: any) =>
-      //   set((state) => ({
-      //     proposal: {
-      //       ...state.proposal,
-      //       settings: {
-      //         ...state.proposal.settings,
-      //         pages: {
-      //           ...state.proposal.settings.pages,
-      //           [page.slug]: page,
-      //         },
-      //       },
-      //     },
-      //   })),
     }),
-
     {
       name: "proposal-storage",
-      // storage: createJSONStorage(() => localStorage),
       storage: debouncedStorage,
     },
   ),

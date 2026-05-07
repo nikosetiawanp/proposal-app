@@ -28,7 +28,7 @@ import {
   TableFooterCell,
 } from "./ProposalTable";
 
-export default function Budget() {
+export default function Budget({ slug }: { slug: string }) {
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
   const setProposalServices = useStore(
@@ -57,8 +57,6 @@ export default function Budget() {
 
       {/* Content */}
       <div className="flex h-full flex-col">
-        {/* Center */}
-
         <h2
           style={{
             fontFamily: proposal?.settings?.headingFont,
@@ -114,10 +112,7 @@ export default function Budget() {
                         setProposalServices(newItems);
                       }}
                     >
-                      <TableBodyRow
-                        index={index}
-                        lastItem={index === proposal.services.length - 1}
-                      >
+                      <TableBodyRow index={index}>
                         {/* Service  */}
                         <TableBodyCell className="flex flex-2 items-end">
                           <TextEditable
@@ -220,7 +215,7 @@ export default function Budget() {
           </TableBody>
 
           {/* Table Footer */}
-          <TableFooter>
+          <TableFooter lastIndex={proposal.services.length - 1}>
             <TableFooterRow>
               <TableFooterCell className="flex-2">Total</TableFooterCell>
               <TableFooterCell className="ml-0.5 flex flex-1">
@@ -242,7 +237,7 @@ export default function Budget() {
       </button> */}
 
       {/* Footer */}
-      <ProposalFooter />
+      <ProposalFooter slug={slug} />
     </div>
   );
 }

@@ -2,9 +2,13 @@ import TextEditable from "@/components/TextEditable";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
 
-export default function ProposalFooter() {
+export default function ProposalFooter({ slug }: { slug: string }) {
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
+
+  const activePages = proposal?.settings?.pages
+    ?.filter((page) => page.active)
+    .map((page) => page.slug);
 
   return (
     <div className="flex justify-between px-9 py-6">
@@ -34,7 +38,7 @@ export default function ProposalFooter() {
           color: proposal?.settings?.textColor,
         }}
       >
-        1
+        {activePages.indexOf(slug)}
       </span>
     </div>
   );

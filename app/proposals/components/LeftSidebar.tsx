@@ -28,6 +28,9 @@ import {
 import { currencies } from "@/data/currencies";
 import { Popover, PopoverTrigger } from "./ui/popover";
 import { DatePicker } from "@/components/DatePicker";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Switch } from "@/components/ui/switch";
+import { cn } from "@/lib/utils";
 
 export default function LeftSidebar() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
@@ -41,9 +44,24 @@ export default function LeftSidebar() {
     (state) => state.setProposalServices,
   );
 
+  const isActive = (slug: string) => {
+    return proposal?.settings?.pages?.find((p) => p.slug === slug)?.active;
+  };
+
+  const togglePageActive = (slug: string) => {
+    setProposal({
+      ...proposal,
+      settings: {
+        ...proposal.settings,
+        pages: proposal.settings.pages.map((p) =>
+          p.slug === slug ? { ...p, active: !p.active } : p,
+        ),
+      },
+    });
+  };
+
   const fieldStyle = "px-4";
   const fieldLabelStyle = "text-xs font-bold";
-
   const accordionTriggerStyle = "font-bold px-4 text-[12px]";
   const accordionContentStyle = "flex flex-col gap-4 h-fit";
 
@@ -58,7 +76,8 @@ export default function LeftSidebar() {
         <Accordion type="multiple">
           {/* Cover */}
           <AccordionItem value="cover">
-            <AccordionTrigger className={accordionTriggerStyle}>
+            <AccordionTrigger className={cn(accordionTriggerStyle)}>
+              <Switch className="mr-2" checked={isActive("cover")} disabled />
               COVER
             </AccordionTrigger>
             <AccordionContent className={accordionContentStyle}>
@@ -128,9 +147,33 @@ export default function LeftSidebar() {
             </AccordionContent>
           </AccordionItem>
 
+          {/* Table of Contents */}
+          <AccordionItem
+            value="table-of-contents"
+            className={cn(!isActive("table-of-contents") && "opacity-50")}
+          >
+            <AccordionTrigger className={cn(accordionTriggerStyle)}>
+              <Switch
+                className="mr-2"
+                checked={isActive("table-of-contents")}
+                onCheckedChange={(e) => togglePageActive("table-of-contents")}
+                onClick={(e) => e.stopPropagation()}
+              />
+              TABLE OF CONTENTS
+            </AccordionTrigger>
+            {/* <AccordionContent className={accordionContentStyle}>
+              <span>Table of contents content</span>
+            </AccordionContent> */}
+          </AccordionItem>
+
           {/* Executive Summary */}
           <AccordionItem value="executiveSummary">
             <AccordionTrigger className={accordionTriggerStyle}>
+              <Switch
+                className="mr-2"
+                checked={isActive("executive-summary")}
+                disabled
+              />
               EXECUTIVE SUMMARY
             </AccordionTrigger>
             <AccordionContent className={accordionContentStyle}>
@@ -255,6 +298,7 @@ export default function LeftSidebar() {
 
           <AccordionItem value="scope">
             <AccordionTrigger className={accordionTriggerStyle}>
+              <Switch className="mr-2" checked={isActive("scope")} disabled />
               SCOPE
             </AccordionTrigger>
             <AccordionContent className={accordionContentStyle}>
@@ -368,6 +412,11 @@ export default function LeftSidebar() {
           {/* Timeline */}
           <AccordionItem value="timeline">
             <AccordionTrigger className={accordionTriggerStyle}>
+              <Switch
+                className="mr-2"
+                checked={isActive("timeline")}
+                disabled
+              />
               TIMELINE
             </AccordionTrigger>
             <AccordionContent className={accordionContentStyle}>
@@ -489,6 +538,7 @@ export default function LeftSidebar() {
           {/* Budget */}
           <AccordionItem value="budget">
             <AccordionTrigger className={accordionTriggerStyle}>
+              <Switch className="mr-2" checked={isActive("budget")} disabled />
               BUDGET
             </AccordionTrigger>
             <AccordionContent className={accordionContentStyle}>

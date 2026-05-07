@@ -59,6 +59,8 @@ export interface Proposal {
     tableHeaderStyle: "Solid" | "Soft" | "Minimal";
     tableFooterStyle: "Solid" | "Soft" | "Minimal";
     tableRowStyle: "None" | "Line" | "Color";
-    // pages: Record<ProposalPageSlug, { active: boolean; layout: string }>;
+
+    hiddenPages: string[];
+    pages: { slug: string; active: boolean }[];
   };
 }

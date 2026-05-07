@@ -7,7 +7,7 @@ import { proposalStore } from "@/stores/proposal/proposalStore";
 import clsx from "clsx";
 import { useStore } from "zustand";
 
-export default function Cover() {
+export default function Cover({ slug }: { slug?: string }) {
   const proposal = useStore(proposalStore, (state) => state.proposal);
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
 
