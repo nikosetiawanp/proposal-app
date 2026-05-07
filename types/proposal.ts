@@ -18,10 +18,15 @@ export interface Proposal {
   overview: string;
   solution: string;
   date: Date;
+
   proposerName: string;
+  proposerEmail: string;
+  proposerAddress: string;
+  proposerPhone: string;
+  proposerWebsite: string;
+
   clientName: string;
-  timeUnit: "Hour" | "Day" | "Week" | "Month" | "Year";
-  currency: CurrencyCode;
+
   objectives: { id: string; title: string; description: string }[];
   services: {
     id: string;

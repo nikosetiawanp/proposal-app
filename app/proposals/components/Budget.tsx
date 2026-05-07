@@ -36,11 +36,6 @@ export default function Budget({ slug }: { slug: string }) {
     (state) => state.setProposalServices,
   );
 
-  // const totalBudget = proposal?.services?.reduce(
-  //   (acc, service) => acc + Number(service.budget.replace(/,/g, "")),
-  //   0,
-  // );
-
   const budgets = proposal?.services?.map((service) =>
     Number(service.budget.replace(/,/g, "")),
   );
@@ -217,8 +212,10 @@ export default function Budget({ slug }: { slug: string }) {
           {/* Table Footer */}
           <TableFooter lastIndex={proposal.services.length - 1}>
             <TableFooterRow>
-              <TableFooterCell className="flex-2">Total</TableFooterCell>
-              <TableFooterCell className="ml-0.5 flex flex-1">
+              <TableFooterCell className="flex-2 text-[14px]">
+                Total
+              </TableFooterCell>
+              <TableFooterCell className="ml-0.5 flex flex-1 text-[14px]">
                 {proposal?.settings?.useCustomCurrency
                   ? proposal?.settings?.customCurrency
                   : proposal?.settings?.currency}

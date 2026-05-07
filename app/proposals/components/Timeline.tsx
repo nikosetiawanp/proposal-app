@@ -6,29 +6,39 @@ import {
   SortableContainer,
   SortableItem,
 } from "../../../components/dndkit/Sortable";
-import React, { useState } from "react";
-import Divider from "@/components/Divider";
-import SectionTitle from "./SectionTitle";
+import React from "react";
 import ProposalFooter from "./ProposalFooter";
 import ProposalHeader from "./ProposalHeader";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
-import { Separator } from "@/components/ui/separator";
-import { getLuminance } from "@/utils/getLuminance";
+
+import {
+  Table,
+  TableBody,
+  TableBodyCell,
+  TableHead,
+  TableHeadCell,
+  TableBodyRow,
+  TableHeadRow,
+  TableFooter,
+  TableFooterRow,
+  TableFooterCell,
+} from "./ProposalTable";
 
 export default function Timeline({ slug }: { slug: string }) {
   const proposal = useStore(proposalStore, (state) => state.proposal);
+
   const setProposal = useStore(proposalStore, (state) => state.setProposal);
+
   const setProposalServices = useStore(
     proposalStore,
     (state) => state.setProposalServices,
   );
-  const totalTimeMin = proposal?.services?.reduce(
+
+  const totalTime = proposal?.services?.reduce(
     (acc, service) => acc + service.duration,
     0,
   );
-
-  const accentColorLuminance = getLuminance(proposal?.settings?.accentColor);
 
   return (
     <div className={clsx("flex h-full flex-col justify-between")}>
@@ -37,10 +47,6 @@ export default function Timeline({ slug }: { slug: string }) {
 
       {/* Content */}
       <div className="flex h-full flex-col">
-        {/* Center */}
-
-        {/* <span>{accentColorLuminance}</span> */}
-
         <h2
           style={{
             fontFamily: proposal?.settings?.headingFont,
@@ -51,51 +57,28 @@ export default function Timeline({ slug }: { slug: string }) {
         >
           Timeline
         </h2>
-        {/* Table */}
-        <div className="flex w-full flex-col">
-          {/* Table Header */}
-          <div
-            className="mx-9 flex items-center px-2 py-2"
-            style={{
-              backgroundColor: proposal?.settings?.accentColor,
-            }}
-          >
-            <span
-              className="flex-2 font-bold"
-              style={{
-                color:
-                  accentColorLuminance < 0.4
-                    ? proposal?.settings?.backgroundColor
-                    : proposal?.settings?.textColor,
-              }}
-            >
-              Service
-            </span>
-            <span
-              className="ml-5 flex-[1] font-bold text-white"
-              style={{
-                color:
-                  accentColorLuminance < 0.4
-                    ? proposal?.settings?.backgroundColor
-                    : proposal?.settings?.textColor,
-              }}
-            >
-              Estimated Timeline
-            </span>
-          </div>
-          {/* <div className="px-10">
-            <Divider />
-          </div> */}
 
-          {/* Items */}
-          <SortableContainer
-            items={proposal?.services ?? []}
-            setItems={setProposalServices as any}
-          >
-            <div className="flex flex-col">
+        {/* Table */}
+        <Table>
+          {/* Table Header */}
+          <TableHead>
+            <TableHeadRow>
+              <TableHeadCell className="flex-2">Service</TableHeadCell>
+
+              <TableHeadCell className="flex-1">
+                Estimated Timeline
+              </TableHeadCell>
+            </TableHeadRow>
+          </TableHead>
+
+          {/* Table Body */}
+          <TableBody>
+            <SortableContainer
+              items={proposal?.services ?? []}
+              setItems={setProposalServices as any}
+            >
               {proposal?.services?.map((service, index) => {
                 return (
-                  // Row
                   <React.Fragment key={service.id}>
                     <SortableItem
                       key={service.id}
@@ -117,17 +100,19 @@ export default function Timeline({ slug }: { slug: string }) {
                         };
 
                         const newItems = [...proposal.services];
+
                         newItems.splice(index + 1, 0, newService);
+
                         setProposalServices(newItems);
                       }}
                     >
-                      <div className="mt-1 flex h-full w-full items-center">
-                        {/* Item */}
-                        <div className="flex-2">
+                      <TableBodyRow index={index}>
+                        {/* Service */}
+                        <TableBodyCell className="flex flex-2 items-end">
                           <TextEditable
                             id="service"
                             placeholder="Service"
-                            className="ml-[12px] text-[14px] text-zinc-600"
+                            className="ml-2 text-[14px] text-zinc-600"
                             style={{
                               fontFamily: proposal?.settings?.bodyFont,
                               fontSize: "14px",
@@ -151,14 +136,14 @@ export default function Timeline({ slug }: { slug: string }) {
                               });
                             }}
                           />
-                        </div>
+                        </TableBodyCell>
 
                         {/* Timeline */}
-                        <div className="flex flex-[1] items-end">
+                        <TableBodyCell className="ml-1 flex flex-1 gap-0.5">
                           <TextEditable
-                            id="service"
+                            id="timeline"
                             placeholder="0"
-                            className="ml-[4px] text-[14px] text-zinc-600"
+                            className="text-[14px] text-zinc-600"
                             style={{
                               fontFamily: proposal?.settings?.bodyFont,
                               fontSize: "14px",
@@ -187,58 +172,33 @@ export default function Timeline({ slug }: { slug: string }) {
                               });
                             }}
                           />
-                        </div>
-                      </div>
+                        </TableBodyCell>
+                      </TableBodyRow>
                     </SortableItem>
-                    <div className="px-9">
-                      <Separator
-                        style={{
-                          background: proposal?.settings?.textColor,
-                          opacity: 0.25,
-                        }}
-                      />
-                    </div>
                   </React.Fragment>
                 );
               })}
-            </div>
-          </SortableContainer>
-
-          {/* End of Row */}
+            </SortableContainer>
+          </TableBody>
 
           {/* Table Footer */}
-          <div className="flex px-11 py-2">
-            <div className="flex-2">
-              <span
-                className="font-bold text-zinc-900"
-                style={{
-                  fontFamily: proposal?.settings?.bodyFont,
-                  fontSize: "14px",
-                  color: proposal?.settings?.textColor,
-                }}
-              >
+          <TableFooter lastIndex={proposal.services.length - 1}>
+            <TableFooterRow>
+              <TableFooterCell className="flex-2 text-[14px]">
                 Total
-              </span>
-            </div>
-            <div className="ml-5 flex-[1]">
-              <span
-                className="font-bold text-zinc-900"
-                style={{
-                  fontFamily: proposal?.settings?.bodyFont,
-                  fontSize: "14px",
-                  color: proposal?.settings?.textColor,
-                }}
-              >
-                {totalTimeMin}{" "}
-                {proposal?.settings?.timeUnit + (totalTimeMin > 1 ? "s" : "")}
-              </span>
-            </div>
-          </div>
-        </div>
+              </TableFooterCell>
+
+              <TableFooterCell className="flex flex-1 text-[14px]">
+                {totalTime}{" "}
+                {proposal?.settings?.timeUnit + (totalTime > 1 ? "s" : "")}
+              </TableFooterCell>
+            </TableFooterRow>
+          </TableFooter>
+        </Table>
       </div>
 
       {/* Footer */}
-      <ProposalFooter slug="timeline" />
+      <ProposalFooter slug={slug} />
     </div>
   );
 }

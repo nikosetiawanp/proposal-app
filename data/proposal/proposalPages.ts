@@ -6,6 +6,7 @@ import Timeline from "../../app/proposals/components/Timeline";
 import ExecutiveSummary from "../../app/proposals/components/ExecutiveSummary";
 import Scope from "@/app/proposals/components/Scope";
 import Budget from "@/app/proposals/components/Budget";
+import ThankYou from "@/app/proposals/components/ThankYou";
 
 export const proposalPages: {
   slug: string;
@@ -41,5 +42,10 @@ export const proposalPages: {
     slug: "budget",
     component: Budget,
     title: "Budget",
+  },
+  {
+    slug: "thank-you",
+    component: ThankYou,
+    title: "Thank You",
   },
 ];

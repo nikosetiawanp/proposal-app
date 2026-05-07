@@ -37,8 +37,12 @@ export default function TableOfContents({ slug }: { slug: string }) {
 
             return (
               active &&
-              page.slug !== "cover" && (
-                <div className="flex w-full items-baseline justify-between">
+              page.slug !== "cover" &&
+              page.slug !== "table-of-contents" && (
+                <div
+                  key={index}
+                  className="flex w-full items-baseline justify-between"
+                >
                   <span
                     style={{
                       color: proposal?.settings?.textColor,

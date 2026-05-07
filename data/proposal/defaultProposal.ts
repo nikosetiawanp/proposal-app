@@ -11,10 +11,13 @@ export const defaultProposal: Proposal = {
   solution:
     "Describe how you will solve the client’s problem and deliver value. Outline your approach, key features, and what makes your solution effective. You can mention technologies, design principles, or strategies you will use. Focus on clarity and benefits—explain how your solution helps achieve the objectives and improves the client’s situation.",
   date: new Date(),
-  proposerName: "Your Name / Your Company",
   clientName: "Client Name / Company",
-  timeUnit: "Week",
-  currency: "USD",
+
+  proposerName: "Your Name / Your Company",
+  proposerEmail: "hello@reallygreatsite.com",
+  proposerAddress: "123 Anywhere St., Any City, ST 12345",
+  proposerPhone: "123-456-7890",
+  proposerWebsite: "www.reallygreatsite.com",
 
   objectives: [
     {
@@ -51,8 +54,8 @@ export const defaultProposal: Proposal = {
   ],
   settings: {
     // Typography
-    headingFont: "Oswald",
-    bodyFont: "Inter",
+    headingFont: "Montserrat",
+    bodyFont: "Open Sans",
     useCustomFont: false,
 
     // Colors
@@ -76,8 +79,8 @@ export const defaultProposal: Proposal = {
 
     // Table
     tableHeaderStyle: "Solid",
-    tableFooterStyle: "Solid",
-    tableRowStyle: "Color",
+    tableFooterStyle: "Minimal",
+    tableRowStyle: "Line",
 
     // Pages
     hiddenPages: [
@@ -95,6 +98,7 @@ export const defaultProposal: Proposal = {
       { slug: "scope", active: true },
       { slug: "timeline", active: true },
       { slug: "budget", active: true },
+      { slug: "thank-you", active: true },
     ],
 
     // pages: {

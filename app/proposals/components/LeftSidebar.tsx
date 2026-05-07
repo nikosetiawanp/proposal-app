@@ -676,6 +676,100 @@ export default function LeftSidebar() {
               </SortableContainer>
             </AccordionContent>
           </AccordionItem>
+
+          {/* Thank You */}
+          <AccordionItem
+            value="thank-you"
+            className={cn(!isActive("thank-you") && "opacity-50")}
+          >
+            <AccordionTrigger className={cn(accordionTriggerStyle)}>
+              <Switch
+                className="mr-2"
+                checked={isActive("thank-you")}
+                onCheckedChange={(e) => togglePageActive("thank-you")}
+                onClick={(e) => e.stopPropagation()}
+              />
+              THANK YOU
+            </AccordionTrigger>
+            <AccordionContent className={accordionContentStyle}>
+              <Field className={fieldStyle}>
+                <FieldLabel
+                  className={fieldLabelStyle}
+                  htmlFor="proposer-address"
+                >
+                  Proposer Address
+                </FieldLabel>
+                <Input
+                  id="proposer-address"
+                  placeholder="eg. 123 Main St, Anytown, USA"
+                  value={proposal?.proposerAddress}
+                  onChange={(e) => {
+                    setProposal({
+                      ...proposal,
+                      proposerAddress: e.target.value,
+                    });
+                  }}
+                />
+              </Field>
+              <Field className={fieldStyle}>
+                <FieldLabel
+                  className={fieldLabelStyle}
+                  htmlFor="proposer-phone"
+                >
+                  Proposer Phone
+                </FieldLabel>
+                <Input
+                  id="proposer-phone"
+                  placeholder="eg. (123) 456-7890"
+                  value={proposal?.proposerPhone}
+                  onChange={(e) => {
+                    setProposal({
+                      ...proposal,
+                      proposerPhone: e.target.value,
+                    });
+                  }}
+                />
+              </Field>
+              <Field className={fieldStyle}>
+                <FieldLabel
+                  className={fieldLabelStyle}
+                  htmlFor="proposer-website"
+                >
+                  Proposer Website
+                </FieldLabel>
+                <Input
+                  id="proposer-website"
+                  placeholder="eg. https://www.example.com"
+                  value={proposal?.proposerWebsite}
+                  onChange={(e) => {
+                    setProposal({
+                      ...proposal,
+                      proposerWebsite: e.target.value,
+                    });
+                  }}
+                />
+              </Field>
+              <Field className={fieldStyle}>
+                <FieldLabel
+                  className={fieldLabelStyle}
+                  htmlFor="proposer-email"
+                >
+                  Proposer Email
+                </FieldLabel>
+                <Input
+                  id="proposer-email"
+                  placeholder="eg. user@example.com"
+                  value={proposal?.proposerEmail}
+                  onChange={(e) => {
+                    setProposal({
+                      ...proposal,
+                      proposerEmail: e.target.value,
+                    });
+                  }}
+                />
+              </Field>
+            </AccordionContent>
+          </AccordionItem>
         </Accordion>
       </div>
     </div>
