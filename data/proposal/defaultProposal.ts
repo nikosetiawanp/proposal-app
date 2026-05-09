@@ -53,6 +53,9 @@ export const defaultProposal: Proposal = {
     },
   ],
   settings: {
+    // Cover
+    useCoverImage: true,
+
     // Typography
     headingFont: "Montserrat",
     bodyFont: "Open Sans",
@@ -100,48 +103,5 @@ export const defaultProposal: Proposal = {
       { slug: "budget", active: true },
       { slug: "thank-you", active: true },
     ],
-
-    // pages: {
-    //   cover: {
-    //     layout: "default",
-    //     active: true,
-    //   },
-    //   "table-of-contents": {
-    //     layout: "default",
-    //     active: false,
-    //   },
-    //   "brief-and-objectives": {
-    //     layout: "default",
-    //     active: true,
-    //   },
-    //   scope: {
-    //     layout: "default",
-    //     active: true,
-    //   },
-    //   "estimated-timeline": {
-    //     layout: "default",
-    //     active: true,
-    //   },
-    //   budget: {
-    //     layout: "default",
-    //     active: true,
-    //   },
-    //   "case-studies-and-references": {
-    //     layout: "default",
-    //     active: false,
-    //   },
-    //   "additional-notes": {
-    //     layout: "default",
-    //     active: false,
-    //   },
-    //   contract: {
-    //     layout: "default",
-    //     active: false,
-    //   },
-    //   "thank-you": {
-    //     layout: "default",
-    //     active: false,
-    //   },
-    // },
   },
 };

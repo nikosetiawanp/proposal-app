@@ -28,6 +28,15 @@ import {
 } from "lucide-react";
 import { useStore } from "zustand";
 import Image from "next/image";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function TopNavbar() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
@@ -116,9 +125,36 @@ export default function TopNavbar() {
           <span>Save Draft</span> <Save />
         </Button>
 
-        <Button variant="default" size="sm">
-          <span>Download</span> <Download />
-        </Button>
+        <Dialog>
+          <DialogTrigger>
+            <Button variant="default" size="sm">
+              <span>Download</span> <Download />
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Download Proposal</DialogTitle>
+              <DialogDescription>
+                Do you want to download this proposal as a PDF or JSON file?
+              </DialogDescription>
+            </DialogHeader>
+
+            <DialogFooter>
+              <Button
+                variant="default"
+                className="flex-1"
+                onClick={() => {
+                  window.print();
+                }}
+              >
+                Download as PDF
+              </Button>
+              <Button variant="outline" className="flex-1">
+                Download as JSON
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </nav>
   );

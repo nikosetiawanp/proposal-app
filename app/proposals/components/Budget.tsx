@@ -144,7 +144,6 @@ export default function Budget({ slug }: { slug: string }) {
                           <TextEditable
                             id="service"
                             placeholder="0"
-                            className="text-[14px] text-zinc-600"
                             style={{
                               fontFamily: proposal?.settings?.bodyFont,
                               fontSize: "14px",

@@ -36,6 +36,9 @@ export interface Proposal {
     duration: number;
   }[];
   settings: {
+    // Cover
+    useCoverImage: boolean;
+
     // Fonts
     headingFont: string;
     bodyFont: string;

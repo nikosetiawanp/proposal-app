@@ -31,6 +31,7 @@ import { DatePicker } from "@/components/DatePicker";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
+import { Label } from "@/components/ui/label";
 
 export default function LeftSidebar() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
@@ -144,6 +145,36 @@ export default function LeftSidebar() {
                   }}
                 />
               </Field>
+
+              <Field orientation="horizontal" className={fieldStyle}>
+                <Checkbox
+                  id="use-cover-image"
+                  onClick={() => {
+                    setProposal({
+                      ...proposal,
+                      settings: {
+                        ...proposal?.settings,
+                        useCoverImage: !proposal?.settings?.useCoverImage,
+                      },
+                    });
+                  }}
+                  checked={proposal?.settings?.useCoverImage}
+                />
+                <Label htmlFor="use-cover-image" className="text-xs">
+                  Use cover image
+                </Label>
+              </Field>
+
+              <Field className={fieldStyle}>
+                <FieldLabel className={fieldLabelStyle} htmlFor="cover-image">
+                  Cover Image
+                </FieldLabel>
+                <Input
+                  id="cover-image"
+                  type="file"
+                  placeholder="Upload your image here"
+                />
+              </Field>
             </AccordionContent>
           </AccordionItem>
 
@@ -250,7 +281,7 @@ export default function LeftSidebar() {
                       >
                         <Field className="flex gap-1">
                           <FieldLabel className="text-xs">
-                            Objective {index + 1}
+                            Objective #{index + 1}
                           </FieldLabel>
                           <Textarea
                             placeholder="State the key goals and success criteria for this project"
@@ -359,7 +390,7 @@ export default function LeftSidebar() {
                       <div className="flex flex-col gap-1">
                         <Field>
                           <FieldLabel className="text-xs">
-                            Service {index + 1}
+                            Service #{index + 1}
                           </FieldLabel>
                           <Input
                             placeholder="Name the service provided"
@@ -380,7 +411,7 @@ export default function LeftSidebar() {
                         </Field>
                         <Field>
                           <FieldLabel className="text-xs">
-                            Description {index + 1}
+                            Description #{index + 1}
                           </FieldLabel>
                           <Textarea
                             className="resize-none"
@@ -477,7 +508,7 @@ export default function LeftSidebar() {
                       <div className="flex flex-col gap-1">
                         <Field className="flex-2">
                           <FieldLabel className="text-xs">
-                            Service {index + 1}
+                            Service #{index + 1}
                           </FieldLabel>
                           <Input
                             placeholder="Name the service provided"
@@ -498,7 +529,7 @@ export default function LeftSidebar() {
                         </Field>
                         <Field className="flex-1">
                           <FieldLabel className="text-xs">
-                            Duration {index + 1}
+                            Duration #{index + 1}
                           </FieldLabel>
                           <InputGroup className="bg-background">
                             <InputGroupInput
@@ -599,7 +630,7 @@ export default function LeftSidebar() {
                       <div className="flex flex-col gap-1">
                         <Field className="flex-2">
                           <FieldLabel className="text-xs">
-                            Service {index + 1}
+                            Service #{index + 1}
                           </FieldLabel>
                           <Input
                             placeholder="Name the service provided"
@@ -620,7 +651,7 @@ export default function LeftSidebar() {
                         </Field>
                         <Field className="flex-1">
                           <FieldLabel className="text-xs">
-                            Budget {index + 1}
+                            Budget #{index + 1}
                           </FieldLabel>
                           <InputGroup className="bg-background">
                             <InputGroupAddon align="inline-start">
