@@ -22,6 +22,7 @@ import {
   Download,
   EllipsisVertical,
   LogIn,
+  Printer,
   Save,
   Trash,
   UserPlus,
@@ -37,6 +38,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import html2pdf from "html2pdf.js";
 
 export default function TopNavbar() {
   const proposal = useStore(proposalStore, (state) => state.proposal);
@@ -121,14 +123,14 @@ export default function TopNavbar() {
         </AlertDialog>
 
         {/* Login? */}
-        <Button variant="outline" size="sm">
+        {/* <Button variant="outline" size="sm">
           <span>Save Draft</span> <Save />
-        </Button>
+        </Button> */}
 
         <Dialog>
           <DialogTrigger>
             <Button variant="default" size="sm">
-              <span>Download</span> <Download />
+              <span>Print</span> <Printer />
             </Button>
           </DialogTrigger>
           <DialogContent>
@@ -140,13 +142,7 @@ export default function TopNavbar() {
             </DialogHeader>
 
             <DialogFooter>
-              <Button
-                variant="default"
-                className="flex-1"
-                onClick={() => {
-                  window.print();
-                }}
-              >
+              <Button variant="default" className="flex-1">
                 Download as PDF
               </Button>
               <Button variant="outline" className="flex-1">

@@ -30,7 +30,6 @@ export default function Cover({ slug }: { slug?: string }) {
           id="project-title"
           as="input"
           placeholder="Project title"
-          className="text-zinc-700"
           style={{
             fontFamily: proposal?.settings?.bodyFont,
             fontSize: "16px",
@@ -47,14 +46,16 @@ export default function Cover({ slug }: { slug?: string }) {
       </div>
 
       {/* Image */}
-      {/* <div className="my-6 h-full w-full px-9">
-        <div
-          className={cn("h-full w-full rounded-xl")}
-          style={{
-            backgroundColor: proposal?.settings?.accentColor,
-          }}
-        ></div>
-      </div> */}
+      {proposal?.settings?.useCoverImage && (
+        <div className="my-6 h-full w-full px-9">
+          <div
+            className={cn("h-full w-full rounded-xl")}
+            style={{
+              backgroundColor: proposal?.settings?.accentColor,
+            }}
+          ></div>
+        </div>
+      )}
 
       <div className="flex flex-col pb-9">
         <div className="flex items-baseline px-9">
@@ -63,7 +64,7 @@ export default function Cover({ slug }: { slug?: string }) {
               fontFamily: proposal?.settings?.bodyFont,
               color: proposal?.settings?.textColor,
             }}
-            className="text-[14px] text-zinc-700"
+            className="text-[14px]"
           >
             Prepared for :
           </span>
@@ -75,7 +76,6 @@ export default function Cover({ slug }: { slug?: string }) {
               fontSize: "14px",
               color: proposal?.settings?.textColor,
             }}
-            className="text-zinc-700"
             value={proposal?.clientName}
             onChange={(e) => {
               setProposal({
@@ -92,7 +92,7 @@ export default function Cover({ slug }: { slug?: string }) {
               fontFamily: proposal?.settings?.bodyFont,
               color: proposal?.settings?.textColor,
             }}
-            className="text-[14px] text-zinc-700"
+            className="text-[14px]"
           >
             Prepared by :
           </span>
@@ -120,7 +120,7 @@ export default function Cover({ slug }: { slug?: string }) {
               fontFamily: proposal?.settings?.bodyFont,
               color: proposal?.settings?.textColor,
             }}
-            className="text-[14px] text-zinc-700"
+            className="text-[14px]"
           >
             Issued Date :
             <DateEditable
@@ -141,6 +141,7 @@ export default function Cover({ slug }: { slug?: string }) {
           </span>
         </div>
       </div>
+      <div className="h-9 w-9" id="element-to-print"></div>
     </div>
   );
 }

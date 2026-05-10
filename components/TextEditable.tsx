@@ -28,9 +28,10 @@ export default function TextEditable({
     <div
       onClick={() => inputRef.current?.focus()}
       className={clsx(
-        "relative flex w-fit items-baseline rounded-xs border-[2px] border-indigo-500/0",
+        "relative flex w-fit items-baseline rounded-xs border-[2px]",
         "hover:border-primary",
         "transition-all",
+        "border-indigo-500/0",
         className,
       )}
       {...props}
@@ -39,8 +40,8 @@ export default function TextEditable({
         <span
           className={clsx("text-[16px]")}
           style={{
-            color: color ? color : "inherit",
-            fontFamily: fontFamily ? fontFamily : "inherit",
+            color: color ? color : "",
+            fontFamily: fontFamily ? fontFamily : "",
             fontSize: "14px",
           }}
         >
@@ -50,8 +51,8 @@ export default function TextEditable({
       <Component
         ref={inputRef}
         style={{
-          color: color ? color : "inherit",
-          fontFamily: fontFamily ? fontFamily : "inherit",
+          color: color ? color : "",
+          fontFamily: fontFamily ? fontFamily : "",
         }}
         className={clsx(
           "field-sizing-content w-fit outline-none",

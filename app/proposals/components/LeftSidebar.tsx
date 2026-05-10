@@ -4,7 +4,15 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
-import { Eye, EyeClosed, EyeOff, GripVertical, Plus } from "lucide-react";
+import {
+  Download,
+  Eye,
+  EyeClosed,
+  EyeOff,
+  GripVertical,
+  Plus,
+  Upload,
+} from "lucide-react";
 import { proposalPages } from "@/data/proposal/proposalPages";
 import { useStore } from "zustand";
 import { proposalStore } from "@/stores/proposal/proposalStore";
@@ -68,8 +76,16 @@ export default function LeftSidebar() {
 
   return (
     <div className="hidden w-lg border-r border-zinc-300 bg-white lg:block">
-      <div className="p-4">
-        <span className="font-bold">Content</span>
+      <div className="flex flex-col gap-2 p-4">
+        <span className="font-bold">Proposal Content</span>
+        <div className="flex flex-col gap-2">
+          <Button variant="default" size="sm" className="">
+            <span>Download </span> <Download />
+          </Button>
+          <Button variant="outline" size="sm" className="">
+            <span>Import</span> <Upload />
+          </Button>
+        </div>
       </div>
       <Separator />
 
@@ -145,34 +161,30 @@ export default function LeftSidebar() {
                   }}
                 />
               </Field>
-
-              <Field orientation="horizontal" className={fieldStyle}>
-                <Checkbox
-                  id="use-cover-image"
-                  onClick={() => {
-                    setProposal({
-                      ...proposal,
-                      settings: {
-                        ...proposal?.settings,
-                        useCoverImage: !proposal?.settings?.useCoverImage,
-                      },
-                    });
-                  }}
-                  checked={proposal?.settings?.useCoverImage}
-                />
-                <Label htmlFor="use-cover-image" className="text-xs">
-                  Use cover image
-                </Label>
-              </Field>
-
               <Field className={fieldStyle}>
-                <FieldLabel className={fieldLabelStyle} htmlFor="cover-image">
-                  Cover Image
-                </FieldLabel>
+                <div className="flex justify-between">
+                  <FieldLabel className={fieldLabelStyle} htmlFor="cover-image">
+                    Cover Image
+                  </FieldLabel>
+                  <Switch
+                    size="sm"
+                    checked={proposal?.settings?.useCoverImage}
+                    onClick={() => {
+                      setProposal({
+                        ...proposal,
+                        settings: {
+                          ...proposal?.settings,
+                          useCoverImage: !proposal?.settings?.useCoverImage,
+                        },
+                      });
+                    }}
+                  />
+                </div>
                 <Input
                   id="cover-image"
                   type="file"
                   placeholder="Upload your image here"
+                  disabled={!proposal?.settings?.useCoverImage}
                 />
               </Field>
             </AccordionContent>

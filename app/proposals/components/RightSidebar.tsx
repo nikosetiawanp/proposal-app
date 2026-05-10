@@ -63,7 +63,7 @@ export default function RightSidebar() {
     <div className="w-lg border-l border-zinc-300 bg-white">
       {/* Font Change */}
       <div className="p-4">
-        <span className="font-bold">Settings</span>
+        <span className="font-bold">Proposal Settings</span>
       </div>
       <Separator />
       <div className="scroll-hidden h-full overflow-y-auto pb-32">
