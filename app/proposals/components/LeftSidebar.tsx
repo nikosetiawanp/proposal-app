@@ -89,7 +89,7 @@ export default function LeftSidebar() {
       </div>
       <Separator />
 
-      <div className="scroll-hidden flex h-full flex-col gap-4 overflow-y-auto pb-32">
+      <div className="scroll-hidden flex h-full flex-col gap-4 overflow-y-auto pb-64">
         <Accordion type="multiple">
           {/* Cover */}
           <AccordionItem value="cover">
